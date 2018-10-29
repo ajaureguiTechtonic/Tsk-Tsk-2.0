@@ -1,0 +1,486 @@
+.nav-logo {
+  width: 75px;
+  height: 50px;
+}
+
+/* Landing page background  */
+.jumbotron {
+  background: url(assets/trianglify.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  margin-top: -20px;
+}
+
+.login-text {
+  font-size: 4rem;
+  text-align: center;
+}
+
+/* Landing Page Content Styling */
+.content > .row {
+  background-color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .37);
+  margin-bottom: 15px;
+  padding: 20px;
+}
+
+.content h1 {
+  text-align: center;
+  color: #0d3d3d;
+}
+
+.content p {
+  text-align: justify;
+  color: #0d3d3d;
+}
+
+.content .col-6 {
+  padding: 15vh 10vh;
+}
+
+.content .col-12  {
+  padding: 5vh 2vh;
+}
+
+.content img {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .37);
+}
+
+.form-control {
+  margin-bottom: 10px;
+}
+
+.login-button {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* custom styles for default task box */
+ .task-content {
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+  margin: 10px 0px;
+}
+
+/* -----------custom styles for default task box -------*/
+/* Centering text in a column */
+.col-centered {
+    text-align: center;
+}
+/* Style for level-1 task */
+.level-1 {
+  background-color: #fff;
+  font-size: 1.125rem;
+}
+
+/* task 2 styling */
+.level-2 {
+ background-color: rgb(111, 227, 220);
+ font-size: 1.375rem;
+}
+
+.level-2 .row {
+  padding: 1% 0;
+}
+
+/* styling for level-3 task */
+.level-3 {
+  color: #581500;
+  background-color: #ffc550;
+  font-size: 1.625rem;
+}
+
+.days-old {
+  text-transform: uppercase;
+}
+
+/*  Level 4 Task Styling*/
+.level-4 {
+  background-color: #e87537;
+  color: #950000;
+}
+
+.level-4 > .row > .col-10 {
+  font-size: 2.25rem;
+  text-align: center;
+  line-height: 1.1;
+  padding: 4% 0;
+}
+
+.level-4 > .row > .col-10 > .counter,
+ .level-4 > .row > .col-10 > .task-name {
+  margin-bottom: 0;
+}
+
+/*  Level 5 Task Styling*/
+.level-5 {
+  background-color:  #ff5151;
+  color: #4e0909;
+}
+
+.level-5 > .row > .col-10 {
+  font-size: 2.875rem;
+  text-align: center;
+  line-height: 1.1;
+  padding: 6% 0;
+}
+
+.level-5 > .row > .col-10 > .counter,
+.level-5 > .row > .col-10 > .task-name {
+  margin-bottom: 0;
+}
+
+/*********************BUTTONS*********************/
+/*styling for add task button*/
+.add-task-button {
+  color: #586060;
+  background-color: white;
+   border: none;
+   border-radius: 5px;
+   box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+
+   position: fixed;
+   right: 30px;
+   top: 100px;
+   height: 70px;
+   width: 150px;
+   z-index: 1000;
+}
+
+.add-task-button:hover {
+   background-color: #e9fff7;
+}
+
+/* styling for nav add task button */
+#navAddTaskButton {
+  color: #586060;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+
+  position: static;
+  right: unset;
+  top: unset;
+  height: unset;
+  width: unset;
+}
+#navAddTaskButton:hover {
+  background-color: #e9fff7;
+}
+
+.btn-secondary img {
+  padding-right: 4px;
+  height: 20px;
+  width: 25px;
+  margin-bottom: 3px;
+}
+
+.tooltip-btn{
+  border-radius: 5px;
+  padding: 0px 15px 0px 15px;
+  margin: 0px;
+  box-shadow: 2px 2px 3px rgba(0,0,0,.37);
+  border: 1px solid rgba(0,0,0,.05);
+  background-color: inherit;
+}
+
+/**Styling for edit area**/
+
+.task-description p {
+  font-size: .6em;
+  padding-right: 1vw;
+}
+
+.level-5 > .row > .col-10.task-description {
+  margin: 0px;
+  padding: 0px;
+  line-height: 1;
+}
+
+.level-4 > .row > .col-10.task-description {
+  margin: 0px;
+  padding: 0px;
+  line-height: 1;
+}
+
+.edit-button {
+  position: static;
+  right: unset;
+  top: unset;
+  height: unset;
+  width: unset;
+}
+.edit-button {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, .37);
+  background-color: inherit;
+  border: 1px solid rgba(0, 0, 0, .15);
+
+}
+.edit-button:hover {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, .5);
+  border: 1px solid rgba(0, 0, 0, .3);
+}
+/***Styling for modal buttons, currently the same as edit buttons, but changes these classes to edit those!****/
+.modal-buttons {
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+  background-color: white;
+}
+
+.modal-buttons:hover {
+  background-color: #e9fff7;
+}
+
+/*-------------------------CHECKBOX STYLING-----------------------*/
+.complete-box > input {
+  opacity: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  position: absolute;
+  cursor: pointer;
+  height: 6vh;
+  width: 6vh;
+}
+
+.checkmark {
+  display: inline-block;
+  height: 6vh;
+  width: 6vh;
+  background-color: #b2d1d1;
+  border-radius: 5px;
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, .37);
+  box-sizing: content-box;
+  text-align: center;
+  font-weight: bold;
+}
+
+.complete-box:hover input ~ .checkmark {
+  background-color: #95afaf;
+}
+
+.complete-box input:checked ~ .checkmark {
+  background-color: white;
+}
+
+.checkmark:after {
+  content: "✓";
+  visibility: hidden;
+  color: #95afaf;
+}
+
+.complete-box input:checked ~ .checkmark:after {
+  visibility: visible;
+}
+/*styling for the date on the tasks*/
+.modal-date {
+  font-size: small;
+}
+
+/*Vertically align content inside of rows*/
+.vertical-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+/*-------------------------CHECKBOX STYLING-----------------------*/
+.complete-box > input {
+  opacity: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  position: absolute;
+  cursor: pointer;
+  height: 6vh;
+  width: 6vh;
+}
+
+.checkmark {
+  display: inline-block;
+  height: 6vh;
+  width: 6vh;
+  background-color: #b2d1d1;
+  border-radius: 5px;
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, .37);
+  box-sizing: content-box;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.complete-box:hover input ~ .checkmark {
+  background-color: #95afaf;
+}
+
+.complete-box input:checked ~ .checkmark {
+  background-color: white;
+}
+
+.checkmark:after {
+  content: "✓";
+  visibility: hidden;
+  color: #95afaf;
+}
+
+.complete-box input:checked ~ .checkmark:after {
+  visibility: visible;
+}
+
+/*Set the height of the row containing the log in form */
+.log-in {
+  height: 75vh;
+  min-height:5em;
+  width: 100%;
+  overflow: scroll;
+}
+
+.login-text {
+  color: white;
+  text-shadow: 1px 1px 10px white;
+}
+
+/* styling for edit views */
+.edit-content {
+  float: right;
+  display: inline;
+}
+
+.edit-content > button {
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.edit-icon {
+  opacity: .0;
+  margin-top: 10px;
+}
+
+/* makes icon visible on hover of task*/
+.edit-icon:hover, .task-content:hover + .edit-icon{
+  opacity: 1;
+}
+
+/*-------------- body padding for nav bar --------------*/
+/* #html {
+  font-size: 62.5%;
+} */
+
+.level-5 > .row > .task-date-container > .task-date > .days-old {
+  font-size: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: 90%;
+}
+
+/*---------------------- Nav bar styling  -------------------- */
+/* #e9fff7 */
+.navbar{
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, .37);
+  border-radius: 0px 0px 5px 5px;
+  background-color: #e9fff7;
+}
+/*-------------- body padding for nav bar --------------*/
+
+body {
+  background-color: #b2d1d1;
+  /* font-size: 1.6rem; */
+  padding-top: 85px;
+}
+
+/* ----------------- Modal Styling ------------------ */
+
+.modal {
+  background-color: rgba(0,0,0,.37);
+  border-radius: 5px;
+}
+
+.modal-dialog > .modal-content > .modal-footer > .btn-primary {
+  background-color: white;
+  color: #95afaf;
+  border: 0px;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+}
+
+.modal-dialog > .modal-content > .modal-footer {
+  background-color: #b2d1d1;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal-dialog > .modal-content > .modal-header {
+  background-color: #b2d1d1;
+  border: none;
+  border-radius: 5px;
+  height: auto;
+}
+
+.days-old-count {
+  font-weight: bold;
+  line-height: 1.1;
+  padding: 10px;
+}
+
+#validation-01 {
+  border-radius: 5px;
+}
+
+@media (max-width: 575px) {
+  .task-content .row {
+    justify-content: space-around;
+  }
+
+  .level-5 > .row {
+    font-size: 1.875rem;
+    padding: 13% 0;
+  }
+
+  .level-4 > .row > .col-10 {
+    font-size: 1.875rem;
+    padding: 7% 0;
+  }
+
+  .main-task-container {
+    width: 95%;
+    margin: auto;
+  }
+
+  .checkmark {
+    font-size: 20px;
+  }
+
+  .level-1 {
+    font-size: 1rem;
+  }
+
+  .level-2 {
+    font-size: 1.125rem;
+  }
+
+  .level-2 .days-old {
+    font-size: 0.75rem;
+  }
+
+  .level-3 {
+    font-size: 1.5rem;
+  }
+
+  .level-3 .days-old {
+    font-size: 1.125rem;
+  }
+
+}
+/* MEDIA QUERIES TO SWAP ADD TASK BUTTON ON SCREEN SIZE CHANGE */
+@media (max-width: 915px) {
+    .add-task-button {
+      display: none;
+    }
+}
+@media (min-width: 916px) {
+    #navAddTaskButton {
+      display: none;
+    }
+}
