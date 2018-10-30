@@ -1,17 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 // import './main.css';
 import TaskContainer from './components/TaskContainer';
+import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <NavBar/>
-        <TaskContainer />
-      </div>
+      <Router>
+        <div className='main-container'>
+
+
+          <Route exact path='/' render={() => <div><NavBar/><LandingPage /></div>}/>
+          <Route exact path='/tasks' render={() => <div>
+             <NavBar/>
+             <TaskContainer />
+          </div>}/>
+        </div>
+      </Router>
     );
   }
 }
