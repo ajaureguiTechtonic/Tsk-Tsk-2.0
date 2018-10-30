@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-// import './main.css';
+import logo from './logo.svg';
+import './App.css';
+import './main.css';
+import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 
+
 class App extends Component {
   render() {
     return (
+
       <Router>
         <div className='main-container'>
-
-
           <Route exact path='/' render={() => <div><NavBar/><LandingPage /></div>}/>
           <Route exact path='/tasks' render={() => <div>
              <NavBar/>
@@ -21,7 +23,7 @@ class App extends Component {
         </div>
       </Router>
     );
-  }
+  };
 }
 
 export default App;
