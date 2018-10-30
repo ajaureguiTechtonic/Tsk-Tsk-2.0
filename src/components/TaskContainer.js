@@ -1,18 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class TaskContainer extends Component{
   constructor() {
     super();
-
-
   }
 
   render() {
-    return(
+    return (
       <div>
         Welcome to TSK-TSK, coolest Task Management App ever!
       </div>
-    )
+    );
   }
 }
 
