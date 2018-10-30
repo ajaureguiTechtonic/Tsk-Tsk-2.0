@@ -9,13 +9,17 @@ import DeleteTaskModal from '../components/modals/DeleteTaskModal';
 class TaskContainer extends Component{
   constructor (props) {
     super(props);
-    this.state = { addModal: false };
+    this.state = {
+      addModal: false,
+    };
 
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
-    this.setState({ addModal: !this.state.addModal });
+    this.setState({
+      addModal: !this.state.addModal,
+    });
   }
 
   render() {
