@@ -8,6 +8,8 @@ import NavBar from './components/NavBar';
 import AddTaskModal from './components/modals/AddTaskModal';
 import SignUpModal from './components/modals/SignUpModal';
 import EditTaskModal from './components/modals/EditTaskModal';
+import DeleteTaskModal from './components/modals/DeleteTaskModal';
+
 
 class App extends Component {
   render() {
@@ -23,8 +25,8 @@ class App extends Component {
           <Route exact path='/tasks' render={(props) => <div>
             <NavBar {...props}/>
             <TaskContainer />
-            <AddTaskModal />
             <EditTaskModal />
+            <DeleteTaskModal/>
           </div>}/>
         </div>
       </Router>
