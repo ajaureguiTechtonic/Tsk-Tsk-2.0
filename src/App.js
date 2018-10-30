@@ -6,6 +6,7 @@ import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import AddTaskModal from './components/modals/AddTaskModal';
+import SignUpModal from './components/modals/SignUpModal';
 
 
 class App extends Component {
@@ -17,8 +18,9 @@ class App extends Component {
 
           <Route exact path='/' render={() => <div>
             <LandingPage />
+            <SignUpModal />
           </div>}/>
-          
+
           <Route exact path='/tasks' render={() => <div>
              <TaskContainer />
              <AddTaskModal />
