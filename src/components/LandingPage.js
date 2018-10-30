@@ -25,7 +25,7 @@ class LandingPage extends Component{
                     <input type='text' className='form-control' placeholder='Password' />
                   </div>
                   <div className='col-12 col-sm-2 login-button'>
-                    <a href='task.html'>
+                    <a href='tasks'>
                       <button type='button' className='btn edit-button'>
                         Get To Work
                       </button>
