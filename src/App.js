@@ -6,6 +6,7 @@ import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import AddTaskModal from './components/modals/AddTaskModal';
+import EditTaskModal from './components/modals/EditTaskModal';
 
 class App extends Component {
   render() {
