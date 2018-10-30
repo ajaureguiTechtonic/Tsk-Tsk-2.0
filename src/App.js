@@ -3,11 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 // import './main.css';
 import TaskContainer from './components/TaskContainer';
+import NavBar from './components/NavBar';
 
 class App extends Component {
   render() {
     return (
-      <TaskContainer />
+      <div>
+        <NavBar/>
+        <TaskContainer />
+      </div>
     );
   }
 }
