@@ -6,7 +6,6 @@ import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 
-
 class App extends Component {
   render() {
     return (
