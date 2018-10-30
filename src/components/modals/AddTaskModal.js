@@ -18,16 +18,16 @@ class AddTaskModal extends Component {
 
       <div>
         {/* "This button is just to test the modal!"*/}
-        <Button color="danger" onClick={this.toggle}>CLICK ME</Button>
+        <Button color="danger" onClick={this.toggle}>ADD ME</Button>
         <Modal id="add-task-modal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <form>
             <ModalHeader>
               <div className="form-row">
                 <div className="col-md-4">
                   <input type="text" id="newTaskName" placeholder="Task Name" required></input>
+                  <span className="modal-title modal-date">Date Added</span>
                 </div>
               </div>
-              <span><h6 className="modal-title modal-date">Date Added</h6></span>
             </ModalHeader>
             <ModalBody>
               <div className="form-group">

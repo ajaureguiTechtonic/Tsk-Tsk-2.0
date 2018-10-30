@@ -7,23 +7,24 @@ import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import AddTaskModal from './components/modals/AddTaskModal';
 import SignUpModal from './components/modals/SignUpModal';
-
+import EditTaskModal from './components/modals/EditTaskModal';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className='main-container'>
-          <NavBar/>
-
-          <Route exact path='/' render={() => <div>
+          <Route exact path='/' render={(props) => <div>
+            <NavBar {...props}/>
             <LandingPage />
             <SignUpModal />
           </div>}/>
-
-          <Route exact path='/tasks' render={() => <div>
-             <TaskContainer />
-             <AddTaskModal />
+              
+          <Route exact path='/tasks' render={(props) => <div>
+            <NavBar {...props}/>
+            <TaskContainer />
+            <AddTaskModal />
+            <EditTaskModal />
           </div>}/>
         </div>
       </Router>
@@ -32,5 +33,3 @@ class App extends Component {
 }
 
 export default App;
-
-//Our App.js will be housing "Router which will then render LandingPage or TaskContainer and the appropriate NavBar view based on our route"

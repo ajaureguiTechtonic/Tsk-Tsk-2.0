@@ -1,14 +1,9 @@
-
 import React, { Component } from 'react';
 import '../main.css';
 import MobileView from '../../src/assets/mobile-view.png';
 import MockupImage from '../../src/assets/mockup-image.png';
 
 class LandingPage extends Component{
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <div>
@@ -16,7 +11,7 @@ class LandingPage extends Component{
           <div className='container'>
             <div className='row vertical-align log-in'>
               <form>
-                <h4 classname='login-text'> Welcome Back</h4>
+                <h4 className='login-text'> Welcome Back</h4>
                 <div className='form-row'>
                   <div className='col-12 col-sm-5'>
                     <input type='text' className='form-control' placeholder='Username/E-mail Address' />
@@ -45,10 +40,10 @@ class LandingPage extends Component{
                   <p> TskTsk is a beautiful, intuitive to-do app meant to keep you accountable over time. </p>
                 </div>
                 <div className='col-12 col-sm-6'>
-                  <img src={MockupImage} className='img-fluid rounded mx-auto d-block' />
+                  <img src={MockupImage} alt='' className='img-fluid rounded mx-auto d-block' />
                 </div>
                 <div className='col-12 col-sm-6'>
-                  <img src={MobileView} className='img-fluid rounded mx-auto d-block' />
+                  <img src={MobileView} alt='' className='img-fluid rounded mx-auto d-block' />
                 </div>
                 <div className='col-12 col-sm-6'>
                   <h1>This is TskTsk</h1>
