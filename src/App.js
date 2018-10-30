@@ -10,6 +10,7 @@ import SignUpModal from './components/modals/SignUpModal';
 import EditTaskModal from './components/modals/EditTaskModal';
 import DeleteTaskModal from './components/modals/DeleteTaskModal';
 
+
 class App extends Component {
   render() {
     return (

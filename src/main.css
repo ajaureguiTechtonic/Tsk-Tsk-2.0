@@ -150,6 +150,10 @@
    width: 150px;
    z-index: 1000;
 }
+.add-task-button img {
+   position: sticky;
+   padding: 5px;
+}
 
 .add-task-button:hover {
    background-color: #e9fff7;
