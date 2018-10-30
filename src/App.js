@@ -22,6 +22,7 @@ class App extends Component {
             <NavBar {...props}/>
             <TaskContainer />
             <AddTaskModal />
+            <EditTaskModal />
           </div>}/>
         </div>
       </Router>
