@@ -23,26 +23,26 @@ class AddTaskModal extends React.Component {
     return (
 
       <div>
-        {/* "This button is just to test the modal!"* /}
+        {/* "This button is just to test the modal!"*/}
         <Button color="danger" onClick={this.toggle}>CLICK ME</Button>
         <Modal id="add-task-modal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <form>
             <ModalHeader>
-              <div class="form-row">
-                <div class="col-md-4">
+              <div className="form-row">
+                <div className="col-md-4">
                   <input type="text" id="newTaskName" placeholder="Task Name" required></input>
                 </div>
               </div>
-              <span><h6 class="modal-title modal-date">Date Added</h6></span>
+              <span><h6 className="modal-title modal-date">Date Added</h6></span>
             </ModalHeader>
             <ModalBody>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="form-group-input-1">Task Description</label>
-                <input type="text" class="form-control" id="newTaskDescription" placeholder="Task Description"></input>
+                <input type="text" className="form-control" id="newTaskDescription" placeholder="Task Description"></input>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label for="form-group-input-2">Due Date</label>
-                <input type="text" class="form-control newDueDate"  readonly placeholder="Due Date - Leave blank if no due date"></input>
+                <input type="text" className="form-control newDueDate"  readonly placeholder="Due Date - Leave blank if no due date"></input>
               </div>
             </ModalBody>
             <ModalFooter>
