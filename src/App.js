@@ -25,7 +25,6 @@ class App extends Component {
           <Route exact path='/tasks' render={(props) => <div>
             <NavBar {...props}/>
             <TaskContainer />
-            <AddTaskModal />
             <EditTaskModal />
             <DeleteTaskModal/>
           </div>}/>
