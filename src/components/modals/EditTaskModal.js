@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 class EditTaskModal extends Component {
   constructor (props) {
     super(props);
     this.state = { modal: false };
+    this.state = { modal: false, startDate: moment() };
 
+    this.handleChange = this.handleChange.bind(this);
     this.toggle = this.toggle.bind(this);
   }
 
   toggle() {
     this.setState({ modal: !this.state.modal });
+  }
+
+  handleChange(date) {
+    this.setState({ startDate: date });
   }
 
   render() {
@@ -36,7 +45,12 @@ class EditTaskModal extends Component {
               </div>
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
-                <input type="text" className="form-control newDueDate"  readOnly placeholder="Edit Due Date - Leave blank if no due date"></input>
+                <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChange}
+                minDate={moment()}
+                maxDate={moment().add(45, 'days')}
+                placeholderText="Select a due date" />
               </div>
             </ModalBody>
             <ModalFooter>
