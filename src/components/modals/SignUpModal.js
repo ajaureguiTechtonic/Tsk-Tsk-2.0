@@ -11,7 +11,7 @@ class SignUpModal extends React.Component {
     return (
 
       <div>
-        <Modal className={this.props.className} id="modal-signup" tabIndex="-1" isOpen={this.props.isOpen} toggle={this.toggle}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
+        <Modal className={this.props.className} id="modal-signup" tabIndex="-1" isOpen={this.props.isOpen} toggle={this.props.onClick}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
           <ModalHeader>
             <div>
               <h5 className="modal-title" id="modal-label-signup">Welcome !</h5>
