@@ -13,11 +13,15 @@ class App extends Component {
     return (
       <Router>
         <div className='main-container'>
-          <Route exact path='/' render={() => <div><NavBar/><LandingPage /></div>}/>
+          <NavBar/>
+
+          <Route exact path='/' render={() => <div>
+            <LandingPage />
+          </div>}/>
+          
           <Route exact path='/tasks' render={() => <div>
-             <NavBar/>
              <TaskContainer />
-             <AddTaskModal /> 
+             <AddTaskModal />
           </div>}/>
         </div>
       </Router>
