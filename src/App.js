@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import './main.css';
 import TaskContainer from './components/TaskContainer';
+import AddTaskModal from './components/modals/AddTaskModal';
+import './BootstrapCSS/bootstrap.min.css';
 
 class App extends Component {
   render() {
     return (
-      <TaskContainer />
+      <div>
+        <TaskContainer />
+        <AddTaskModal />
+      </div>
     );
-  }
+  };
 }
 
 export default App;
