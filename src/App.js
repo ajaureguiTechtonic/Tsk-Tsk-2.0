@@ -17,7 +17,6 @@ class App extends Component {
           <Route exact path='/' render={(props) => <div>
             <NavBar {...props}/>
             <LandingPage />
-            <SignUpModal />
           </div>}/>
 
           <Route exact path='/tasks' render={(props) => <div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
@@ -8,23 +7,11 @@ import {
 } from 'reactstrap';
 
 class SignUpModal extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = { modal: false };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({ modal: !this.state.modal });
-  }
-
   render() {
     return (
 
       <div>
-        <Button color="danger" onClick={this.toggle}>CLICK ME</Button>
-        <Modal className={this.props.className} id="modal-signup" tabIndex="-1" isOpen={this.state.modal} toggle={this.toggle}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
+        <Modal className={this.props.className} id="modal-signup" tabIndex="-1" isOpen={this.props.isOpen} toggle={this.toggle}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
           <ModalHeader>
             <div>
               <h5 className="modal-title" id="modal-label-signup">Welcome !</h5>
@@ -56,8 +43,8 @@ class SignUpModal extends React.Component {
             </form>
           </ModalBody>
           <ModalFooter>
-            <Button onClick={this.toggle} className="btn modal-buttons">Cancel</Button>
-            <a href="/tasks"><Button type="submit" className="btn modal-buttons">Create</Button></a>
+            <button onClick={this.props.onClick} className="btn modal-buttons">Cancel</button>
+            <a href="/tasks"><button type="submit" className="btn modal-buttons">Create</button></a>
           </ModalFooter>
         </Modal>
       </div>
