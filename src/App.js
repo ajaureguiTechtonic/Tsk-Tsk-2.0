@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import logo from './logo.svg';
 import './App.css';
 import './main.css';
@@ -7,7 +7,6 @@ import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
-
 
 class App extends Component {
   render() {
