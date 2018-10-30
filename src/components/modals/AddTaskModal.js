@@ -1,12 +1,17 @@
-import React from 'react';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class AddTaskModal extends React.Component {
+class AddTaskModal extends Component {
+  constructor (props) {
+    super(props);
+    this.state = { modal: false };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({ modal: !this.state.modal });
+  }
 
   render() {
     return (
@@ -17,9 +22,9 @@ class AddTaskModal extends React.Component {
               <div className="form-row">
                 <div className="col-md-4">
                   <input type="text" id="newTaskName" placeholder="Task Name" required></input>
+                  <span className="modal-title modal-date">Date Added</span>
                 </div>
               </div>
-              <span><h6 className="modal-title modal-date">Date Added</h6></span>
             </ModalHeader>
             <ModalBody>
               <div className="form-group">
