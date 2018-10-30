@@ -8,6 +8,7 @@ import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import AddTaskModal from './components/modals/AddTaskModal';
+import EditTaskModal from './components/modals/EditTaskModal';
 
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
           <Route exact path='/tasks' render={() => <div>
              <NavBar/>
              <TaskContainer />
-             <AddTaskModal /> 
+             <AddTaskModal />
+             <EditTaskModal />
           </div>}/>
         </div>
       </Router>
