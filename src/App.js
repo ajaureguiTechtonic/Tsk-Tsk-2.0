@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-// import './main.css';
+import './main.css';
 import TaskContainer from './components/TaskContainer';
+import LandingPage from './components/LandingPage';
 
 class App extends Component {
   render() {
     return (
-      <TaskContainer />
+      <div>
+        <LandingPage />
+        <TaskContainer />
+      </div>
     );
-  }
+  };
 }
 
 export default App;
