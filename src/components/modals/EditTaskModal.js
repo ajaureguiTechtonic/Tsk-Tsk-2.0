@@ -24,7 +24,7 @@ class EditTaskModal extends Component {
             <ModalHeader>
               <div className="form-row">
                 <div className="col-md-4">
-                  <input type="text" id="newTaskName" placeholder="Task Name" required></input>
+                  <input type="text" id="newTaskName" placeholder="Edit Task Name" required></input>
                   <span className="modal-title modal-date">Date Added</span>
                 </div>
               </div>
@@ -32,11 +32,11 @@ class EditTaskModal extends Component {
             <ModalBody>
               <div className="form-group">
                 <label htmlFor="form-group-input-1">Task Description</label>
-                <input type="text" className="form-control" id="newTaskDescription" placeholder="Task Description"></input>
+                <input type="text" className="form-control" id="newTaskDescription" placeholder="Edit Task Description"></input>
               </div>
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
-                <input type="text" className="form-control newDueDate"  readOnly placeholder="Due Date - Leave blank if no due date"></input>
+                <input type="text" className="form-control newDueDate"  readOnly placeholder="Edit Due Date - Leave blank if no due date"></input>
               </div>
             </ModalBody>
             <ModalFooter>
