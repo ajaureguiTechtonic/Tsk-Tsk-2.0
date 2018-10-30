@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import '../main.css';
 import Logo from '../assets/first_logo.png';
+import SignUpModal from '../components/modals/SignUpModal';
 
-class NavBar extends Component{
+class NavBar extends Component {
+  constructor (props) {
+    super(props);
+    this.state = { modal: false };
+
+    this.toggle = this.toggle.bind(this);
+  }
+
+  toggle() {
+    this.setState({ modal: !this.state.modal });
+  }
   render() {
     return (
       <div>
@@ -14,12 +25,13 @@ class NavBar extends Component{
           <div className="collapse navbar-collapse" id="navbarNav">
             {
               this.props.match.path === '/' &&
-              <button type="button" className="btn edit-button ml-auto float-right" data-toggle="modal" data-target="#modal-signup">
-                Sign up
+              <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">
+                Sign Up
               </button>
             }
           </div>
         </nav>
+        <SignUpModal isOpen={this.state.modal} onClick={this.toggle} />
       </div>
     );
   }

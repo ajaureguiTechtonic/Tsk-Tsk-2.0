@@ -16,7 +16,7 @@ class AddTaskModal extends Component {
   render() {
     return (
       <div>
-        <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className}>
+        <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className} toggle={this.props.onClick}>
           <form>
             <ModalHeader>
               <div className="form-row">
