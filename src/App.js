@@ -7,8 +7,6 @@ import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import SignUpModal from './components/modals/SignUpModal';
 
-
-
 class App extends Component {
   render() {
     return (
