@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AddTaskButton from './AddTaskButton';
 import AddTaskModal from '../components/modals/AddTaskModal';
+import EditTaskModal from '../components/modals/EditTaskModal';
+import DeleteTaskModal from '../components/modals/DeleteTaskModal';
 
 class TaskContainer extends Component{
   constructor (props) {
@@ -20,6 +22,8 @@ class TaskContainer extends Component{
         Welcome to TSK-TSK, coolest Task Management App ever!
         <AddTaskButton onClick={this.toggle} />
         <AddTaskModal isOpen={this.state.addModal} onClick={this.toggle} />
+        <EditTaskModal />
+        <DeleteTaskModal/>
       </div>
     );
   }
