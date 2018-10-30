@@ -19,7 +19,7 @@ class App extends Component {
             <LandingPage />
             <SignUpModal />
           </div>}/>
-              
+
           <Route exact path='/tasks' render={(props) => <div>
             <NavBar {...props}/>
             <TaskContainer />

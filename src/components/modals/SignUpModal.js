@@ -24,31 +24,33 @@ class SignUpModal extends React.Component {
 
       <div>
         <Button color="danger" onClick={this.toggle}>CLICK ME</Button>
-        <Modal className={this.props.className} id="modal-signup" tabindex="-1" isOpen={this.state.modal} toggle={this.toggle}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
+        <Modal className={this.props.className} id="modal-signup" tabIndex="-1" isOpen={this.state.modal} toggle={this.toggle}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
           <ModalHeader>
-            <h5 className="modal-title" id="modal-label-signup">Welcome !</h5>
+            <div>
+              <h5 className="modal-title" id="modal-label-signup">Welcome !</h5>
+            </div>
           </ModalHeader>
 
           <ModalBody>
             {/* <!-- Modal sign up form --> */}
             <form>
               <div className="form-group">
-                <label for="InputUserName">Sign in</label>
+                <label htmlFor="InputUserName">Sign in</label>
                 <input type="UserName" className="form-control" id="InputUser" placeholder="Username"/>
               </div>
               <div className="form-group">
-                <label for="InputEmail1">Email address</label>
+                <label htmlFor="InputEmail1">Email address</label>
                 <input type="email" className="form-control" id="InputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
                 <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div className="form-group">
-                <label for="InputPassword1">Password</label>
+                <label htmlFor="InputPassword1">Password</label>
                 <input type="password" className="form-control" id="InputPassword1" placeholder="Password"/>
               </div>
 
-            {/* <!-- This is the password conformation field --> */}
+              {/* <!-- This is the password conformation field --> */}
               <div className="form-group">
-                <label for="InputPasswordconfirm">Password Confirm</label>
+                <label htmlFor="InputPasswordconfirm">Password Confirm</label>
                 <input type="password" className="form-control" id="InputPassword2" placeholder="Re-enter Password"/>
               </div>
             </form>
