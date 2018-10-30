@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 // import './main.css';
 import TaskContainer from './components/TaskContainer';
+import LandingPage from './components/LandingPage';
 
 class App extends Component {
   render() {
     return (
-      <TaskContainer />
+      <Router>
+        <div className='main-container'>
+
+
+          <Route exact path='/' render={() => <div><LandingPage /></div>}/>
+          <Route exact path='/tasks' render={() => <div><TaskContainer /></div>}/>
+
+        </div>
+      </Router>
     );
   }
 }
