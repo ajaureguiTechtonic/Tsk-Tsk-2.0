@@ -1,13 +1,7 @@
-import React from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from 'reactstrap';
+import React, { Component } from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class AddTaskModal extends React.Component {
+class AddTaskModal extends Component {
   constructor (props) {
     super(props);
     this.state = { modal: false };
