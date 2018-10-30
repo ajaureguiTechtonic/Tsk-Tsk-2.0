@@ -7,8 +7,6 @@ class TaskContainer extends Component{
     return (
       <div>
         Welcome to TSK-TSK, coolest Task Management App ever!
-        <LowerLevelTask />
-        <HigherLevelTask />
       </div>
     );
   }

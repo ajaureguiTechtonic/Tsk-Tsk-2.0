@@ -1,4 +1,5 @@
 import React from 'react';
+import editButton from '../../assets/edit.png';
 
 const HigherLevelTask = () => {
   return (
@@ -27,7 +28,7 @@ const HigherLevelTask = () => {
             </div>
           </div>
           <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-            <img src="assets/edit.png" data-toggle="collapse" data-target=".edit-this-task-${task.taskID}" />
+            <img src={ editButton } data-toggle="collapse" data-target=".edit-this-task-${task.taskID}" />
               </div>
             </div>
           </div>
