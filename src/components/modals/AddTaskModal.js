@@ -28,12 +28,12 @@ class AddTaskModal extends Component {
             </ModalHeader>
             <ModalBody>
               <div className="form-group">
-                <label for="form-group-input-1">Task Description</label>
+                <label htmlFor="form-group-input-1">Task Description</label>
                 <input type="text" className="form-control" id="newTaskDescription" placeholder="Task Description"></input>
               </div>
               <div className="form-group">
-                <label for="form-group-input-2">Due Date</label>
-                <input type="text" className="form-control newDueDate"  readonly placeholder="Due Date - Leave blank if no due date"></input>
+                <label htmlFor="form-group-input-2">Due Date</label>
+                <input type="text" className="form-control newDueDate"  readOnly placeholder="Due Date - Leave blank if no due date"></input>
               </div>
             </ModalBody>
             <ModalFooter>
