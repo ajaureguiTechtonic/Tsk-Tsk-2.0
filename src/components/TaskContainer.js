@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import LowerLevelTask from './tasks/LowerLevelTask';
+import HigherLevelTask from './tasks/HigherLevelTask';
 import AddTaskButton from './AddTaskButton';
 import AddTaskModal from '../components/modals/AddTaskModal';
 import EditTaskModal from '../components/modals/EditTaskModal';
