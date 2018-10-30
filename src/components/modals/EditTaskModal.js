@@ -46,10 +46,10 @@ class EditTaskModal extends Component {
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
                 <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-                minDate={moment()}
-                maxDate={moment().add(45, 'days')}
+                  selected={this.state.startDate}
+                  onChange={this.handleChange}
+                  minDate={moment()}
+                  maxDate={moment().add(45, 'days')}
                 placeholderText="Select a due date" />
               </div>
             </ModalBody>

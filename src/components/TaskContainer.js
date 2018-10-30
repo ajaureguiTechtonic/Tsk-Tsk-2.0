@@ -26,8 +26,8 @@ class TaskContainer extends Component{
     return (
       <div>
         Welcome to TSK-TSK, coolest Task Management App ever!
-        <AddTaskButton onClick={this.toggle} />
-        <AddTaskModal isOpen={this.state.addModal} onClick={this.toggle} />
+        <AddTaskButton handleOnClick={this.toggle} />
+        <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle} />
         <EditTaskModal />
         <DeleteTaskModal/>
       </div>

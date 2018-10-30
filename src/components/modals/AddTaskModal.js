@@ -19,7 +19,7 @@ class AddTaskModal extends Component {
   render() {
     return (
       <div>
-        <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className} toggle={this.props.onClick}>
+        <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className} toggle={this.props.handleOnClick}>
           <form>
             <ModalHeader>
               <div className="form-row">
@@ -37,15 +37,15 @@ class AddTaskModal extends Component {
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
                 <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-                minDate={moment()}
-                maxDate={moment().add(45, 'days')}
+                  selected={this.state.startDate}
+                  onChange={this.handleChange}
+                  minDate={moment()}
+                  maxDate={moment().add(45, 'days')}
                 placeholderText="Select a due date" />
               </div>
             </ModalBody>
             <ModalFooter>
-              <button type="button" className="btn modal-buttons" onClick={this.props.onClick}>Cancel</button>
+              <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
               <button type="submit" className="btn modal-buttons">Add Task</button>
             </ModalFooter>
           </form>
