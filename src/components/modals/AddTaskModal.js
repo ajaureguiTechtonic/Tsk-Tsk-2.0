@@ -23,7 +23,7 @@ class AddTaskModal extends React.Component {
     return (
 
       <div>
-        {/* "This button is just to text the modal!" */}
+        {/* "This button is just to test the modal!"* /}
         <Button color="danger" onClick={this.toggle}>CLICK ME</Button>
         <Modal id="add-task-modal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <form>
