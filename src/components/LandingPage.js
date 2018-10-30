@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import '../App.css';
 import '../main.css';
-import '../../src/BootstrapCSS/bootstrap.min.css';
 import MobileView from '../../src/assets/mobile-view.png';
 import MockupImage from '../../src/assets/mockup-image.png';
 

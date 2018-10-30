@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './main.css';
+import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 
