@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Button,
   Modal,
   ModalHeader,
   ModalBody,
@@ -8,24 +7,11 @@ import {
 } from 'reactstrap';
 
 class AddTaskModal extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = { modal: false };
-
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({ modal: !this.state.modal });
-  }
 
   render() {
     return (
-
       <div>
-        {/* "This button is just to test the modal!"*/}
-        <Button color="danger" onClick={this.toggle}>CLICK ME</Button>
-        <Modal id="add-task-modal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className}>
           <form>
             <ModalHeader>
               <div className="form-row">
@@ -46,8 +32,8 @@ class AddTaskModal extends React.Component {
               </div>
             </ModalBody>
             <ModalFooter>
-              <Button className="btn modal-buttons" onClick={this.toggle}>Cancel</Button>{' '}
-              <Button className="btn modal-buttons">Add Task</Button>
+              <button type="button" className="btn modal-buttons" onClick={this.props.onClick}>Cancel</button>
+              <button type="submit" className="btn modal-buttons">Add Task</button>
             </ModalFooter>
           </form>
         </Modal>

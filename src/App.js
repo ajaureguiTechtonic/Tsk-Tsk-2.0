@@ -7,8 +7,6 @@ import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/TaskContainer';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
-import AddTaskModal from './components/modals/AddTaskModal';
-
 
 class App extends Component {
   render() {
@@ -17,9 +15,8 @@ class App extends Component {
         <div className='main-container'>
           <Route exact path='/' render={() => <div><NavBar/><LandingPage /></div>}/>
           <Route exact path='/tasks' render={() => <div>
-             <NavBar/>
+             <NavBar />
              <TaskContainer />
-             <AddTaskModal /> 
           </div>}/>
         </div>
       </Router>
