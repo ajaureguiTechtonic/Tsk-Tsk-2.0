@@ -8,7 +8,7 @@ class AddTaskModal extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      tDate: moment(),
+      startDate: moment(),
       taskName: '',
       description: '',
     };
