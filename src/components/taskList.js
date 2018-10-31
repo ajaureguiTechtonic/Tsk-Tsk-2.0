@@ -1,6 +1,58 @@
-const tasks = [{
-  taskName: "Laundry",
-  description: "do your housework"
-}]
+const tasks = [
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Laundry',
+    dueDate: 'Oct 10 2018',
+    description: 'Darks First',
+    taskID: 1,
+    dateAdded: 'Oct 5 2018',
+  },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Make Costume',
+    dueDate: 'Oct 31 2018',
+    description: 'Add lace collar',
+    taskID: 2,
+    dateAdded: 'Oct 15 2018',
+  },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Update Jira Board',
+    dueDate: undefined,
+    description: 'Add functionality cards',
+    taskID: 3,
+    dateAdded: 'Oct 30 2018',
+  },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Eat Candy',
+    dueDate: 'Nov 1 2018',
+    description: 'especially snickers',
+    taskID: 4,
+    dateAdded: 'Oct 28 2018',
+  },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Play with Black Cat',
+    dueDate: undefined,
+    description: 'at least half an hour',
+    taskID: 5,
+    dateAdded: 'Oct 29 2018',
+  },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Cook a Turkey',
+    dueDate: 'Nov 18 2018',
+    description: 'no more than 15 pounds!',
+    taskID: 6,
+    dateAdded: 'Oct 15 2018',
+  },
+];
 
 export default tasks;
