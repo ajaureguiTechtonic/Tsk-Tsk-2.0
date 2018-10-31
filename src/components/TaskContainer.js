@@ -13,7 +13,7 @@ class TaskContainer extends Component{
     super(props);
     this.state = {
       addModal: false,
-      tasks: [],
+      taskList: [],
     };
 
     store.set('storedTasks', storedTasks);
@@ -22,12 +22,9 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
   }
 
-  createTask(aTasks) {
-    let newTask = aTasks.map((task, i) => {
-      return <LowerLevelTask key={i} taskName={task.taskName} description={task.description}/>;
-    });
+  createTask(task) {
     this.setState({
-      tasks: [...this.state.tasks, newTask],
+      taskList: this.state.taskList.concat(task),
     });
   };
 
@@ -38,17 +35,21 @@ class TaskContainer extends Component{
   };
 
   componentDidMount() {
-    this.createTask(storedTasks);
+    this.setState({
+      taskList: storedTasks,
+    });
   };
 
   render() {
+    let tasks = this.state.taskList.map((task, i) => <LowerLevelTask key={i}  taskName={task.taskName} description={task.description}/>);
+
     return (
       <div>
         Welcome to TSK-TSK, coolest Task Management App ever!
         {store.get('storedTasks')[0].taskName}
         <AddTaskButton handleOnClick={this.toggle} />
         <div>
-          {this.state.tasks}
+          {tasks}
         </div>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle} createTask={this.createTask}/>
         <EditTaskModal />

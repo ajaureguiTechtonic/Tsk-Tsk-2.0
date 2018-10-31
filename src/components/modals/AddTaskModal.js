@@ -32,11 +32,11 @@ class AddTaskModal extends Component {
   };
 
   render() {
-    const newTask = [{
+    const newTask = {
       taskName: this.state.taskName,
       taskDescription: this.state.description,
       dueDate: this.state.dueDate,
-    }]
+    }
     console.log(newTask);
     return (
       <div>
