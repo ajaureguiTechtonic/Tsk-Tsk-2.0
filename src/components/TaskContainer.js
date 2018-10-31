@@ -13,7 +13,7 @@ class TaskContainer extends Component{
     super(props);
     this.state = {
       addModal: false,
-      tasks: [],
+      tasks:[],
     };
 
     store.set('storedTasks', storedTasks);
@@ -27,7 +27,7 @@ class TaskContainer extends Component{
       return <LowerLevelTask key={i} taskName={task.taskName} description={task.description}/>;
     });
     this.setState({
-      tasks: [...this.state.tasks, newTask],
+      tasks: this.state.tasks.concat(newTask),
     });
   };
 
@@ -44,12 +44,10 @@ class TaskContainer extends Component{
   render() {
     return (
       <div>
+        {/* {store.get('storedTasks')[0].taskName} */}
         Welcome to TSK-TSK, coolest Task Management App ever!
-        {store.get('storedTasks')[0].taskName}
+        {this.state.tasks}
         <AddTaskButton handleOnClick={this.toggle} />
-        <div>
-          {this.state.tasks}
-        </div>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle} createTask={this.createTask}/>
         <EditTaskModal />
         <DeleteTaskModal/>
