@@ -9,18 +9,30 @@ class AddTaskModal extends Component {
     super(props);
     this.state = {
       startDate: moment(),
+      taskName: '',
+      description: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleDateSelect = this.handleDateSelect.bind(this);
   }
 
-  handleChange(date) {
+  handleChange(e, date) {
+    console.log(e.target);
+
     this.setState({
-      startDate: date,
+      [e.target.name]: e.target.value,
     });
   }
 
+  handleDateSelect(date) {
+    this.setState({
+      startDate: date,
+    });
+  };
+
   render() {
+
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className} toggle={this.props.handleOnClick}>
@@ -28,7 +40,7 @@ class AddTaskModal extends Component {
             <ModalHeader>
               <div className="form-row">
                 <div className="col-md-4">
-                  <input type="text" id="newTaskName" placeholder="Task Name" required></input>
+                  <input id="newTaskName" type="text" name="taskName" value={this.state.taskName} onChange={this.handleChange} placeholder="Task Name" required></input>
                   <span className="modal-title modal-date">Date Added</span>
                 </div>
               </div>
@@ -36,13 +48,13 @@ class AddTaskModal extends Component {
             <ModalBody>
               <div className="form-group">
                 <label htmlFor="form-group-input-1">Task Description</label>
-                <input type="text" className="form-control" id="newTaskDescription" placeholder="Task Description"></input>
+                <input id="newTaskDescription" type="text" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} placeholder="Task Description"></input>
               </div>
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
                 <DatePicker
                   selected={this.state.startDate}
-                  onChange={this.handleChange}
+                  onChange={this.handleDateSelect}
                   minDate={moment()}
                   maxDate={moment().add(45, 'days')}
                 placeholderText="Select a due date" />
