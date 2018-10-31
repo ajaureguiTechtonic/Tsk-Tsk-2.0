@@ -20,7 +20,7 @@ class TaskContainer extends Component{
     this.setState({
       addModal: !this.state.addModal,
     });
-  }
+  };
 
   render() {
     return (
