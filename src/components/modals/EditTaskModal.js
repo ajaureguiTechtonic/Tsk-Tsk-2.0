@@ -7,8 +7,11 @@ import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 class EditTaskModal extends Component {
   constructor (props) {
     super(props);
-    this.state = { modal: false };
-    this.state = { modal: false, startDate: moment() };
+
+    this.state = {
+      modal: false,
+      startDate: moment(),
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.toggle = this.toggle.bind(this);

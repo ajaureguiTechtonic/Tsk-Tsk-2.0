@@ -1,15 +1,9 @@
-import React from 'react';
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from 'reactstrap';
+import React, { Component } from 'react';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-class SignUpModal extends React.Component {
+class SignUpModal extends Component {
   render() {
     return (
-
       <div>
         <Modal className={this.props.className} id="modal-signup" tabIndex="-1" isOpen={this.props.isOpen} toggle={this.props.onClick}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
           <ModalHeader>
@@ -34,7 +28,6 @@ class SignUpModal extends React.Component {
                 <label htmlFor="InputPassword1">Password</label>
                 <input type="password" className="form-control" id="InputPassword1" placeholder="Password"/>
               </div>
-
               {/* <!-- This is the password conformation field --> */}
               <div className="form-group">
                 <label htmlFor="InputPasswordconfirm">Password Confirm</label>
