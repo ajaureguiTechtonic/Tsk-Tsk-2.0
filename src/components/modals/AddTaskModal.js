@@ -11,15 +11,17 @@ class AddTaskModal extends Component {
       startDate: moment(),
       taskName: '',
       description: '',
+      dueDate: null,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
   }
 
-  handleChange(e, date) {
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
+      dueDate: this.state.startDate._d,
     });
   }
 
@@ -30,10 +32,14 @@ class AddTaskModal extends Component {
   };
 
   render() {
-    // console.log(this.state.startDate._d);
+    const newTask = {
+      taskName: this.state.taskName,
+      taskDescription: this.state.description,
+      dueDate: this.state.dueDate,
+    };
     return (
       <div>
-        <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className} toggle={this.props.handleOnClick}>
+        <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
             <ModalHeader>
               <div className="form-row">
@@ -60,7 +66,7 @@ class AddTaskModal extends Component {
             </ModalBody>
             <ModalFooter>
               <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
-              <button type="submit" className="btn modal-buttons">Add Task</button>
+              <button type="button" className="btn modal-buttons" onClick={() => this.props.createTask(newTask)} >Add Task</button>
             </ModalFooter>
           </form>
         </Modal>
