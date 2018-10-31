@@ -1,4 +1,4 @@
-const tasks = [
+const storedTasks = [
   {
     userID: null,
     completed: false,
@@ -55,4 +55,4 @@ const tasks = [
   },
 ];
 
-export default tasks;
+export default storedTasks;

@@ -32,11 +32,12 @@ class AddTaskModal extends Component {
   };
 
   render() {
-    const newTask = {
+    const newTask = [{
       taskName: this.state.taskName,
       taskDescription: this.state.description,
       dueDate: this.state.dueDate,
-    };
+    }]
+    console.log(newTask);
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
@@ -66,7 +67,9 @@ class AddTaskModal extends Component {
             </ModalBody>
             <ModalFooter>
               <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
-              <button type="button" className="btn modal-buttons" onClick={() => this.props.createTask(newTask)} >Add Task</button>
+              <button type="button" className="btn modal-buttons" onClick={(e) => {
+                this.props.createTask(newTask);this.props.handleOnClick(e)
+              }} >Add Task</button>
             </ModalFooter>
           </form>
         </Modal>

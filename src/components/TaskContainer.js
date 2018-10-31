@@ -5,7 +5,7 @@ import AddTaskButton from './AddTaskButton';
 import AddTaskModal from '../components/modals/AddTaskModal';
 import EditTaskModal from '../components/modals/EditTaskModal';
 import DeleteTaskModal from '../components/modals/DeleteTaskModal';
-import tasks from './taskList';
+import storedTasks from './taskList';
 const store = require('store');
 
 class TaskContainer extends Component{
@@ -13,20 +13,21 @@ class TaskContainer extends Component{
     super(props);
     this.state = {
       addModal: false,
-      taskList: tasks,
+      tasks: [],
     };
 
-    store.set('tasks', tasks);
+    store.set('storedTasks', storedTasks);
 
     this.toggle = this.toggle.bind(this);
     this.createTask = this.createTask.bind(this);
   }
 
-  createTask(task) {
-    let tasks = this.state.taskList;
-    tasks.push(task);
+  createTask(aTasks) {
+    let newTask = aTasks.map((task, i) => {
+      return <LowerLevelTask key={i} taskName={task.taskName} description={task.description}/>;
+    });
     this.setState({
-      taskList: tasks,
+      tasks: [...this.state.tasks, newTask],
     });
   };
 
@@ -37,26 +38,18 @@ class TaskContainer extends Component{
   };
 
   componentDidMount() {
-    console.log('hello');
-    let tasks = this.state.taskList.map((task) => {
-      console.log(task);
-      if (this.state.taskList) {
-        console.log('in here');
-        return <div>{<LowerLevelTask taskName={task.taskName} description={task.taskDescription}/>}</div>;
-      }
-    });
-    console.log(tasks);
-    return tasks;
-  }
+    this.createTask(storedTasks);
+  };
 
   render() {
-
     return (
       <div>
         Welcome to TSK-TSK, coolest Task Management App ever!
-        {store.get('tasks')[0].taskName}
+        {store.get('storedTasks')[0].taskName}
         <AddTaskButton handleOnClick={this.toggle} />
-        {tasks[0]}
+        <div>
+          {this.state.tasks}
+        </div>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle} createTask={this.createTask}/>
         <EditTaskModal />
         <DeleteTaskModal/>

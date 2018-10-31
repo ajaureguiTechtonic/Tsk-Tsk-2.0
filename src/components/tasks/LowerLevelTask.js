@@ -1,8 +1,8 @@
 import React from 'react';
 import editButton from '../../assets/edit.png';
 
-const LowerLevelTask = (props) => {
-  // console.log(props);
+const LowerLevelTask = ({taskName, description}) => {
+  
   return (
     <div>
       <div className="container task">
@@ -14,7 +14,7 @@ const LowerLevelTask = (props) => {
                 <span className="checkmark"></span>
               </div>
               <div className="col-7 col-md-9 d-flex">
-                <p className="m-0 align-self-center">{this.props.taskName}</p>
+                <p className="m-0 align-self-center">{taskName}</p>
               </div>
               <div className="col-3 col-md-2 d-flex justify-content-center">
                 <div className="align-self-center text-center days-old-count">
@@ -23,7 +23,7 @@ const LowerLevelTask = (props) => {
                 </div>
               </div>
               <div className="col-10 offset-1 col-sm-7 collapse task-description edit-this-task-${task.taskID}">
-                <p>{this.props.description}</p>
+                <p>{description}</p>
               </div>
               <div className="col-12 col-sm-4 collapse edit-this-task-${task.taskID}">
                 <div className="edit-content btn-group" role="group" aria-label="edit buttons">
