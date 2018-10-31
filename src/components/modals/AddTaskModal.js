@@ -40,7 +40,7 @@ class AddTaskModal extends Component {
     console.log(newTask);
     return (
       <div>
-        <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
+        <Modal value='add' id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
             <ModalHeader>
               <div className="form-row">
@@ -66,8 +66,8 @@ class AddTaskModal extends Component {
               </div>
             </ModalBody>
             <ModalFooter>
-              <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
-              <button type="button" className="btn modal-buttons" onClick={(e) => {
+              <button value='add' type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
+              <button value='add' type="button" className="btn modal-buttons" onClick={(e) => {
                 this.props.createTask(newTask);this.props.handleOnClick(e)
               }} >Add Task</button>
             </ModalFooter>

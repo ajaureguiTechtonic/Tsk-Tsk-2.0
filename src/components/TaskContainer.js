@@ -13,29 +13,34 @@ class TaskContainer extends Component{
     super(props);
     this.state = {
       addModal: false,
-      tasks:[],
+      editModal: false,
+      tasks: [],
     };
 
     store.set('storedTasks', storedTasks);
 
-    this.toggle = this.toggle.bind(this);
+    this.toggleAdd = this.toggleAdd.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
     this.createTask = this.createTask.bind(this);
   }
 
   createTask(aTasks) {
     let newTask = aTasks.map((task, i) => {
-      return <LowerLevelTask key={i} taskName={task.taskName} description={task.description}/>;
+      return <LowerLevelTask key={i} taskName={task.taskName} description={task.description} handleOnClick={this.toggleEdit}/>;
     });
     this.setState({
       tasks: this.state.tasks.concat(newTask),
     });
   };
 
-  toggle() {
-    this.setState({
-      addModal: !this.state.addModal,
-    });
-  };
+  toggleAdd() {
+    this.setState({ addModal: !this.state.addModal });
+  }
+
+  toggleEdit() {
+    this.setState({ editModal: !this.state.editModal });
+  }
+
 
   componentDidMount() {
     this.createTask(storedTasks);
@@ -47,10 +52,10 @@ class TaskContainer extends Component{
         {/* {store.get('storedTasks')[0].taskName} */}
         Welcome to TSK-TSK, coolest Task Management App ever!
         {this.state.tasks}
-        <AddTaskButton handleOnClick={this.toggle} />
-        <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle} createTask={this.createTask}/>
-        <EditTaskModal />
-        <DeleteTaskModal/>
+        <AddTaskButton handleOnClick={this.toggleAdd} />
+        <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
+        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
+        <DeleteTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle}/>
       </div>
     );
   }

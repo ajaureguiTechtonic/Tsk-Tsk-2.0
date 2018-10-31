@@ -1,8 +1,8 @@
 import React from 'react';
 import editButton from '../../assets/edit.png';
 
-const LowerLevelTask = ({taskName, description}) => {
-  
+const LowerLevelTask = (props) => {
+
   return (
     <div>
       <div className="container task">
@@ -14,7 +14,7 @@ const LowerLevelTask = ({taskName, description}) => {
                 <span className="checkmark"></span>
               </div>
               <div className="col-7 col-md-9 d-flex">
-                <p className="m-0 align-self-center">{taskName}</p>
+                <p className="m-0 align-self-center">{props.taskName}</p>
               </div>
               <div className="col-3 col-md-2 d-flex justify-content-center">
                 <div className="align-self-center text-center days-old-count">
@@ -23,7 +23,7 @@ const LowerLevelTask = ({taskName, description}) => {
                 </div>
               </div>
               <div className="col-10 offset-1 col-sm-7 collapse task-description edit-this-task-${task.taskID}">
-                <p>{description}</p>
+                <p>{props.description}</p>
               </div>
               <div className="col-12 col-sm-4 collapse edit-this-task-${task.taskID}">
                 <div className="edit-content btn-group" role="group" aria-label="edit buttons">
@@ -33,7 +33,7 @@ const LowerLevelTask = ({taskName, description}) => {
             </div>
           </div>
           <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-            <img src={ editButton } data-toggle="collapse" data-target=".edit-this-task-${task.taskID}" />
+            <img src={ editButton } onClick={props.handleOnClick} />
           </div>
         </div>
       </div>

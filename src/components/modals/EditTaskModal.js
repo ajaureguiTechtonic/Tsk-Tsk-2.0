@@ -9,18 +9,10 @@ class EditTaskModal extends Component {
     super(props);
 
     this.state = {
-      modal: false,
       startDate: moment(),
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.toggle = this.toggle.bind(this);
-  }
-
-  toggle() {
-    this.setState({
-      modal: !this.state.modal,
-    });
   }
 
   handleChange(date) {
@@ -32,8 +24,7 @@ class EditTaskModal extends Component {
 
       <div>
         {/* "This button is just to test the modal!"*/}
-        <Button color="danger" onClick={this.toggle}>EDIT ME</Button>
-        <Modal id="edit-task-modal" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+        <Modal id="edit-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
             <ModalHeader>
               <div className="form-row">
@@ -59,8 +50,8 @@ class EditTaskModal extends Component {
               </div>
             </ModalBody>
             <ModalFooter>
-              <Button className="btn modal-buttons" onClick={this.toggle}>Cancel</Button>{' '}
-              <Button className="btn modal-buttons">Edit Task</Button>
+              <Button className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</Button>
+              <Button className="btn modal-buttons" onClick={this.props.handleOnClick}>Edit Task</Button>
             </ModalFooter>
           </form>
         </Modal>
