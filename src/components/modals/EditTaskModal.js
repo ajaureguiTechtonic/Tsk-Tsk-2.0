@@ -18,7 +18,9 @@ class EditTaskModal extends Component {
   }
 
   toggle() {
-    this.setState({ modal: !this.state.modal });
+    this.setState({
+      modal: !this.state.modal,
+    });
   }
 
   handleChange(date) {

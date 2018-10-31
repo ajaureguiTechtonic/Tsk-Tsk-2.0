@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -8,7 +8,7 @@ class AddTaskModal extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      startDate: moment(),
+      tDate: moment(),
       taskName: '',
       description: '',
     };
@@ -18,8 +18,6 @@ class AddTaskModal extends Component {
   }
 
   handleChange(e, date) {
-    console.log(e.target);
-
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -32,7 +30,7 @@ class AddTaskModal extends Component {
   };
 
   render() {
-
+    // console.log(this.state.startDate._d);
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} className={this.props.className} toggle={this.props.handleOnClick}>
