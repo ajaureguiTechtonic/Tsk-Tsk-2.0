@@ -48,11 +48,15 @@ class TaskContainer extends Component{
   };
 
   toggleAdd() {
-    this.setState({ addModal: !this.state.addModal });
+    this.setState({
+      addModal: !this.state.addModal,
+    });
   }
 
   toggleEdit() {
-    this.setState({ editModal: !this.state.editModal });
+    this.setState({
+      editModal: !this.state.editModal,
+    });
   }
 
   componentDidMount() {
@@ -67,7 +71,7 @@ class TaskContainer extends Component{
     // let tasks = this.state.taskList.map((task, i) => <LowerLevelTask key={i}  taskName={task.taskName} description={task.description}/>);
     const storageArray = this.state.taskList;
     store.set('storedTasks', storageArray);
-
+    
     return (
       <div>
         <AddTaskButton handleOnClick={this.toggleAdd} />

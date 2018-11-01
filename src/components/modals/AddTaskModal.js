@@ -3,11 +3,11 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+const uuidv4 = require('uuid/v4');
 
 class AddTaskModal extends Component {
   constructor (props) {
     super(props);
-    // const newTask =[];
     this.state = {
       startDate: moment(),
       taskName: '',
@@ -37,7 +37,7 @@ class AddTaskModal extends Component {
       taskName: this.state.taskName,
       taskDescription: this.state.description,
       dueDate: this.state.dueDate,
-      taskID: Math.floor((Math.random() * 100) + 1),
+      taskID: uuidv4(),
       dateAdded: new Date().toDateString(),
     };
 
