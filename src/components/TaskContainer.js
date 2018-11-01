@@ -16,12 +16,14 @@ class TaskContainer extends Component{
       addModal: false,
       taskList: [],
       editModal: false,
+      isCollapsed: false,
     };
 
     store.set('storedTasks', storedTasks);
 
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.toggleCollapse = this.toggleCollapse.bind(this);
     this.createTask = this.createTask.bind(this);
   }
 
@@ -34,16 +36,21 @@ class TaskContainer extends Component{
 
   toggleAdd() {
     this.setState({
-      addModal: !this.state.addModal
+      addModal: !this.state.addModal,
     });
   }
 
   toggleEdit() {
     this.setState({
-      editModal: !this.state.editModal
+      editModal: !this.state.editModal,
     });
   }
 
+  toggleCollapse() {
+    this.setState({
+      isCollapsed: !this.state.isCollapsed,
+    });
+  }
 
   componentDidMount() {
     this.setState({
@@ -57,7 +64,7 @@ class TaskContainer extends Component{
       <div>
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <TaskList taskList={this.state.taskList} handleOnClick={this.toggleEdit}/>
+        <TaskList taskList={this.state.taskList} handleOnClick={this.toggleEdit} handleCollapse={this.toggleCollapse} isCollapsed={this.state.isCollapsed}/>
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
         <DeleteTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle}/>
       </div>

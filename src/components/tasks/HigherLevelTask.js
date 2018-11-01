@@ -22,7 +22,7 @@ const HigherLevelTask = ({ taskName, description, handleOnClick, level }) => {
               <div className="col-12 col-sm-4 collapse edit-this-task-${task.taskID}">
                 <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                   <button type="button" className="btn edit-button listen-for-me-edit-task" data-toggle="modal" data-target="#edit-task-modal">Edit</button>
-                  <button type="button" className="btn edit-button listen-for-me-delete-task" data-toggle="modal" data-target="#delete-task-modal">Delete</button>
+                  <button type="button" className="btn edit-button listen-for-me-delete-task">Delete</button>
                 </div>
               </div>
             </div>
