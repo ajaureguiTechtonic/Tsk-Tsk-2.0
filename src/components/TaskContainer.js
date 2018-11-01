@@ -23,7 +23,7 @@ class TaskContainer extends Component{
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.createTask = this.createTask.bind(this);
-  }
+  };
 
   createTask(task) {
     this.setState({
@@ -36,14 +36,13 @@ class TaskContainer extends Component{
     this.setState({
       addModal: !this.state.addModal,
     });
-  }
+  };
 
   toggleEdit() {
     this.setState({
       editModal: !this.state.editModal,
     });
-  }
-
+  };
 
   componentDidMount() {
     this.setState({

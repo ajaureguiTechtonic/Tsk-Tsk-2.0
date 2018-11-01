@@ -60,10 +60,17 @@ const TaskList = ({ taskList, handleOnClick }) => {
 
   let tasks = taskList.map((task, i) => {
     let level = sortTasks(task);
+    let currentDate = new Date().getTime();
+    var daysOld = calcDaysOld(task.dateAdded, currentDate);
+
     if (level < 3) {
-      return <LowerLevelTask key={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnClick={handleOnClick} />;
+      return <LowerLevelTask key={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnClick={handleOnClick} id={task.taskID} daysOld={daysOld}/>;
+
     } else {
-      return <HigherLevelTask key={task.taskID} taskName={task.taskNAme} description={task.description} dueDate={task.dueDate} level={level} handleOnClick={handleOnClick}/>;
+      daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
+      var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
+
+      return <HigherLevelTask key={task.taskID} taskName={task.taskNAme} description={task.description} dueDate={task.dueDate} level={level} handleOnClick={handleOnClick} id={task.taskID} daysOld={daysOld} daysPastDue={daysPastDue}/>;
     }
   });
 
