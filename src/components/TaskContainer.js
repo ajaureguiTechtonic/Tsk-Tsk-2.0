@@ -12,33 +12,28 @@ const store = require('store');
 class TaskContainer extends Component{
 
   checkStorage() {
-    var storageTasks;
-
-    if (store.get('storedTasks').length > 0) {
-      storageTasks = store.get('storedTasks');
+    if (store.get('storedTasks')) {
+      this.storageTasks = store.get('storedTasks');
     } else {
-      storageTasks = storedTasks;
+      this.storageTasks = storedTasks;
     };
 
-    return storageTasks;
+    return this.storageTasks;
   };
 
   constructor (props) {
     super(props);
 
-    let storageTasks = this.checkStorage();
-
-    this.state = {
-      addModal: false,
-      taskList: storageTasks,
-      editModal: false,
-    };
-
-    let currentTasks = store.get('storedTasks');
-
+    this.storageTasks = this.checkStorage();
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.createTask = this.createTask.bind(this);
+    
+    this.state = {
+      addModal: false,
+      taskList: this.storageTasks,
+      editModal: false,
+    };
   }
 
   createTask(task) {
@@ -68,10 +63,8 @@ class TaskContainer extends Component{
   };
 
   render() {
-    // let tasks = this.state.taskList.map((task, i) => <LowerLevelTask key={i}  taskName={task.taskName} description={task.description}/>);
-    const storageArray = this.state.taskList;
-    store.set('storedTasks', storageArray);
-    
+    store.set('storedTasks', this.state.taskList);
+
     return (
       <div>
         <AddTaskButton handleOnClick={this.toggleAdd} />
