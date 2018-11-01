@@ -1,7 +1,7 @@
 import React from 'react';
 import editButton from '../../assets/edit.png';
 
-const HigherLevelTask = ({ taskName, description, level }) => {
+const HigherLevelTask = ({ taskName, description, handleOnClick, level }) => {
   return (
     <div>
       <div className="container task">
@@ -28,7 +28,7 @@ const HigherLevelTask = ({ taskName, description, level }) => {
             </div>
           </div>
           <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-            <img src={ editButton } data-toggle="collapse" data-target=".edit-this-task-${task.taskID}" />
+            <img src={ editButton } onClick={handleOnClick} />
               </div>
             </div>
           </div>

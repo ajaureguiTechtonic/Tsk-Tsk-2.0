@@ -3,7 +3,7 @@ import editButton from '../../assets/edit.png';
 import '../../main.css'
 
 
-const LowerLevelTask = ({ taskName, description, level }) => {
+const LowerLevelTask = ({ taskName, description, level, handleOnClick }) => {
   return (
     <div>
       <div className="container task">
@@ -34,7 +34,7 @@ const LowerLevelTask = ({ taskName, description, level }) => {
             </div>
           </div>
           <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-            <img src={ editButton } onClick={props.handleOnClick} />
+            <img src={ editButton } onClick={handleOnClick} />
           </div>
         </div>
       </div>

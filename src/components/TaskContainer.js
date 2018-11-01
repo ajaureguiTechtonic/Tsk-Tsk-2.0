@@ -5,7 +5,7 @@ import AddTaskButton from './AddTaskButton';
 import AddTaskModal from '../components/modals/AddTaskModal';
 import EditTaskModal from '../components/modals/EditTaskModal';
 import DeleteTaskModal from '../components/modals/DeleteTaskModal';
-import TaskList from './TaskList';
+import TaskList from './taskList';
 import storedTasks from './storedTasks';
 const store = require('store');
 
@@ -54,7 +54,7 @@ class TaskContainer extends Component{
       <div>
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <TaskList taskList={this.state.taskList} />
+        <TaskList taskList={this.state.taskList} handleOnClick={this.toggleEdit}/>
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
         <DeleteTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle}/>
       </div>
