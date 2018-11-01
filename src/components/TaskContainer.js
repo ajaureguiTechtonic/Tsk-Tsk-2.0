@@ -9,16 +9,6 @@ const store = require('store');
 
 class TaskContainer extends Component{
 
-  constructor (props) {
-    super(props);
-    this.state = {
-      taskList: [],
-      addModal: false,
-      editModal: false,
-      deleteModal: false,
-    };
-
-
   checkStorage() {
     if (store.get('storedTasks')) {
       this.storageTasks = store.get('storedTasks');
@@ -37,7 +27,7 @@ class TaskContainer extends Component{
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
     this.createTask = this.createTask.bind(this);
-    
+
     this.state = {
       addModal: false,
       taskList: this.storageTasks,
@@ -68,7 +58,7 @@ class TaskContainer extends Component{
       deleteModal: !this.state.deleteModal,
     });
   }
-    
+
   componentDidMount() {
     let storageTasks = this.checkStorage();
 
