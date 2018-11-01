@@ -36,7 +36,10 @@ class AddTaskModal extends Component {
       taskName: this.state.taskName,
       taskDescription: this.state.description,
       dueDate: this.state.dueDate,
-    }
+      taskID: Math.floor((Math.random() * 100) + 1),
+      dateAdded: new Date().toDateString(),
+    };
+
     console.log(newTask);
     return (
       <div>
@@ -68,8 +71,9 @@ class AddTaskModal extends Component {
             <ModalFooter>
               <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
               <button type="button" className="btn modal-buttons" onClick={(e) => {
-                this.props.createTask(newTask);this.props.handleOnClick(e)
-              }} >Add Task</button>
+                this.props.createTask(newTask);this.props.handleOnClick(e);
+              }}>Add Task</button>
+
             </ModalFooter>
           </form>
         </Modal>

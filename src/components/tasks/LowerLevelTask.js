@@ -1,20 +1,21 @@
 import React from 'react';
 import editButton from '../../assets/edit.png';
+import '../../main.css'
 
-const LowerLevelTask = ({taskName, description}) => {
-  
+const LowerLevelTask = ({ taskName, description, level }) => {
+console.log(level);
   return (
     <div>
       <div className="container task">
         <div className="row">
-          <div className="col-12 col-md-10 offset-1 task-content level-${level}">
+          <div className={`col-12 col-md-10 offset-1 task-content level-${level}`}>
             <div className="row">
               <div className="col-2 col-md-1 justify-content-center complete-box my-auto ">
                 <input type="checkbox" />
                 <span className="checkmark"></span>
               </div>
               <div className="col-7 col-md-9 d-flex">
-                <p className="m-0 align-self-center">{taskName}</p>
+                <p className="m-0 align-self-center">{ taskName }</p>
               </div>
               <div className="col-3 col-md-2 d-flex justify-content-center">
                 <div className="align-self-center text-center days-old-count">
@@ -23,7 +24,7 @@ const LowerLevelTask = ({taskName, description}) => {
                 </div>
               </div>
               <div className="col-10 offset-1 col-sm-7 collapse task-description edit-this-task-${task.taskID}">
-                <p>{description}</p>
+                <p>{ description }</p>
               </div>
               <div className="col-12 col-sm-4 collapse edit-this-task-${task.taskID}">
                 <div className="edit-content btn-group" role="group" aria-label="edit buttons">
@@ -37,8 +38,8 @@ const LowerLevelTask = ({taskName, description}) => {
           </div>
         </div>
       </div>
-        </div>
-      );
-    };
+    </div>
+    );
+  };
 
 export default LowerLevelTask;
