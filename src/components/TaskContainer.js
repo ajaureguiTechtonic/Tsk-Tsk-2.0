@@ -55,10 +55,18 @@ class TaskContainer extends Component{
   }
 
   toggleCollapse(e) {
-    console.log(e.target);
-    this.setState({
-      isCollapsed: !this.state.isCollapsed,
-    });
+    let isCollapsed = null;
+    let taskID = e.target.parentElement.parentElement.parentElement.getAttribute("id");
+    console.log(taskID);
+    console.log(this.state.taskList[taskID-1].taskID)
+    if (taskID == this.state.taskList[(taskID-1)].taskID) {
+      if (isCollapsed = true) {
+        isCollapsed = false;
+      } else if (isCollapsed = false) {
+        isCollapsed = true;
+      }
+    }
+    console.log(isCollapsed);
   }
 
   componentDidMount() {

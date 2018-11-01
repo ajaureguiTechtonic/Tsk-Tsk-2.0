@@ -61,7 +61,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, handleCollapse, isCo
   let tasks = taskList.map((task, i) => {
     let level = sortTasks(task);
     if (level < 3) {
-      return <LowerLevelTask key={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} handleCollapse={handleCollapse} isCollapsed={isCollapsed} />;
+      return <LowerLevelTask key={task.taskID} id={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} handleCollapse={handleCollapse} isCollapsed={isCollapsed} />;
     } else {
       return <HigherLevelTask key={task.taskID} taskName={task.taskNAme} description={task.description} dueDate={task.dueDate} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} handleCollapse={handleCollapse} isCollapsed={isCollapsed}/>;
     }

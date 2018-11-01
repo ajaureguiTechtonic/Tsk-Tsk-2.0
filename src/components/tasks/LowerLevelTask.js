@@ -4,10 +4,10 @@ import { Collapse } from 'reactstrap';
 import '../../main.css'
 
 
-const LowerLevelTask = ({ taskName, description, level, handleOnEdit, handleOnDelete, handleCollapse, isCollapsed}) => {
+const LowerLevelTask = ({ id, taskName, description, level, handleOnEdit, handleOnDelete, handleCollapse, isCollapsed}) => {
   return (
     <div>
-      <div className="container task">
+      <div id={ id } className="container task">
         <div className="row">
           <div className={`col-12 col-md-10 offset-1 task-content level-${ level }`}>
             <div className="row">
