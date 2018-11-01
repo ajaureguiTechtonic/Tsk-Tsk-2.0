@@ -4,7 +4,7 @@ import { Collapse } from 'reactstrap';
 import '../../main.css'
 
 
-const LowerLevelTask = ({ taskName, description, level, handleOnClick, handleCollapse, isCollapsed}) => {
+const LowerLevelTask = ({ taskName, description, level, handleOnEdit, handleOnDelete, handleCollapse, isCollapsed}) => {
   return (
     <div>
       <div className="container task">
@@ -32,8 +32,8 @@ const LowerLevelTask = ({ taskName, description, level, handleOnClick, handleCol
                   </div>
                   <div className="col-12 col-sm-4  edit-this-task-${task.taskID}">
                     <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                      <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={handleOnClick}>Edit</button>
-                      <button type="button" className="btn edit-button listen-for-me-delete-task">Delete</button>
+                      <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={handleOnEdit}>Edit</button>
+                      <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={handleOnDelete}>Delete</button>
                     </div>
                   </div>
                 </div>

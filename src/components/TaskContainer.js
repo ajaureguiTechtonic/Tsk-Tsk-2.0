@@ -13,9 +13,10 @@ class TaskContainer extends Component{
   constructor (props) {
     super(props);
     this.state = {
-      addModal: false,
       taskList: [],
+      addModal: false,
       editModal: false,
+      deleteModal: false,
       isCollapsed: false,
     };
 
@@ -23,6 +24,7 @@ class TaskContainer extends Component{
 
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
+    this.toggleDelete = this.toggleDelete.bind(this);
     this.toggleCollapse = this.toggleCollapse.bind(this);
     this.createTask = this.createTask.bind(this);
   }
@@ -46,7 +48,14 @@ class TaskContainer extends Component{
     });
   }
 
-  toggleCollapse() {
+  toggleDelete() {
+    this.setState({
+      deleteModal: !this.state.deleteModal,
+    });
+  }
+
+  toggleCollapse(e) {
+    console.log(e.target);
     this.setState({
       isCollapsed: !this.state.isCollapsed,
     });
@@ -62,11 +71,11 @@ class TaskContainer extends Component{
 
     return (
       <div>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleCollapse={this.toggleCollapse} isCollapsed={this.state.isCollapsed}/>
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <TaskList taskList={this.state.taskList} handleOnClick={this.toggleEdit} handleCollapse={this.toggleCollapse} isCollapsed={this.state.isCollapsed}/>
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
-        <DeleteTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle}/>
+        <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete}/>
       </div>
     );
   }
