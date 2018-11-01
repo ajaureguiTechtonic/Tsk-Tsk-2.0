@@ -1,58 +1,79 @@
-const storedTasks = [
-  {
-    userID: null,
-    completed: false,
-    taskName: 'Laundry',
-    dueDate: 'Oct 10 2018',
-    description: 'Darks First',
-    taskID: 1,
-    dateAdded: 'Oct 5 2018',
-  },
-  {
-    userID: null,
-    completed: false,
-    taskName: 'Make Costume',
-    dueDate: 'Oct 31 2018',
-    description: 'Add lace collar',
-    taskID: 2,
-    dateAdded: 'Oct 15 2018',
-  },
-  {
-    userID: null,
-    completed: false,
-    taskName: 'Update Jira Board',
-    dueDate: undefined,
-    description: 'Add functionality cards',
-    taskID: 3,
-    dateAdded: 'Oct 30 2018',
-  },
-  {
-    userID: null,
-    completed: false,
-    taskName: 'Eat Candy',
-    dueDate: 'Nov 1 2018',
-    description: 'especially snickers',
-    taskID: 4,
-    dateAdded: 'Oct 28 2018',
-  },
-  {
-    userID: null,
-    completed: false,
-    taskName: 'Play with Black Cat',
-    dueDate: undefined,
-    description: 'at least half an hour',
-    taskID: 5,
-    dateAdded: 'Oct 29 2018',
-  },
-  {
-    userID: null,
-    completed: false,
-    taskName: 'Cook a Turkey',
-    dueDate: 'Nov 18 2018',
-    description: 'no more than 15 pounds!',
-    taskID: 6,
-    dateAdded: 'Oct 15 2018',
-  },
-];
+import React from 'react';
+import LowerLevelTask from './tasks/LowerLevelTask';
+import HigherLevelTask from './tasks/HigherLevelTask';
 
-export default storedTasks;
+const calcDaysOld = (dateAdded, currentDate) => {
+  var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+  var dateAdded = new Date(dateAdded).getTime();
+  var currentDate = new Date().getTime();
+  var daysOld = currentDate - dateAdded;
+
+  return Math.round(daysOld / oneDay);
+};
+
+const sortTasks = (task) => {
+  var daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
+  var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
+  var dueDate = new Date(task.dueDate);
+  var dateAdded = new Date(task.dateAdded);
+
+  if (dueDate > dateAdded && daysPastDue < 1) {
+    console.log('This task has a future due date');
+    var level = 1;
+    return level;
+  }
+
+  if (task.dueDate === undefined && daysOld <= 3) {
+    var level = 1;
+  } else if (task.dueDate) {
+    var level = 1;
+  }
+
+  if (task.dueDate === undefined && daysOld > 3) {
+    var level = 2;
+  } else if (task.dueDate && daysPastDue >= 1) {
+    var level = 2;
+  }
+
+  if (task.dueDate === undefined && daysOld > 6) {
+    var level = 3;
+  } else if (task.dueDate && daysPastDue >= 2) {
+    var level = 3;
+  }
+
+  if (task.dueDate === undefined && daysOld > 9) {
+    var level = 4;
+  } else if (task.dueDate && daysPastDue >= 3) {
+    var level = 4;
+  }
+
+  if (task.dueDate === undefined && daysOld > 13) {
+    var level = 5;
+  } else if (task.dueDate && daysPastDue >= 4) {
+    var level = 5;
+  }
+
+  return level;
+};
+
+const TaskList = ({ taskList, handleOnClick }) => {
+
+  let tasks = taskList.map((task, i) => {
+    let level = sortTasks(task);
+    if (level < 3) {
+      return <LowerLevelTask key={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnClick={handleOnClick} />;
+    } else {
+      return <HigherLevelTask key={task.taskID} taskName={task.taskNAme} description={task.description} dueDate={task.dueDate} level={level} handleOnClick={handleOnClick}/>;
+    }
+  });
+
+  return (
+    <div>
+      {tasks}
+    </div>
+  );
+};
+
+export default TaskList;
+
+//NOTE:consider putting tasks into one file and conditionally render based on the props passed down given the level - there is already functionality in place to display one vs the other in out original version of the application. currently task levels are being displayed.

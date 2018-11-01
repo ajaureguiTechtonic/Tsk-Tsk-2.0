@@ -5,7 +5,8 @@ import AddTaskButton from './AddTaskButton';
 import AddTaskModal from '../components/modals/AddTaskModal';
 import EditTaskModal from '../components/modals/EditTaskModal';
 import DeleteTaskModal from '../components/modals/DeleteTaskModal';
-import storedTasks from './taskList';
+import TaskList from './taskList';
+import storedTasks from './storedTasks';
 const store = require('store');
 
 class TaskContainer extends Component{
@@ -13,8 +14,8 @@ class TaskContainer extends Component{
     super(props);
     this.state = {
       addModal: false,
+      taskList: [],
       editModal: false,
-      tasks: [],
     };
 
     store.set('storedTasks', storedTasks);
@@ -24,13 +25,11 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
   }
 
-  createTask(aTasks) {
-    let newTask = aTasks.map((task, i) => {
-      return <LowerLevelTask key={i} taskName={task.taskName} description={task.description} handleOnClick={this.toggleEdit}/>;
-    });
+  createTask(task) {
     this.setState({
-      tasks: this.state.tasks.concat(newTask),
+      taskList: this.state.taskList.concat(task),
     });
+    console.log(this.state.taskList);
   };
 
   toggleAdd() {
@@ -43,17 +42,19 @@ class TaskContainer extends Component{
 
 
   componentDidMount() {
-    this.createTask(storedTasks);
+    this.setState({
+      taskList: storedTasks,
+    });
   };
 
   render() {
+    // let tasks = this.state.taskList.map((task, i) => <LowerLevelTask key={i}  taskName={task.taskName} description={task.description}/>);
+
     return (
       <div>
-        {/* {store.get('storedTasks')[0].taskName} */}
-        Welcome to TSK-TSK, coolest Task Management App ever!
-        {this.state.tasks}
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
+        <TaskList taskList={this.state.taskList} handleOnClick={this.toggleEdit}/>
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
         <DeleteTaskModal isOpen={this.state.addModal} handleOnClick={this.toggle}/>
       </div>
