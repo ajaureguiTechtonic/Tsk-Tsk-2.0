@@ -239,46 +239,6 @@
   background-color: #e9fff7;
 }
 
-/*-------------------------CHECKBOX STYLING-----------------------*/
-.complete-box > input {
-  opacity: 0;
-  margin-top: auto;
-  margin-bottom: auto;
-  position: absolute;
-  cursor: pointer;
-  height: 6vh;
-  width: 6vh;
-}
-
-.checkmark {
-  display: inline-block;
-  height: 6vh;
-  width: 6vh;
-  background-color: #b2d1d1;
-  border-radius: 5px;
-  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, .37);
-  box-sizing: content-box;
-  text-align: center;
-  font-weight: bold;
-}
-
-.complete-box:hover input ~ .checkmark {
-  background-color: #95afaf;
-}
-
-.complete-box input:checked ~ .checkmark {
-  background-color: white;
-}
-
-.checkmark:after {
-  content: "✓";
-  visibility: hidden;
-  color: #95afaf;
-}
-
-.complete-box input:checked ~ .checkmark:after {
-  visibility: visible;
-}
 /*styling for the date on the tasks*/
 .modal-date {
   font-size: small;
@@ -293,19 +253,21 @@
 }
 /*-------------------------CHECKBOX STYLING-----------------------*/
 .complete-box > input {
+  display: inline-block;
+  box-sizing: content-box;
   opacity: 0;
   margin-top: auto;
   margin-bottom: auto;
   position: absolute;
   cursor: pointer;
-  height: 6vh;
-  width: 6vh;
+  height: 1.75em;
+  width: 1.75em;
 }
 
 .checkmark {
   display: inline-block;
-  height: 6vh;
-  width: 6vh;
+  height: 1em;
+  width: 1em;
   background-color: #b2d1d1;
   border-radius: 5px;
   box-shadow: inset 3px 3px 5px rgba(0, 0, 0, .37);
@@ -324,9 +286,12 @@
 }
 
 .checkmark:after {
+  margin-top: auto;
+  margin-bottom: auto;
   content: "✓";
   visibility: hidden;
   color: #95afaf;
+  line-height: 1em;
 }
 
 .complete-box input:checked ~ .checkmark:after {
