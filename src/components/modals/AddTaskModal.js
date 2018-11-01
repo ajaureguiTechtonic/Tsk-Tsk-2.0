@@ -20,9 +20,10 @@ class AddTaskModal extends Component {
   }
 
   handleChange(e) {
+    const date = (this.state.startDate._d).toDateString();
     this.setState({
       [e.target.name]: e.target.value,
-      dueDate: this.state.startDate._d,
+      dueDate: date,
     });
   }
 
