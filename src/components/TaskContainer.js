@@ -10,26 +10,36 @@ import storedTasks from './storedTasks';
 const store = require('store');
 
 class TaskContainer extends Component{
-  constructor (props) {
-    super(props);
-    this.state = {
-      addModal: false,
-      taskList: [],
-      editModal: false,
+
+  checkStorage() {
+    if (store.get('storedTasks')) {
+      this.storageTasks = store.get('storedTasks');
+    } else {
+      this.storageTasks = storedTasks;
     };
 
-    store.set('storedTasks', storedTasks);
+    return this.storageTasks;
+  };
 
+  constructor (props) {
+    super(props);
+
+    this.storageTasks = this.checkStorage();
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.createTask = this.createTask.bind(this);
+    
+    this.state = {
+      addModal: false,
+      taskList: this.storageTasks,
+      editModal: false,
+    };
   }
 
   createTask(task) {
     this.setState({
       taskList: this.state.taskList.concat(task),
     });
-    console.log(this.state.taskList);
   };
 
   toggleAdd() {
@@ -44,14 +54,16 @@ class TaskContainer extends Component{
     });
   }
 
-
   componentDidMount() {
+    let storageTasks = this.checkStorage();
+
     this.setState({
-      taskList: storedTasks,
+      taskList: storageTasks,
     });
   };
 
   render() {
+    store.set('storedTasks', this.state.taskList);
 
     return (
       <div>
