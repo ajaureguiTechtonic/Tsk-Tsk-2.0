@@ -34,13 +34,13 @@ class TaskContainer extends Component{
 
   toggleAdd() {
     this.setState({
-      addModal: !this.state.addModal
+      addModal: !this.state.addModal,
     });
   }
 
   toggleEdit() {
     this.setState({
-      editModal: !this.state.editModal
+      editModal: !this.state.editModal,
     });
   }
 
