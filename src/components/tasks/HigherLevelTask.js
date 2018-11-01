@@ -23,7 +23,7 @@ const HigherLevelTask = ({ taskName, description, handleOnClick, id, level, dueD
                 <span className="checkmark"></span>
               </div>
               <div className="col-10 my-auto">
-                <p className="counter">{ month } { da y}</p>
+                <p className="counter">{ month } { day }</p>
                 <p className="task-name">{ taskName }</p>
               </div>
               <div className={`col-10 offset-1 col-sm-7 collapse task-description edit-this-task-${id}`}>

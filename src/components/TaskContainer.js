@@ -29,7 +29,7 @@ class TaskContainer extends Component{
     this.setState({
       taskList: this.state.taskList.concat(task),
     });
-    console.log(this.state.taskList);
+    // console.log(this.state.taskList);
   };
 
   toggleAdd() {
@@ -51,7 +51,6 @@ class TaskContainer extends Component{
   };
 
   render() {
-
     return (
       <div>
         <AddTaskButton handleOnClick={this.toggleAdd} />

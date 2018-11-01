@@ -2,14 +2,14 @@ import React from 'react';
 import editButton from '../../assets/edit.png';
 
 const LowerLevelTask = ({ taskName, description, level, handleOnClick, id, dueDate, dateAdded, daysOld }) => {
-
+// console.log(dueDate);
     if (dueDate === undefined) {
       var month = daysOld;
       var day = 'Days Old';
     } else {
       dueDate = (dueDate).split(' ');
-      var month = dueDate[0];
-      var day = dueDate[1];
+      var month = dueDate[1];
+      var day = dueDate[2];
     };
 
     return (

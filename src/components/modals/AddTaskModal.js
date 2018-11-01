@@ -8,6 +8,8 @@ const uuidv4 = require('uuid/v4');
 class AddTaskModal extends Component {
   constructor (props) {
     super(props);
+    this.dateInput = React.createRef();
+
     this.state = {
       startDate: moment(),
       taskName: '',
@@ -20,12 +22,30 @@ class AddTaskModal extends Component {
   }
 
   handleChange(e) {
-    const date = (this.state.startDate._d).toDateString();
     this.setState({
       [e.target.name]: e.target.value,
-      dueDate: date,
-    });
+      dueDate: (this.dateInput.current.props.selected._d).toDateString(),
+    },()=> console.log(this.state));
   }
+
+  submitTaskInfo() {
+    const newTask = {
+      taskName: this.state.taskName,
+      taskDescription: this.state.description,
+      dueDate: this.state.dueDate,
+      taskID: uuidv4(),
+      dateAdded: new Date().toDateString(),
+    };
+    this.props.createTask(newTask)
+    console.log(newTask);
+  }
+
+  // handleDueDateSelect() {
+  //   console.log((this.dateInput.current.props.selected._d).toDateString())
+  //   this.setState({
+  //     dueDate: (this.dateInput.current.props.selected._d).toDateString(),
+  //   })
+  // };
 
   handleDateSelect(date) {
     this.setState({
@@ -34,15 +54,8 @@ class AddTaskModal extends Component {
   };
 
   render() {
-    const newTask = {
-      taskName: this.state.taskName,
-      taskDescription: this.state.description,
-      dueDate: this.state.dueDate,
-      taskID: uuidv4(),
-      dateAdded: new Date().toDateString(),
-    };
 
-    console.log(newTask);
+
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
@@ -63,6 +76,7 @@ class AddTaskModal extends Component {
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
                 <DatePicker
+                  ref={this.dateInput}
                   selected={this.state.startDate}
                   onChange={this.handleDateSelect}
                   minDate={moment()}
@@ -73,7 +87,7 @@ class AddTaskModal extends Component {
             <ModalFooter>
               <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
               <button type="button" className="btn modal-buttons" onClick={(e) => {
-                this.props.createTask(newTask);this.props.handleOnClick(e);
+                this.props.handleOnClick(e);this.submitTaskInfo();
               }}>Add Task</button>
 
             </ModalFooter>
