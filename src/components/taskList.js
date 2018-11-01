@@ -75,5 +75,3 @@ const TaskList = ({ taskList, handleOnClick }) => {
 };
 
 export default TaskList;
-
-//NOTE:consider putting tasks into one file and conditionally render based on the props passed down given the level - there is already functionality in place to display one vs the other in out original version of the application. currently task levels are being displayed.

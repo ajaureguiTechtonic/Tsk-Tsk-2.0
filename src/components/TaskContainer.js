@@ -33,11 +33,15 @@ class TaskContainer extends Component{
   };
 
   toggleAdd() {
-    this.setState({ addModal: !this.state.addModal });
+    this.setState({
+      addModal: !this.state.addModal
+    });
   }
 
   toggleEdit() {
-    this.setState({ editModal: !this.state.editModal });
+    this.setState({
+      editModal: !this.state.editModal
+    });
   }
 
 
@@ -48,7 +52,6 @@ class TaskContainer extends Component{
   };
 
   render() {
-    // let tasks = this.state.taskList.map((task, i) => <LowerLevelTask key={i}  taskName={task.taskName} description={task.description}/>);
 
     return (
       <div>
