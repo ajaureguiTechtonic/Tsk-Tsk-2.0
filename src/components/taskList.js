@@ -18,7 +18,6 @@ const sortTasks = (task) => {
   var dateAdded = new Date(task.dateAdded);
 
   if (dueDate > dateAdded && daysPastDue < 1) {
-    console.log('This task has a future due date');
     var level = 1;
     return level;
   }

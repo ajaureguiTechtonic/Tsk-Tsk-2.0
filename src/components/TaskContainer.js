@@ -10,15 +10,31 @@ import storedTasks from './storedTasks';
 const store = require('store');
 
 class TaskContainer extends Component{
+
+  checkStorage() {
+    var storageTasks;
+
+    if (store.get('storedTasks').length > 0) {
+      storageTasks = store.get('storedTasks');
+    } else {
+      storageTasks = storedTasks;
+    };
+
+    return storageTasks;
+  };
+
   constructor (props) {
     super(props);
+
+    let storageTasks = this.checkStorage();
+
     this.state = {
       addModal: false,
-      taskList: [],
+      taskList: storageTasks,
       editModal: false,
     };
 
-    store.set('storedTasks', storedTasks);
+    let currentTasks = store.get('storedTasks');
 
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
@@ -29,7 +45,6 @@ class TaskContainer extends Component{
     this.setState({
       taskList: this.state.taskList.concat(task),
     });
-    console.log(this.state.taskList);
   };
 
   toggleAdd() {
@@ -40,15 +55,18 @@ class TaskContainer extends Component{
     this.setState({ editModal: !this.state.editModal });
   }
 
-
   componentDidMount() {
+    let storageTasks = this.checkStorage();
+
     this.setState({
-      taskList: storedTasks,
+      taskList: storageTasks,
     });
   };
 
   render() {
     // let tasks = this.state.taskList.map((task, i) => <LowerLevelTask key={i}  taskName={task.taskName} description={task.description}/>);
+    const storageArray = this.state.taskList;
+    store.set('storedTasks', storageArray);
 
     return (
       <div>

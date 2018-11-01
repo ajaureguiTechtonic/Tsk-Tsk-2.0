@@ -41,7 +41,6 @@ class AddTaskModal extends Component {
       dateAdded: new Date().toDateString(),
     };
 
-    console.log(newTask);
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
