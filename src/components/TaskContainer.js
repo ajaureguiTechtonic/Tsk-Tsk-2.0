@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import LowerLevelTask from './tasks/LowerLevelTask';
-import HigherLevelTask from './tasks/HigherLevelTask';
 import AddTaskButton from './AddTaskButton';
 import AddTaskModal from '../components/modals/AddTaskModal';
 import EditTaskModal from '../components/modals/EditTaskModal';
@@ -17,7 +15,6 @@ class TaskContainer extends Component{
       addModal: false,
       editModal: false,
       deleteModal: false,
-      isCollapsed: false,
     };
 
     store.set('storedTasks', storedTasks);
@@ -25,7 +22,6 @@ class TaskContainer extends Component{
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
-    this.toggleCollapse = this.toggleCollapse.bind(this);
     this.createTask = this.createTask.bind(this);
   }
 
@@ -54,21 +50,6 @@ class TaskContainer extends Component{
     });
   }
 
-  toggleCollapse(e) {
-    let isCollapsed = null;
-    let taskID = e.target.parentElement.parentElement.parentElement.getAttribute("id");
-    console.log(taskID);
-    console.log(this.state.taskList[taskID-1].taskID)
-    if (taskID == this.state.taskList[(taskID-1)].taskID) {
-      if (isCollapsed = true) {
-        isCollapsed = false;
-      } else if (isCollapsed = false) {
-        isCollapsed = true;
-      }
-    }
-    console.log(isCollapsed);
-  }
-
   componentDidMount() {
     this.setState({
       taskList: storedTasks,
@@ -79,7 +60,7 @@ class TaskContainer extends Component{
 
     return (
       <div>
-        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleCollapse={this.toggleCollapse} isCollapsed={this.state.isCollapsed}/>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
