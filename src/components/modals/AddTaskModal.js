@@ -30,7 +30,7 @@ class AddTaskModal extends Component {
   submitTaskInfo() {
     const newTask = {
       taskName: this.state.taskName,
-      description: this.state.description,
+      taskDescription: this.state.description,
       dueDate: this.state.dueDate,
       taskID: uuidv4(),
       dateAdded: new Date().toDateString(),
