@@ -8,7 +8,6 @@ const uuidv4 = require('uuid/v4');
 class AddTaskModal extends Component {
   constructor (props) {
     super(props);
-    this.dateInput = React.createRef();
 
     this.state = {
       startDate: moment(),
@@ -72,7 +71,6 @@ class AddTaskModal extends Component {
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
                 <DatePicker
-                  ref={this.dateInput}
                   selected={this.state.startDate}
                   onSelect={this.handleDateSelect}
                   minDate={moment()}
@@ -85,7 +83,7 @@ class AddTaskModal extends Component {
               <button type="button" className="btn modal-buttons" onClick={(e) => {
                 this.props.handleOnClick(e);this.submitTaskInfo();
               }}>Add Task</button>
-
+              
             </ModalFooter>
           </form>
         </Modal>
