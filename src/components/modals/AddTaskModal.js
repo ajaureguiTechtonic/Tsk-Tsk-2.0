@@ -8,7 +8,8 @@ const uuidv4 = require('uuid/v4');
 class AddTaskModal extends Component {
   constructor (props) {
     super(props);
-
+    
+    this.newTask = {};
     this.state = {
       startDate: moment(),
       taskName: '',
@@ -27,14 +28,15 @@ class AddTaskModal extends Component {
   };
 
   submitTaskInfo() {
-    const newTask = {
+    this.newTask = {
       taskName: this.state.taskName,
-      taskDescription: this.state.description,
+      description: this.state.description,
       dueDate: this.state.dueDate,
       taskID: uuidv4(),
       dateAdded: new Date().toDateString(),
     };
-    this.props.createTask(newTask);
+    this.props.createTask(this.newTask)
+    console.log(this.newTask);
   };
 
   handleDateSelect(date) {
@@ -55,14 +57,16 @@ class AddTaskModal extends Component {
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
-            <ModalHeader>
-              <div className="form-row">
-                <div className="col-md-4">
-                  <input id="newTaskName" type="text" name="taskName" value={this.state.taskName} onChange={this.handleChange} placeholder="Task Name" required></input>
-                  <span className="modal-title modal-date">Date Added</span>
+            <div class="modal-header">
+              <h5 class="modal-title" id="add-task-modal-label">
+                <div class="form-row">
+                  <div class="col-md-4">
+                    <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
+                  </div>
                 </div>
-              </div>
-            </ModalHeader>
+              </h5>
+              <h6 class="modal-date">{new Date().toDateString()}</h6>
+            </div>
             <ModalBody>
               <div className="form-group">
                 <label htmlFor="form-group-input-1">Task Description</label>

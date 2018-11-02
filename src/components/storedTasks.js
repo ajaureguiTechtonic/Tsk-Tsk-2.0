@@ -53,6 +53,24 @@ const storedTasks = [
     taskID: 6,
     dateAdded: 'Fri Oct 15 2018',
   },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Higher Level Test',
+    dueDate: 'Fri Oct 8 2018',
+    description: 'Darks First',
+    taskID: 8,
+    dateAdded: 'Fri Oct 5 2018',
+  },
+  {
+    userID: null,
+    completed: false,
+    taskName: 'Level Test',
+    dueDate: 'Fri Nov 1 2018',
+    description: 'especially snickers',
+    taskID: 7,
+    dateAdded: 'Fri Oct 28 2018',
+  }
 ];
 
 export default storedTasks;
