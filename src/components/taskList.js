@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import LowerLevelTask from './tasks/LowerLevelTask';
 import HigherLevelTask from './tasks/HigherLevelTask';
 
 const calcDaysOld = (dateAdded, currentDate) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  var dateAdded = new Date(dateAdded).getTime();
-  var currentDate = new Date().getTime();
+  dateAdded = new Date(dateAdded).getTime();
+  currentDate = new Date().getTime();
   var daysOld = currentDate - dateAdded;
 
   return Math.round(daysOld / oneDay);
@@ -16,40 +16,41 @@ const sortTasks = (task) => {
   var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
   var dueDate = new Date(task.dueDate);
   var dateAdded = new Date(task.dateAdded);
+  var level;
 
   if (dueDate > dateAdded && daysPastDue < 1) {
-    var level = 1;
+    level = 1;
     return level;
   }
 
   if (task.dueDate === undefined && daysOld <= 3) {
-    var level = 1;
+    level = 1;
   } else if (task.dueDate) {
-    var level = 1;
+    level = 1;
   }
 
   if (task.dueDate === undefined && daysOld > 3) {
-    var level = 2;
+    level = 2;
   } else if (task.dueDate && daysPastDue >= 1) {
-    var level = 2;
+    level = 2;
   }
 
   if (task.dueDate === undefined && daysOld > 6) {
-    var level = 3;
+    level = 3;
   } else if (task.dueDate && daysPastDue >= 2) {
-    var level = 3;
+    level = 3;
   }
 
   if (task.dueDate === undefined && daysOld > 9) {
-    var level = 4;
+    level = 4;
   } else if (task.dueDate && daysPastDue >= 3) {
-    var level = 4;
+    level = 4;
   }
 
   if (task.dueDate === undefined && daysOld > 13) {
-    var level = 5;
+    level = 5;
   } else if (task.dueDate && daysPastDue >= 4) {
-    var level = 5;
+    level = 5;
   }
 
   return level;
