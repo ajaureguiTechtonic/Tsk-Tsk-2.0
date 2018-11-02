@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import React, { Component } from 'react';
 import editButton from '../../assets/edit.png';
 import { Collapse } from 'reactstrap';
 
@@ -42,7 +42,7 @@ class HigherLevelTask extends Component{
                 </div>
                 <Collapse isOpen = {this.state.isCollapsed} >
                   <div className="row">
-                    <div className={`col-10 offset-1 col-sm-7 collapse task-description edit-this-task-${this.props.taskID}`}>
+                    <div className={`col-10 offset-1 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
                       <p>{ this.props.description }</p>
                     </div>
                     <div className={`col-12 col-sm-4 collapse edit-this-task-${this.props.taskID}`}>
