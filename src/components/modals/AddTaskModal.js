@@ -14,7 +14,7 @@ class AddTaskModal extends Component {
       startDate: moment(),
       taskName: '',
       description: '',
-      dueDate: null,
+      dueDate: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,7 +30,7 @@ class AddTaskModal extends Component {
   submitTaskInfo() {
     const newTask = {
       taskName: this.state.taskName,
-      taskDescription: this.state.description,
+      description: this.state.description,
       dueDate: this.state.dueDate,
       taskID: uuidv4(),
       dateAdded: new Date().toDateString(),
