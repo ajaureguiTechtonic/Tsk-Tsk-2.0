@@ -3,7 +3,6 @@ import editButton from '../../assets/edit.png';
 
 const HigherLevelTask = ({ taskName, description, handleOnClick, id, level, dueDate, dateAdded, daysOld, daysPastDue }) => {
 
-
   if (dueDate === undefined) {
     var month = daysOld;
     var day = 'Days Old';

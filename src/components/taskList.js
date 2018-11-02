@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import LowerLevelTask from './tasks/LowerLevelTask';
 import HigherLevelTask from './tasks/HigherLevelTask';
 

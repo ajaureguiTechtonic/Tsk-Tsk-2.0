@@ -29,7 +29,6 @@ class TaskContainer extends Component{
     this.setState({
       taskList: this.state.taskList.concat(task),
     });
-    // console.log(this.state.taskList);
   };
 
   toggleAdd() {

@@ -19,14 +19,13 @@ class AddTaskModal extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
-  }
+  };
 
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
-      dueDate: (this.dateInput.current.props.selected._d).toDateString(),
-    },()=> console.log(this.state));
-  }
+    });
+  };
 
   submitTaskInfo() {
     const newTask = {
@@ -38,24 +37,20 @@ class AddTaskModal extends Component {
     };
     this.props.createTask(newTask)
     console.log(newTask);
-  }
-
-  // handleDueDateSelect() {
-  //   console.log((this.dateInput.current.props.selected._d).toDateString())
-  //   this.setState({
-  //     dueDate: (this.dateInput.current.props.selected._d).toDateString(),
-  //   })
-  // };
+  };
 
   handleDateSelect(date) {
-    this.setState({
-      startDate: date,
-    });
+    if (date) {
+      this.setState({
+        startDate: date,
+        dueDate: (date._d).toDateString(),
+      });
+    } else {
+      this.setState({dueDate: undefined})
+    }
   };
 
   render() {
-
-
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
@@ -78,7 +73,7 @@ class AddTaskModal extends Component {
                 <DatePicker
                   ref={this.dateInput}
                   selected={this.state.startDate}
-                  onChange={this.handleDateSelect}
+                  onSelect={this.handleDateSelect}
                   minDate={moment()}
                   maxDate={moment().add(45, 'days')}
                 placeholderText="Select a due date" />
@@ -96,6 +91,6 @@ class AddTaskModal extends Component {
       </div>
     );
   }
-}
+};
 
 export default AddTaskModal;
