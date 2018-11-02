@@ -63,7 +63,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete}) => {
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
-    if (level < 3) {
+    if (level <= 3) {
 
       return <LowerLevelTask key={task.taskID} id={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} />;
     } else {
