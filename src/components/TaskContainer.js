@@ -69,14 +69,6 @@ class TaskContainer extends Component{
     taskList.splice(index, 1);
 }
 
-  componentDidMount() {
-    let storageTasks = this.checkStorage();
-
-    this.setState({
-      taskList: storageTasks,
-    });
-  };
-
   render() {
     store.set('storedTasks', this.state.taskList);
 
