@@ -5,11 +5,9 @@ import { Collapse } from 'reactstrap';
 class LowerLevelTask extends Component {
   constructor (props) {
     super(props);
-
     this.state = {
       isCollapsed: false,
     };
-
     this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
@@ -20,6 +18,15 @@ class LowerLevelTask extends Component {
   }
 
   render() {
+    if (this.props.dueDate === undefined) {
+      var month = this.props.daysOld;
+      var day = 'Days Old';
+    } else {
+      var dueDate = (this.props.dueDate).split(' ');
+      var month = dueDate[1];
+      var day = dueDate[2];
+    };
+
     return (
         <div>
           <div id={ this.props.id } className="container task">
@@ -35,8 +42,8 @@ class LowerLevelTask extends Component {
                   </div>
                   <div className="col-3 col-md-2 d-flex justify-content-center">
                     <div className="align-self-center text-center days-old-count">
-                      <p className="m-0">Month</p>
-                      <p className="m-0 days-old">Day</p>
+                      <p className="m-0">{ month }</p>
+                      <p className="m-0 days-old">{ day }</p>
                     </div>
                   </div>
                   {/* This is the collapseable section of the task */}

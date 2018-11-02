@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import LowerLevelTask from './tasks/LowerLevelTask';
 import HigherLevelTask from './tasks/HigherLevelTask';
 
@@ -59,10 +59,17 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
   let tasks = taskList.map((task, i) => {
     let level = sortTasks(task);
+    let currentDate = new Date().getTime();
+    var daysOld = calcDaysOld(task.dateAdded, currentDate);
+
     if (level < 3) {
-      return <LowerLevelTask key={task.taskID} id={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} />;
+
+      return <LowerLevelTask key={task.taskID} id={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld}/>;
     } else {
-      return <HigherLevelTask key={task.taskID} taskName={task.taskNAme} description={task.description} dueDate={task.dueDate} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete}/>;
+      daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
+      var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
+
+      return <HigherLevelTask key={task.taskID} id={task.taskID} taskName={task.taskNAme} description={task.description} dueDate={task.dueDate} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} daysPastDue={daysPastDue}/>;
     }
   });
 
