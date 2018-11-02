@@ -57,15 +57,15 @@ class AddTaskModal extends Component {
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
-            <div class="modal-header">
-              <h5 class="modal-title" id="add-task-modal-label">
-                <div class="form-row">
-                  <div class="col-md-4">
+            <div className="modal-header">
+              <h5 className="modal-title" id="add-task-modal-label">
+                <div className="form-row">
+                  <div className="col-md-4">
                     <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
                   </div>
                 </div>
               </h5>
-              <h6 class="modal-date">{new Date().toDateString()}</h6>
+              <h6 className="modal-date">{new Date().toDateString()}</h6>
             </div>
             <ModalBody>
               <div className="form-group">
