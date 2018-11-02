@@ -8,16 +8,13 @@ import {
 } from 'reactstrap';
 
 class DeleteTaskModal extends React.Component {
-  constructor (props) {
-    super(props);
-  }
 
   render() {
     return (
       <div>
         <Modal id="delete-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick} tabIndex="-1" role="dialog"  aria-labelledby="delete-modal-label" aria-hidden="true">
           <ModalHeader>
-            <h5 className="modal-title" id="delete-modal-label">Delete Task?</h5>
+            <p className="modal-title" id="delete-modal-label">Delete Task?</p>
           </ModalHeader>
           <ModalBody>
             <p>Is this important?</p>

@@ -2,13 +2,19 @@ import React from 'react';
 import LowerLevelTask from './tasks/LowerLevelTask';
 import HigherLevelTask from './tasks/HigherLevelTask';
 
-const calcDaysOld = (dateAdded, currentDate) => {
+const calcDaysOld = (dateAdded) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   dateAdded = new Date(dateAdded).getTime();
-  currentDate = new Date().getTime();
+  let currentDate = new Date().getTime();
   var daysOld = currentDate - dateAdded;
+  var difference = (daysOld / oneDay);
 
-  return Math.round(daysOld / oneDay);
+  // If it isnt a full 24 hours old, return 0,  we can add range to this in the future.
+  if (difference < 1) {
+    return 0;
+  } else {
+    return Math.round(daysOld / oneDay);
+  }
 };
 
 const sortTasks = (task) => {
