@@ -1,4 +1,4 @@
-import React,  { Component } from 'react';
+import React, { Component } from 'react';
 import editButton from '../../assets/edit.png';
 import { Collapse } from 'reactstrap';
 
@@ -43,10 +43,10 @@ class HigherLevelTask extends Component{
                 {/* This is the collapseable section of the task */}
                 <Collapse isOpen = {this.state.isCollapsed} >
                   <div className="row">
-                    <div className="col-10 offset-1 col-sm-7 collapse task-description edit-this-task-${task.taskID}">
+                    <div className="col-10 offset-1 col-sm-7 task-description edit-this-task-${task.taskID}">
                       <p>{ this.props.description }</p>
                     </div>
-                    <div className="col-12 col-sm-4 collapse edit-this-task-${task.taskID}">
+                    <div className="col-12 col-sm-4 edit-this-task-${task.taskID}">
                       <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                         <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={this.props.handleOnEdit}>Edit</button>
                         <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={this.props.handleOnDelete}>Delete</button>
