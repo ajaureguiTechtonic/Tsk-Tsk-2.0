@@ -62,7 +62,7 @@ const sortTasks = (task) => {
   return level;
 };
 
-const TaskList = ({ taskList, handleOnEdit, handleOnDelete}) => {
+const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
   let sortedTaskList = taskList.map((task) => {
     let newTaskList = Object.assign({}, task);
@@ -71,7 +71,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete}) => {
     return newTaskList;
   });
 
-  let sortByLevel = sortedTaskList.sort((a ,b) => b.level - a.level);
+  let sortByLevel = sortedTaskList.sort((a , b) => b.level - a.level);
 
   let tasks = sortByLevel.map((task, i) => {
     let level = sortTasks(task);

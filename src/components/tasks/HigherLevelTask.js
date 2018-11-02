@@ -28,7 +28,6 @@ class HigherLevelTask extends Component{
       day = 'DAYS OVERDUE';
     };
 
-
     return (
       <div>
         <div className="container task">
