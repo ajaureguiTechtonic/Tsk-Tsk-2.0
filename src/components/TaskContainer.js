@@ -59,13 +59,13 @@ class TaskContainer extends Component{
     });
   }
 
-  componentDidMount() {
-    let storageTasks = this.checkStorage();
-
-    this.setState({
-      taskList: storageTasks,
-    });
-  };
+  // componentDidMount() {
+  //   let storageTasks = this.checkStorage();
+  //
+  //   this.setState({
+  //     taskList: storageTasks,
+  //   });
+  // };
 
   render() {
     store.set('storedTasks', this.state.taskList);

@@ -35,8 +35,7 @@ class AddTaskModal extends Component {
       taskID: uuidv4(),
       dateAdded: new Date().toDateString(),
     };
-    this.props.createTask(newTask)
-    console.log(newTask);
+    this.props.createTask(newTask);
   };
 
   handleDateSelect(date) {
@@ -46,7 +45,9 @@ class AddTaskModal extends Component {
         dueDate: (date._d).toDateString(),
       });
     } else {
-      this.setState({dueDate: undefined})
+      this.setState({
+        dueDate: undefined,
+      });
     }
   };
 

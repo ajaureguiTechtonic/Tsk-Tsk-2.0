@@ -58,7 +58,16 @@ const sortTasks = (task) => {
 
 const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
-  let tasks = taskList.map((task, i) => {
+  let sortedTaskList = taskList.map((task, i, arr) => {
+    let newTaskList = Object.assign({}, task);
+    let level = sortTasks(task);
+    task[level] = level;
+    return newTaskList;
+  });
+
+  let sortByLevel = sortedTaskList.sort((a, b) => b.level - a.level);
+
+  let tasks = sortByLevel.map((task, i) => {
     let level = sortTasks(task);
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);

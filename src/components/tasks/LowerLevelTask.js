@@ -5,9 +5,11 @@ import { Collapse } from 'reactstrap';
 class LowerLevelTask extends Component {
   constructor (props) {
     super(props);
+
     this.state = {
       isCollapsed: false,
     };
+
     this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
