@@ -81,9 +81,9 @@ class AddTaskModal extends Component {
             <ModalFooter>
               <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
               <button type="button" className="btn modal-buttons" onClick={(e) => {
-                this.props.handleOnClick(e);this.submitTaskInfo();
+                this.props.handleOnClick(e); this.submitTaskInfo();
               }}>Add Task</button>
-              
+
             </ModalFooter>
           </form>
         </Modal>
