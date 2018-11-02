@@ -22,11 +22,11 @@ class LowerLevelTask extends Component {
       var month = this.props.daysOld;
       var day = 'Days Old';
     } else {
-      this.props.dueDate = (this.props.dueDate).split(' ');
-      var month = this.props.dueDate[1];
-      var day = this.props.dueDate[2];
+      var dueDate = (this.props.dueDate).split(' ');
+      var month = dueDate[1];
+      var day = dueDate[2];
     };
-    
+
     return (
         <div>
           <div id={ this.props.id } className="container task">

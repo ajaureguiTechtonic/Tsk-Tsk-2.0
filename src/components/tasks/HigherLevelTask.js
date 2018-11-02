@@ -18,14 +18,14 @@ class HigherLevelTask extends Component{
   }
 
   render () {
-    if (dueDate === undefined) {
-    var month = daysOld;
+    if (this.props.dueDate === undefined) {
+    var month = this.props.daysOld;
     var day = 'Days Old';
   } else {
-    var month = daysPastDue;
+    var month = this.props.daysPastDue;
     var day = 'DAYS OVERDUE';
   };
-    
+
     return (
       <div>
         <div className="container task">
