@@ -26,7 +26,6 @@ class HigherLevelTask extends Component{
       day = 'DAYS OVERDUE';
     };
 
-    console.log(this.props.taskName);
 
     return (
       <div>
