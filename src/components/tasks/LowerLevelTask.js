@@ -8,6 +8,7 @@ class LowerLevelTask extends Component {
     this.state = {
       isCollapsed: false,
     };
+    console.log(this.props.id);
     this.toggleCollapse = this.toggleCollapse.bind(this);
   }
 
@@ -55,7 +56,7 @@ class LowerLevelTask extends Component {
                       <div className="col-12 col-sm-4  edit-this-task-${task.taskID}">
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                           <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={this.props.handleOnEdit}>Edit</button>
-                          <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={this.props.handleOnDelete}>Delete</button>
+                          <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {this.props.handleOnDelete(this.props.id)}}> Delete </button>
                         </div>
                       </div>
                     </div>
