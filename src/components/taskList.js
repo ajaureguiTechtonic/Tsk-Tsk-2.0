@@ -58,14 +58,14 @@ const sortTasks = (task) => {
 
 const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
-  let sortedTaskList = taskList.map((task, i, arr) => {
+  let sortedTaskList = taskList.map((task) => {
     let newTaskList = Object.assign({}, task);
     let level = sortTasks(task);
-    task[level] = level;
+    newTaskList.level = level;
     return newTaskList;
   });
 
-  let sortByLevel = sortedTaskList.sort((a, b) => b.level - a.level);
+  let sortByLevel = sortedTaskList.sort((a ,b) => b.level - a.level);
 
   let tasks = sortByLevel.map((task, i) => {
     let level = sortTasks(task);
