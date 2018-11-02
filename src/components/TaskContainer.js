@@ -65,9 +65,9 @@ class TaskContainer extends Component{
   deleteTask() {
     const idToDelete = this.state.taskToDelete;
     const taskList = this.state.taskList;
-    const index = taskList.findIndex(x => x.taskID == idToDelete);
+    const index = taskList.findIndex(x => x.taskID === idToDelete);
     taskList.splice(index, 1);
-}
+  };
 
   render() {
     store.set('storedTasks', this.state.taskList);

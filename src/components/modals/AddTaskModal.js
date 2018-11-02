@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
@@ -8,7 +8,7 @@ const uuidv4 = require('uuid/v4');
 class AddTaskModal extends Component {
   constructor (props) {
     super(props);
-    
+
     this.newTask = {};
     this.state = {
       startDate: moment(),
@@ -35,8 +35,8 @@ class AddTaskModal extends Component {
       taskID: uuidv4(),
       dateAdded: new Date().toDateString(),
     };
-    this.props.createTask(this.newTask)
-    console.log(this.newTask);
+
+    this.props.createTask(this.newTask);
   };
 
   handleDateSelect(date) {
