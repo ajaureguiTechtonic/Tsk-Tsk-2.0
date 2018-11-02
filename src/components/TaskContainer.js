@@ -27,11 +27,13 @@ class TaskContainer extends Component{
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
     this.createTask = this.createTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
 
     this.state = {
       addModal: false,
       taskList: this.storageTasks,
       editModal: false,
+      taskToDelete: '',
     };
   }
 
@@ -53,11 +55,19 @@ class TaskContainer extends Component{
     });
   }
 
-  toggleDelete() {
+  toggleDelete(id) {
     this.setState({
       deleteModal: !this.state.deleteModal,
+      taskToDelete: id,
     });
   }
+
+  deleteTask() {
+    const idToDelete = this.state.taskToDelete;
+    const taskList = this.state.taskList;
+    const index = taskList.findIndex(x => x.taskID == idToDelete);
+    taskList.splice(index, 1);
+}
 
   componentDidMount() {
     let storageTasks = this.checkStorage();
@@ -76,7 +86,7 @@ class TaskContainer extends Component{
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
-        <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete}/>
+        <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete} handleDeleteTask={this.deleteTask}/>
       </div>
     );
   }
