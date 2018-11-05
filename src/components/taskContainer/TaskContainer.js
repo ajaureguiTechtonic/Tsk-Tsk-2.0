@@ -22,10 +22,13 @@ class TaskContainer extends Component{
 
     this.state = {
       addModal: false,
-      taskList: this.storageTasks,
       editModal: false,
+      deleteModal: false,
+      taskList: this.storageTasks,
       taskToDelete: '',
-      eTask: {},
+      taskIdToEdit: '',
+      taskIndex: '',
+      taskToEdit: {},
     };
   };
 
@@ -52,16 +55,17 @@ class TaskContainer extends Component{
   };
 
   toggleEdit(id) {
-    let tIndex;
+    let taskIndex;
     if (!this.state.editModal) {
       const taskList = this.state.taskList;
-      tIndex = taskList.findIndex(x => x.taskID === id);
+      taskIndex = taskList.findIndex(task => task.taskID === id);
       this.setState({
         taskIdToEdit: id,
-        taskIndex: tIndex,
-        eTask: this.state.taskList[tIndex],
+        taskIndex: taskIndex,
+        taskToEdit: this.state.taskList[taskIndex],
       });
     }
+
     this.setState({
       editModal: !this.state.editModal,
     });
@@ -77,7 +81,7 @@ class TaskContainer extends Component{
   deleteTask() {
     const idToDelete = this.state.taskToDelete;
     const taskList = this.state.taskList;
-    const index = taskList.findIndex(x => x.taskID === idToDelete);
+    const index = taskList.findIndex(task => task.taskID === idToDelete);
     taskList.splice(index, 1);
   };
 
@@ -98,7 +102,7 @@ class TaskContainer extends Component{
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
         <MediaQuery maxWidth={915}>
-          
+
           {(matches) => {
             if (matches) {
               let style = 'small-add-task-button';
@@ -111,7 +115,7 @@ class TaskContainer extends Component{
 
         </MediaQuery>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} handleEditIndex={this.state.taskIndex} forwardTask={this.state.eTask} handleEditfn={this.editTask} />
+        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} handleEditIndex={this.state.taskIndex} forwardTask={this.state.taskToEdit} handleEditfn={this.editTask} />
         <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete} handleDeleteTask={this.deleteTask}/>
       </div>
     );
