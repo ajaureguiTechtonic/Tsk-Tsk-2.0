@@ -1,5 +1,6 @@
 import React from 'react';
 import plusButton from '../../../assets/add.png';
+import './AddTaskButton.css'
 
 const AddTaskButton = (props) => {
     return (

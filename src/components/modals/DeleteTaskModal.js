@@ -1,4 +1,5 @@
 import React from 'react';
+import './modals.css';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 const DeleteTaskModal = (props) => {
