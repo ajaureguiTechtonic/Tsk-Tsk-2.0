@@ -91,11 +91,11 @@
 /* Edit hover icon styling */
 .edit-content {
   float: right;
-  display: inline;
 }
 
 .edit-content > button {
-  display: inline-block;
+  display: inline;
+  /* display: inline-block; */
   margin-left: 10px;
   margin-bottom: 10px;
 }
@@ -103,6 +103,10 @@
 .edit-icon {
   opacity: .0;
   margin-top: 10px;
+}
+
+.btn-group {
+  float: right;
 }
 
 /* makes icon visible on hover of task*/
@@ -124,5 +128,5 @@
   .checkmark {
     font-size: 20px;
   }
-  
+
 }

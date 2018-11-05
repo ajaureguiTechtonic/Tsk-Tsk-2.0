@@ -44,12 +44,12 @@ class HigherLevelTask extends Component{
                   <p className="counter">{ month } { day }</p>
                   <p className="task-name">{ this.props.taskName }</p>
                 </div>
-                <Collapse isOpen = {this.state.isCollapsed} >
+                <Collapse className="col-12 col-md-10 offset-1" isOpen = {this.state.isCollapsed} >
                   <div className="row">
-                    <div className={`col-10 offset-1 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
+                    <div className={`col-10 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
                       <p>{ this.props.description }</p>
                     </div>
-                    <div className={`col-12 col-sm-4 edit-this-task-${this.props.taskID}`}>
+                    <div className={`col-12 col-sm-4 offset-1 edit-this-task-${this.props.taskID}`}>
                       <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                         <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={ this.props.handleOnEdit }>Edit</button>
                         <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={
