@@ -9,15 +9,48 @@ class EditTaskModal extends Component {
     super(props);
 
     this.state = {
-      startDate: moment(),
+      taskName: '',
+      description: '',
+      dueDate: undefined,
     };
 
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.submitEditTask = this.submitEditTask.bind(this);
+    this.handleDateSelect = this.handleDateSelect.bind(this);
   }
 
-  handleChange(date) {
+  handleDateChange(date) {
     this.setState({ startDate: date });
   }
+
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  submitEditTask() {
+    let taskToEdit = this.props.forwardTask;
+    console.log('submitEditFN', taskToEdit);
+    taskToEdit.taskName = this.state.taskName;
+    //// FIXME: sometimes requies taskDescription othertimes requires description
+    taskToEdit.description = this.state.description;
+    taskToEdit.dueDate = this.state.dueDate;
+    console.log('endSubmit', taskToEdit);
+    return taskToEdit;
+  }
+
+  handleDateSelect(date) {
+    if (date) {
+      this.setState({
+        startDate: date,
+        dueDate: (date._d).toDateString(),
+      });
+    } else {
+      this.setState({ dueDate: undefined });
+    }
+  };
 
   //TODO: -cg
   //get id from toggleEdit in here
@@ -25,9 +58,10 @@ class EditTaskModal extends Component {
   //Do i need to redefine props for the edit? or does the props of the taskcontainer port over?
   //
   //// NOTE:
-  //GETID logic in toggleEdit from TaskContainer.js
+  //GETID logic in toggleEdit from TaskContainer.js (this.state.taskToEdit)
 
   render() {
+
     return (
 
       <div>
@@ -37,7 +71,9 @@ class EditTaskModal extends Component {
             <ModalHeader>
               <div className="form-row">
                 <div className="col-md-4">
-                  <input type="text" id="newTaskName" placeholder="Edit Task Name" required></input>
+                  <input type="text" id="newTaskName" name="taskName" placeholder="edit task name"
+                    value={this.state.taskName}
+                    onChange={this.handleChange} required></input>
                   <span className="modal-title modal-date">Date Added</span>
                 </div>
               </div>
@@ -45,21 +81,31 @@ class EditTaskModal extends Component {
             <ModalBody>
               <div className="form-group">
                 <label htmlFor="form-group-input-1">Task Description</label>
-                <input type="text" className="form-control" id="newTaskDescription" placeholder="Edit Task Description"></input>
+                <input type="text" className="form-control" id="newTaskDescription"
+                  placeholder="Edit Task Description" name="description"
+                  value={this.state.description}
+                  onChange={this.handleChange}></input>
               </div>
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
+                {/* TODO:  date issues to fix */}
                 <DatePicker
+
                   selected={this.state.startDate}
-                  onChange={this.handleChange}
-                  minDate={moment()}
+                  onChange={this.handleDateChange}
+                  onSelect={this.handleDateSelect}
+                  minDate={moment().subtract(45, 'days')}
                   maxDate={moment().add(45, 'days')}
-                placeholderText="Select a due date" />
+                  placeholderText="Select a due date"
+                  defaultValue={this.props.forwardTask.dueDate}/>
               </div>
             </ModalBody>
             <ModalFooter>
               <Button className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</Button>
-              <Button className="btn modal-buttons" onClick={this.props.handleOnClick}>Edit Task</Button>
+              <Button className="btn modal-buttons" onClick={(e) => {
+                this.props.handleOnClick(); this.props.handleEditfn(this.submitEditTask(), this.props.handleEditIndex);
+              }}>Edit Task</Button>
+
             </ModalFooter>
           </form>
         </Modal>

@@ -27,11 +27,13 @@ class TaskContainer extends Component{
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
     this.createTask = this.createTask.bind(this);
+    this.editTask = this.editTask.bind(this);
 
     this.state = {
       addModal: false,
       taskList: this.storageTasks,
       editModal: false,
+      eTask: {},
     };
   }
 
@@ -41,20 +43,36 @@ class TaskContainer extends Component{
     });
   };
 
+  editTask(editedTask, index) {
+    console.log(this.state.taskList);
+    let tempList;
+    tempList = this.state.taskList;
+    tempList[index] = editedTask;
+
+    this.setState({
+      taskList: tempList,
+    });
+    console.log(tempList);
+  }
+
   toggleAdd() {
     this.setState({
       addModal: !this.state.addModal,
     });
   };
 
-  toggleEdit(e) {
-    let tID;
-    console.log('edit bool: ', this.state.editModal);
+  toggleEdit(id) {
+    let tIndex;
 
     // Grabs (task)id from button parent. -cg
     if (!this.state.editModal) {
-      tID = e.target.closest('.task').id;
-      console.log(tID);
+      const taskList = this.state.taskList;
+      tIndex = taskList.findIndex(x => x.taskID == id);
+      this.setState({
+        taskIdToEdit: id,
+        taskIndex: tIndex,
+        eTask: this.state.taskList[tIndex],
+      });
     }
 
     this.setState({
@@ -84,7 +102,9 @@ class TaskContainer extends Component{
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
         <AddTaskButton handleOnClick={this.toggleAdd} />
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
+        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} handleEditIndex={this.state.taskIndex}
+        forwardTask={this.state.eTask}
+        handleEditfn={this.editTask}/>
         <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete}/>
       </div>
     );
