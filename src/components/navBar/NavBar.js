@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../main.css';
 import Logo from '../../assets/first_logo.png';
 import SignUpModal from '../../components/modals/SignUpModal';
+import AddTaskButton from '../../components/buttons/addTaskButton/AddTaskButton';
 import './navbar.css';
 
 class NavBar extends Component {

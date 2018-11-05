@@ -4,7 +4,7 @@ import './AddTaskButton.css';
 
 const AddTaskButton = (props) => {
     return (
-      <button type="button" onClick={props.handleOnClick} className="btn add-task-button">
+      <button type="button" onClick={props.handleOnClick} className={`btn ${props.buttonClass}`}>
         <img src={plusButton} alt="add symbol" />
         Add Task
       </button>

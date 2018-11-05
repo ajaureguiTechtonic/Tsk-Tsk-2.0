@@ -5,6 +5,7 @@ import EditTaskModal from '../../components/modals/EditTaskModal';
 import DeleteTaskModal from '../../components/modals/DeleteTaskModal';
 import TaskList from './taskList';
 import storedTasks from '../../components/storedTasks';
+import MediaQuery from 'react-responsive';
 const store = require('store');
 
 class TaskContainer extends Component{
@@ -70,11 +71,21 @@ class TaskContainer extends Component{
 
   render() {
     store.set('storedTasks', this.state.taskList);
-
     return (
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
-        <AddTaskButton handleOnClick={this.toggleAdd} />
+        <MediaQuery maxWidth={915}>
+          {(matches) => {
+            if (matches) {
+              let style = 'small-add-task-button';
+              return <AddTaskButton handleOnClick={this.toggleAdd} buttonClass={style}/>;
+            } else {
+              let style = 'normal-add-task-button';
+              return <AddTaskButton handleOnClick={this.toggleAdd} buttonClass={style}/>;
+            }
+          }}
+
+        </MediaQuery>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
         <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete} handleDeleteTask={this.deleteTask}/>
