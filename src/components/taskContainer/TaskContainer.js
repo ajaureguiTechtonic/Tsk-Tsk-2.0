@@ -77,13 +77,14 @@ class TaskContainer extends Component{
         <MediaQuery maxWidth={915}>
           {(matches) => {
             if (matches) {
-              let style = 'small-add-task-button'
+              let style = 'small-add-task-button';
               return <AddTaskButton handleOnClick={this.toggleAdd} buttonClass={style}/>;
             } else {
-              let style = 'normal-add-task-button'
+              let style = 'normal-add-task-button';
               return <AddTaskButton handleOnClick={this.toggleAdd} buttonClass={style}/>;
             }
           }}
+
         </MediaQuery>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
