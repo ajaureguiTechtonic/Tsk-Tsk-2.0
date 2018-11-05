@@ -11,17 +11,17 @@ const App = () => {
     <Router>
       <div className='main-container'>
         <Route exact path='/' render={(props) => <div>
-          <NavBar {...props}/>
+          <NavBar { ...props }/>
           <LandingPage />
         </div>}/>
 
         <Route exact path='/tasks' render={(props) => <div>
-          <NavBar {...props}/>
+          <NavBar { ...props }/>
           <TaskContainer />
         </div>}/>
       </div>
     </Router>
   );
-}
+};
 
 export default App;

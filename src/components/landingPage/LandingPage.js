@@ -39,10 +39,10 @@ const LandingPage = () => {
                 <p> TskTsk is a beautiful, intuitive to-do app meant to keep you accountable over time. </p>
               </div>
               <div className='col-12 col-sm-6'>
-                <img src={MockupImage} alt='' className='img-fluid rounded mx-auto d-block' />
+                <img src={ MockupImage } alt='' className='img-fluid rounded mx-auto d-block' />
               </div>
               <div className='col-12 col-sm-6'>
-                <img src={MobileView} alt='' className='img-fluid rounded mx-auto d-block' />
+                <img src={ MobileView } alt='' className='img-fluid rounded mx-auto d-block' />
               </div>
               <div className='col-12 col-sm-6'>
                 <h1>This is TskTsk</h1>
@@ -54,6 +54,6 @@ const LandingPage = () => {
       </div>
     </div>
   );
-}
+};
 
 export default LandingPage;

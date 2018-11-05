@@ -11,13 +11,13 @@ class LowerLevelTask extends Component {
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
-  }
+  };
 
   toggleCollapse() {
     this.setState({
       isCollapsed: !this.state.isCollapsed,
     });
-  }
+  };
 
   render() {
     if (this.props.dueDate === undefined) {
@@ -48,18 +48,19 @@ class LowerLevelTask extends Component {
                       <p className="m-0 days-old">{ day }</p>
                     </div>
                   </div>
-                  <Collapse isOpen = {this.state.isCollapsed} >
+                  <Collapse isOpen = { this.state.isCollapsed } >
                     <div className="row">
                       <div className={`col-10 offset-1 col-sm-7  task-description edit-this-task-${this.props.taskID}`}>
                         <p>{ this.props.description }</p>
                       </div>
                       <div className={`col-12 col-sm-4  edit-this-task-${this.props.taskID}`}>
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                          <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={this.props.handleOnEdit}>Edit</button>
+                          <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={ this.props.handleOnEdit }>Edit</button>
                           <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={
                             (e) => {
-                              this.props.handleOnDelete(this.props.id)
+                              this.props.handleOnDelete(this.props.id);
                             }}> Delete </button>
+
                         </div>
                       </div>
                     </div>
@@ -67,7 +68,7 @@ class LowerLevelTask extends Component {
                 </div>
               </div>
               <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-                <img src={ editButton } alt='' onClick={this.toggleCollapse} />
+                <img src={ editButton } alt='' onClick={ this.toggleCollapse } />
                 </div>
               </div>
             </div>
