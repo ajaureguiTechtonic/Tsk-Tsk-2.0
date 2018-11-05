@@ -8,17 +8,6 @@ import storedTasks from '../../components/storedTasks';
 const store = require('store');
 
 class TaskContainer extends Component{
-
-  checkStorage() {
-    if (store.get('storedTasks')) {
-      this.storageTasks = store.get('storedTasks');
-    } else {
-      this.storageTasks = storedTasks;
-    };
-
-    return this.storageTasks;
-  };
-
   constructor (props) {
     super(props);
 
@@ -36,6 +25,16 @@ class TaskContainer extends Component{
       taskToDelete: '',
     };
   }
+
+  checkStorage() {
+    if (store.get('storedTasks')) {
+      this.storageTasks = store.get('storedTasks');
+    } else {
+      this.storageTasks = storedTasks;
+    };
+
+    return this.storageTasks;
+  };
 
   createTask(task) {
     this.setState({

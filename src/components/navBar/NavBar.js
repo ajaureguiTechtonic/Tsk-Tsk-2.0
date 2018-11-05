@@ -6,6 +6,7 @@ import SignUpModal from '../../components/modals/SignUpModal';
 class NavBar extends Component {
   constructor (props) {
     super(props);
+    
     this.state = {
       modal: false,
     };
