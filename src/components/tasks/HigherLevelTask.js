@@ -40,7 +40,7 @@ class HigherLevelTask extends Component{
                   <input type="checkbox" />
                   <span className="checkmark"></span>
                 </div>
-                <div className="col-10 my-auto">
+                <div className="col-10 my-auto" onTouchStart={this.toggleCollapse}>
                   <p className="counter">{month} {day}</p>
                   <p className="task-name">{this.props.taskName}</p>
                 </div>
