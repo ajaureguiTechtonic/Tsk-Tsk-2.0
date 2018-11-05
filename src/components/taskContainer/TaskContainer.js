@@ -73,11 +73,11 @@ class TaskContainer extends Component{
 
     return (
       <div>
-        <TaskList taskList={ this.state.taskList } handleOnEdit={ this.toggleEdit } handleOnDelete={ this.toggleDelete }/>
-        <AddTaskButton handleOnClick={ this.toggleAdd } />
-        <AddTaskModal isOpen={ this.state.addModal } handleOnClick={ this.toggleAdd } createTask={ this.createTask } />
-        <EditTaskModal isOpen={ this.state.editModal } handleOnClick={ this.toggleEdit } />
-        <DeleteTaskModal isOpen={ this.state.deleteModal } handleOnClick={ this.toggleDelete } handleDeleteTask={ this.deleteTask }/>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
+        <AddTaskButton handleOnClick={this.toggleAdd} />
+        <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
+        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
+        <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete} handleDeleteTask={this.deleteTask}/>
       </div>
     );
   }

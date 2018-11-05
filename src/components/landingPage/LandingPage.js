@@ -2,7 +2,7 @@ import React from 'react';
 import '../../main.css';
 import MobileView from '../../../src/assets/mobile-view.png';
 import MockupImage from '../../../src/assets/mockup-image.png';
-import './landingpage.css'
+import './landingpage.css';
 
 const LandingPage = () => {
   return (
@@ -40,10 +40,10 @@ const LandingPage = () => {
                 <p> TskTsk is a beautiful, intuitive to-do app meant to keep you accountable over time. </p>
               </div>
               <div className='col-12 col-sm-6'>
-                <img src={ MockupImage } alt='' className='img-fluid rounded mx-auto d-block' />
+                <img src={MockupImage} alt='' className='img-fluid rounded mx-auto d-block' />
               </div>
               <div className='col-12 col-sm-6'>
-                <img src={ MobileView } alt='' className='img-fluid rounded mx-auto d-block' />
+                <img src={MobileView} alt='' className='img-fluid rounded mx-auto d-block' />
               </div>
               <div className='col-12 col-sm-6'>
                 <h1>This is TskTsk</h1>
