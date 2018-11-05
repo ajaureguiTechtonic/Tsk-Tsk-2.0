@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import editButton from '../../assets/edit.png';
+import './alltasks.css';
+import './lowerlevel.css';
 import { Collapse } from 'reactstrap';
 
 class LowerLevelTask extends Component {

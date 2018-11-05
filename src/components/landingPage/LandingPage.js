@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../../main.css';
 import MobileView from '../../../src/assets/mobile-view.png';
 import MockupImage from '../../../src/assets/mockup-image.png';
+import './landingpage.css'
 
 class LandingPage extends Component{
   render() {

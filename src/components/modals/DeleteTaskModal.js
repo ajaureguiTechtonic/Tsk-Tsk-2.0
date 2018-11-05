@@ -6,6 +6,7 @@ import {
   ModalBody,
   ModalFooter
 } from 'reactstrap';
+import './modals.css';
 
 class DeleteTaskModal extends React.Component {
 

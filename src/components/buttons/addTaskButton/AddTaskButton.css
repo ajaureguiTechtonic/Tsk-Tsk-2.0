@@ -1,0 +1,22 @@
+.add-task-button {
+  color: #586060;
+  background-color: white;
+   border: none;
+   border-radius: 5px;
+   box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+
+   position: fixed;
+   right: 30px;
+   top: 100px;
+   height: 70px;
+   width: 150px;
+   z-index: 1000;
+}
+.add-task-button img {
+   position: sticky;
+   padding: 5px;
+}
+
+.add-task-button:hover {
+   background-color: #e9fff7;
+}

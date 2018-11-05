@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import './modals.css';
 
 class SignUpModal extends Component {
   render() {

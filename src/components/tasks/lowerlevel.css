@@ -1,0 +1,44 @@
+/* Style for level-1 task */
+.level-1 {
+  background-color: #fff;
+  font-size: 1.125rem;
+}
+
+/* task 2 styling */
+.level-2 {
+ background-color: rgb(111, 227, 220);
+ font-size: 1.375rem;
+}
+
+.level-2 .row {
+  padding: 1% 0;
+}
+
+/* styling for level-3 task */
+.level-3 {
+  color: #581500;
+  background-color: #ffc550;
+  font-size: 1.625rem;
+}
+
+@media (max-width: 575px) {
+  .level-1 {
+    font-size: 1rem;
+  }
+
+  .level-2 {
+    font-size: 1.125rem;
+  }
+
+  .level-2 .days-old {
+    font-size: 0.75rem;
+  }
+
+  .level-3 {
+    font-size: 1.5rem;
+  }
+
+  .level-3 .days-old {
+    font-size: 1.125rem;
+  }
+}
