@@ -1,4 +1,4 @@
-.add-task-button {
+.normal-add-task-button {
   color: #586060;
   background-color: white;
    border: none;
@@ -11,6 +11,20 @@
    height: 70px;
    width: 150px;
    z-index: 1000;
+}
+.small-add-task-button {
+  color: #586060;
+  background-color: white;
+   border: none;
+   border-radius: 5px;
+   box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+
+   position: fixed;
+   right: 30px;
+   top: 10px;
+   height: 50px;
+   width: 125px;
+   z-index: 9999;
 }
 .add-task-button img {
    position: sticky;
