@@ -47,7 +47,16 @@ class TaskContainer extends Component{
     });
   };
 
-  toggleEdit() {
+  toggleEdit(e) {
+    let tID;
+    console.log('edit bool: ', this.state.editModal);
+
+    // Grabs (task)id from button parent. -cg
+    if (!this.state.editModal) {
+      tID = e.target.closest('.task').id;
+      console.log(tID);
+    }
+
     this.setState({
       editModal: !this.state.editModal,
     });

@@ -19,6 +19,14 @@ class EditTaskModal extends Component {
     this.setState({ startDate: date });
   }
 
+  //TODO: -cg
+  //get id from toggleEdit in here
+  //use id to edit tasks
+  //Do i need to redefine props for the edit? or does the props of the taskcontainer port over?
+  //
+  //// NOTE:
+  //GETID logic in toggleEdit from TaskContainer.js
+
   render() {
     return (
 
