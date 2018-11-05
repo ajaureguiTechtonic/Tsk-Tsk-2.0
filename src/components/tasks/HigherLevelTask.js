@@ -63,9 +63,9 @@ class HigherLevelTask extends Component{
             </div>
             <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
               <img src={ editButton } alt='' onClick={ this.toggleCollapse } />
-                </div>
-              </div>
             </div>
+          </div>
+        </div>
       </div>
     );
   }
