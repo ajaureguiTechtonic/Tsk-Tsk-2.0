@@ -32,7 +32,7 @@ class HigherLevelTask extends Component{
 
     return (
       <div>
-        <div className="container task">
+        <div id= { this.props.id } className="container task">
           <div className="row">
             <div className={`col-12 col-md-10 offset-1 task-content level-${this.props.level}`}>
               <div className="row">
@@ -51,7 +51,7 @@ class HigherLevelTask extends Component{
                     </div>
                     <div className={`col-12 col-sm-4 offset-1 edit-this-task-${this.props.taskID}`}>
                       <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                        <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={this.props.handleOnEdit}>Edit</button>
+                        <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={(e) => this.props.handleOnEdit(this.props.id)}>Edit</button>
                         <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {
                           this.props.handleOnDelete(this.props.id);
                         }}>Delete</button>
