@@ -30,6 +30,7 @@
   /* font-size: 1.6rem; */
   /* VV commented out on 10/30/18 for react proj VV */
   padding-top: 85px;
+  height: 100vh;
 }
 
 #validation-01 {
