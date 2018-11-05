@@ -41,7 +41,7 @@ class LowerLevelTask extends Component {
                     <input type="checkbox" />
                     <span className="checkmark"></span>
                   </div>
-                  <div className="col-7 col-md-9 d-flex">
+                  <div className="col-7 col-md-9 d-flex" onTouchStart={this.toggleCollapse}>
                     <p className="m-0 align-self-center">{this.props.taskName}</p>
                   </div>
                   <div className="col-3 col-md-2 d-flex justify-content-center">
