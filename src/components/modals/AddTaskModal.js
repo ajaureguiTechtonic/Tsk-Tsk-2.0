@@ -87,7 +87,7 @@ class AddTaskModal extends Component {
               <button type="button" className="btn modal-buttons" onClick={(e) => {
                 this.props.handleOnClick(e); this.submitTaskInfo();
               }}>Add Task</button>
-
+              
             </ModalFooter>
           </form>
         </Modal>
