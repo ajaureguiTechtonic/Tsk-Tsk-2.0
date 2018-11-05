@@ -86,17 +86,16 @@ class TaskContainer extends Component{
   };
 
   editTask(editedTask, index) {
-    console.log(this.state.taskList);
     let tempList;
     tempList = this.state.taskList;
     tempList[index] = editedTask;
     this.setState({
       taskList: tempList,
     });
-    console.log(tempList);
-  }
+  };
 
   render() {
+
     store.set('storedTasks', this.state.taskList);
     return (
       <div>
