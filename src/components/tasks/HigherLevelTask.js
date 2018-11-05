@@ -28,7 +28,7 @@ class HigherLevelTask extends Component{
 
     return (
       <div>
-        <div className="container task">
+        <div id={ this.props.id } className="container task">
           <div className="row">
             <div className={`col-12 col-md-10 offset-1 task-content level-${this.props.level}`}>
               <div className="row">
