@@ -22,7 +22,9 @@ class EditTaskModal extends Component {
   }
 
   handleDateChange(date) {
-    this.setState({ startDate: date });
+    this.setState({
+      startDate: date,
+    });
   };
 
   handleChange(e) {
@@ -48,7 +50,9 @@ class EditTaskModal extends Component {
         dueDate: (date._d).toDateString(),
       });
     } else {
-      this.setState({ dueDate: undefined });
+      this.setState({
+        dueDate: undefined,
+      });
     }
   };
 
