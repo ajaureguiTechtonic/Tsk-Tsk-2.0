@@ -55,7 +55,7 @@ class LowerLevelTask extends Component {
                       <div className={`col-10 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
                         <p>{this.props.description}</p>
                       </div>
-                      <div className={`col-12 col-sm-4 offset-1 edit-this-task-${this.props.taskID}`}>
+                      <div className={`col-12 col-sm-4  edit-this-task-${this.props.taskID}`}>
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                           <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={(e) => this.props.handleOnEdit(this.props.id)}>Edit</button>
                           <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {
