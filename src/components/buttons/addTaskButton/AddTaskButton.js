@@ -1,5 +1,5 @@
 import React from 'react';
-import plusButton from '.././assets/add.png';
+import plusButton from '../../../assets/add.png';
 
 const AddTaskButton = function (props) {
     return (

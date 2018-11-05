@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import AddTaskButton from './AddTaskButton';
-import AddTaskModal from '../components/modals/AddTaskModal';
-import EditTaskModal from '../components/modals/EditTaskModal';
-import DeleteTaskModal from '../components/modals/DeleteTaskModal';
+import AddTaskButton from '../buttons/addTaskButton/AddTaskButton';
+import AddTaskModal from '../../components/modals/AddTaskModal';
+import EditTaskModal from '../../components/modals/EditTaskModal';
+import DeleteTaskModal from '../../components/modals/DeleteTaskModal';
 import TaskList from './taskList';
-import storedTasks from './storedTasks';
+import storedTasks from '../../components/storedTasks';
 const store = require('store');
 
 class TaskContainer extends Component{

@@ -1,6 +1,6 @@
 import React from 'react';
-import LowerLevelTask from './tasks/LowerLevelTask';
-import HigherLevelTask from './tasks/HigherLevelTask';
+import LowerLevelTask from '../../components/tasks/LowerLevelTask';
+import HigherLevelTask from '../../components/tasks/HigherLevelTask';
 
 const calcDaysOld = (dateAdded) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds

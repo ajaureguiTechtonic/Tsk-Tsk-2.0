@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../main.css';
-import Logo from '../assets/first_logo.png';
-import SignUpModal from '../components/modals/SignUpModal';
+import '../../main.css';
+import Logo from '../../assets/first_logo.png';
+import SignUpModal from '../../components/modals/SignUpModal';
 
 class NavBar extends Component {
   constructor (props) {
