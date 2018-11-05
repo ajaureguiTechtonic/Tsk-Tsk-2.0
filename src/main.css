@@ -33,6 +33,10 @@
   height: 100vh;
 }
 
+.main-container {
+  background-color: #b2d1d1;
+}
+
 #validation-01 {
   border-radius: 5px;
 }
