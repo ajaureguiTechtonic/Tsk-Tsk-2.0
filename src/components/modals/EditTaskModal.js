@@ -88,7 +88,8 @@ class EditTaskModal extends Component {
             <ModalFooter>
               <Button className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</Button>
               <Button className="btn modal-buttons" onClick={(e) => {
-                this.props.handleOnClick(); this.props.handleEditfn(this.submitEditTask(), this.props.handleEditIndex);
+                this.props.handleOnClick();
+                this.props.handleEditfn(this.submitEditTask(), this.props.handleEditIndex);
               }}>Edit Task</Button>
             </ModalFooter>
           </form>
