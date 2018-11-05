@@ -7,6 +7,7 @@ import './navbar.css';
 class NavBar extends Component {
   constructor (props) {
     super(props);
+
     this.state = {
       modal: false,
     };
@@ -24,20 +25,20 @@ class NavBar extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand navbar-light fixed-top">
-          <a className="navbar-brand" href="/"><img className="nav-logo" src={Logo} alt="tsk-tsk logo" /></a>
+          <a className="navbar-brand" href="/"><img className="nav-logo" src={ Logo } alt="tsk-tsk logo" /></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             {
               this.props.match.path === '/' &&
-              <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">
+              <button type="button" onClick={ this.toggle } className="btn edit-button ml-auto">
                 Sign Up
               </button>
             }
           </div>
         </nav>
-        <SignUpModal isOpen={this.state.modal} onClick={this.toggle} />
+        <SignUpModal isOpen={ this.state.modal } onClick={ this.toggle } />
       </div>
     );
   }

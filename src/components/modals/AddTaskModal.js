@@ -11,7 +11,6 @@ class AddTaskModal extends Component {
   constructor (props) {
     super(props);
 
-    this.newTask = {};
     this.state = {
       startDate: moment(),
       taskName: '',
@@ -21,6 +20,7 @@ class AddTaskModal extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
+    this.submitTaskInfo = this.submitTaskInfo.bind(this);
   };
 
   handleChange(e) {
@@ -30,7 +30,7 @@ class AddTaskModal extends Component {
   };
 
   submitTaskInfo() {
-    this.newTask = {
+    const newTask = {
       taskName: this.state.taskName,
       description: this.state.description,
       dueDate: this.state.dueDate,
@@ -38,7 +38,7 @@ class AddTaskModal extends Component {
       dateAdded: new Date().toDateString(),
     };
 
-    this.props.createTask(this.newTask);
+    this.props.createTask(newTask);
   };
 
   handleDateSelect(date) {
@@ -57,13 +57,13 @@ class AddTaskModal extends Component {
   render() {
     return (
       <div>
-        <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
+        <Modal id="add-task-modal" isOpen={ this.props.isOpen } toggle={ this.props.handleOnClick }>
           <form>
             <div className="modal-header">
               <h5 className="modal-title" id="add-task-modal-label">
                 <div className="form-row">
                   <div className="col-md-4">
-                    <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
+                    <input name="taskName" onChange={ this.handleChange } value={ this.state.taskName } type="text" id="newTaskName" placeholder="Task Name" required />
                   </div>
                 </div>
               </h5>
@@ -72,23 +72,25 @@ class AddTaskModal extends Component {
             <ModalBody>
               <div className="form-group">
                 <label htmlFor="form-group-input-1">Task Description</label>
-                <input id="newTaskDescription" type="text" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} placeholder="Task Description"></input>
+                <input id="newTaskDescription" type="text" className="form-control" name="description" value={ this.state.description } onChange={ this.handleChange } placeholder="Task Description"></input>
               </div>
               <div className="form-group">
                 <label htmlFor="form-group-input-2">Due Date</label>
                 <DatePicker
-                  selected={this.state.startDate}
-                  onSelect={this.handleDateSelect}
-                  minDate={moment()}
-                  maxDate={moment().add(45, 'days')}
+                  selected={ this.state.startDate }
+                  onSelect={ this.handleDateSelect }
+                  minDate={ moment() }
+                  maxDate={ moment().add(45, 'days') }
                 placeholderText="Select a due date" />
               </div>
             </ModalBody>
             <ModalFooter>
-              <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</button>
-              <button type="button" className="btn modal-buttons" onClick={(e) => {
-                this.props.handleOnClick(e); this.submitTaskInfo();
-              }}>Add Task</button>
+              <button type="button" className="btn modal-buttons" onClick={ this.props.handleOnClick} >Cancel</button>
+              <button type="button" className="btn modal-buttons" onClick={
+                (e) => {
+                  this.props.handleOnClick(e);
+                  this.submitTaskInfo();
+                }}>Add Task</button>
 
             </ModalFooter>
           </form>
