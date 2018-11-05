@@ -24,7 +24,7 @@
    top: 10px;
    height: 50px;
    width: 125px;
-   z-index: 9999;
+   z-index: 1000;
 }
 .add-task-button img {
    position: sticky;
