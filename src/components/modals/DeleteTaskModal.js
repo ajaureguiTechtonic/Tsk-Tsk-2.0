@@ -14,8 +14,11 @@ class DeleteTaskModal extends React.Component {
             <p>Is this important?</p>
           </ModalBody>
           <ModalFooter>
-            <Button type="button" className="btn modal-buttons" onClick={(e) => {
-              this.props.handleOnClick(e);this.props.handleDeleteTask(e);}}>No, Delete It. </Button>
+            <Button type="button" className="btn modal-buttons" onClick={
+              (e) => {
+                this.props.handleOnClick(e);
+                this.props.handleDeleteTask(e);
+              }}>No, Delete It. </Button>
             <Button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick}>Yes, Keep It</Button>
           </ModalFooter>
         </Modal>
