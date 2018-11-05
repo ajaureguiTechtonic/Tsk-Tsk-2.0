@@ -18,12 +18,14 @@ class TaskContainer extends Component{
     this.toggleDelete = this.toggleDelete.bind(this);
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
+    this.editTask = this.editTask.bind(this);
 
     this.state = {
       addModal: false,
       taskList: this.storageTasks,
       editModal: false,
       taskToDelete: '',
+      eTask: {},
     };
   };
 
@@ -49,7 +51,17 @@ class TaskContainer extends Component{
     });
   };
 
-  toggleEdit() {
+  toggleEdit(id) {
+    let tIndex;
+    if (!this.state.editModal) {
+      const taskList = this.state.taskList;
+      tIndex = taskList.findIndex(x => x.taskID === id);
+      this.setState({
+        taskIdToEdit: id,
+        taskIndex: tIndex,
+        eTask: this.state.taskList[tIndex],
+      });
+    }
     this.setState({
       editModal: !this.state.editModal,
     });
@@ -68,6 +80,17 @@ class TaskContainer extends Component{
     const index = taskList.findIndex(x => x.taskID === idToDelete);
     taskList.splice(index, 1);
   };
+
+  editTask(editedTask, index) {
+    console.log(this.state.taskList);
+    let tempList;
+    tempList = this.state.taskList;
+    tempList[index] = editedTask;
+    this.setState({
+      taskList: tempList,
+    });
+    console.log(tempList);
+  }
 
   render() {
     store.set('storedTasks', this.state.taskList);
@@ -88,7 +111,7 @@ class TaskContainer extends Component{
 
         </MediaQuery>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} />
+        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} handleEditIndex={this.state.taskIndex} forwardTask={this.state.eTask} handleEditfn={this.editTask} />
         <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete} handleDeleteTask={this.deleteTask}/>
       </div>
     );
