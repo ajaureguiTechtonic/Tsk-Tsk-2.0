@@ -77,7 +77,7 @@ class AddTaskModal extends Component {
                 <DatePicker
                   selected={ this.state.startDate }
                   onSelect={ this.handleDateSelect }
-                  minDate={ moment()}
+                  minDate={ moment() }
                   maxDate={ moment().add(45, 'days') }
                 placeholderText="Select a due date" />
               </div>
