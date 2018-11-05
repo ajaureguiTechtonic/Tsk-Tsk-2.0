@@ -25,20 +25,23 @@
   .level-1 {
     font-size: 1rem;
   }
+  .level-1 ..days-old {
+    font-size: 1rem;
+  }
 
   .level-2 {
     font-size: 1.125rem;
   }
 
   .level-2 .days-old {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
   }
 
   .level-3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
   }
 
   .level-3 .days-old {
-    font-size: 1.125rem;
+    font-size: .7rem;
   }
 }
