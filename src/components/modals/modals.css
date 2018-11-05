@@ -38,3 +38,7 @@
   border-radius: 5px;
   height: auto;
 }
+
+#newTaskName {
+  width: 100%;
+}

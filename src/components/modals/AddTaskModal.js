@@ -58,15 +58,13 @@ class AddTaskModal extends Component {
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
-            <div className="modal-header">
-              <h5 className="modal-title" id="add-task-modal-label">
-                <div className="form-row">
-                  <div className="col-md-4">
-                    <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
-                  </div>
-                </div>
-              </h5>
-              <h6 className="modal-date">{new Date().toDateString()}</h6>
+            <div className="row modal-header">
+              <div className="col-8">
+                <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
+              </div>
+              <div className="col-4">
+                <h6 className="modal-date">{new Date().toDateString()}</h6>
+              </div>
             </div>
             <ModalBody>
               <div className="form-group">
@@ -89,7 +87,7 @@ class AddTaskModal extends Component {
                 this.props.handleOnClick(e);
                 this.submitTaskInfo();
               }}>Add Task</button>
-              
+
             </ModalFooter>
           </form>
         </Modal>
