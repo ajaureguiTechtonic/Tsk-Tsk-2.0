@@ -13,12 +13,11 @@ const DeleteTaskModal = (props) => {
           <p>Is this important?</p>
         </ModalBody>
         <ModalFooter>
+          <Button type="button" className="btn modal-buttons" onClick={props.handleOnClick}>Yes, Keep It</Button>
           <Button type="button" className="btn modal-buttons" onClick={(e) => {
             props.handleOnClick(e);
             props.handleDeleteTask(e);
           }}>No, Delete It. </Button>
-
-          <Button type="button" className="btn modal-buttons" onClick={props.handleOnClick}>Yes, Keep It</Button>
         </ModalFooter>
       </Modal>
     </div>
