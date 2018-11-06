@@ -22,8 +22,11 @@ class EditTaskModal extends Component {
   }
 
   handleDateChange(date) {
-    this.setState({ startDate: date });
-  }
+    this.setState({
+      startDate: date,
+    });
+  };
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -34,12 +37,12 @@ class EditTaskModal extends Component {
     let taskToEdit = this.props.forwardTask;
     console.log('submitEditFN', taskToEdit);
     taskToEdit.taskName = this.state.taskName;
-    //// FIXME: sometimes requies taskDescription othertimes requires description
     taskToEdit.description = this.state.description;
     taskToEdit.dueDate = this.state.dueDate;
     console.log('endSubmit', taskToEdit);
     return taskToEdit;
-  }
+  };
+
   handleDateSelect(date) {
     if (date) {
       this.setState({
@@ -47,12 +50,14 @@ class EditTaskModal extends Component {
         dueDate: (date._d).toDateString(),
       });
     } else {
-      this.setState({ dueDate: undefined });
+      this.setState({
+        dueDate: undefined,
+      });
     }
   };
+
   render() {
     return (
-
       <div>
         {/* "This button is just to test the modal!"*/}
         <Modal id="edit-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
@@ -87,7 +92,8 @@ class EditTaskModal extends Component {
             <ModalFooter>
               <Button className="btn modal-buttons" onClick={this.props.handleOnClick}>Cancel</Button>
               <Button className="btn modal-buttons" onClick={(e) => {
-                this.props.handleOnClick(); this.props.handleEditfn(this.submitEditTask(), this.props.handleEditIndex);
+                this.props.handleOnClick();
+                this.props.handleEditfn(this.submitEditTask(), this.props.handleEditIndex);
               }}>Edit Task</Button>
             </ModalFooter>
           </form>
