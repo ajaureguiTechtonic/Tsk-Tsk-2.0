@@ -87,7 +87,7 @@ class TaskContainer extends Component{
 
   editTask(editedTask, index) {
     let tempList;
-    tempList = this.state.taskList;
+    tempList = this.state.taskList.slice();
     tempList[index] = editedTask;
     this.setState({
       taskList: tempList,
