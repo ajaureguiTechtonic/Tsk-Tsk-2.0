@@ -71,7 +71,29 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
     return newTaskList;
   });
 
-  let sortByLevel = sortedTaskList.sort((a, b) => b.level - a.level);
+  let sortByLevel = sortedTaskList.sort((a, b) => {
+    let aDate = new Date(a.dateAdded);
+    let bDate = new Date(b.dateAdded);
+
+    if (a.level > b.level) return -1;
+    if (a.level < b.level) return 1;
+
+    if (a.level === 1 && b.level === 1) {
+      console.log('hello');
+      if (aDate.getTime() > bDate.getTime()) return 1;
+      if (aDate.getTime() < bDate.getTime()) return -1;
+      if (a.dueDate > b.dueDate) return 1;
+      if (a.dueDate < b.dueDate) return -1;
+    }
+
+    if (aDate.getTime() > bDate.getTime()) return -1;
+    if (aDate.getTime() < bDate.getTime()) return 1;
+    if (a.dueDate > b.dueDate) return -1;
+    if (a.dueDate < b.dueDate) return 1;
+  });
+
+console.log(sortByLevel);
+
 
   let tasks = sortByLevel.map((task, i) => {
     let level = sortTasks(task);

@@ -96,7 +96,7 @@ class TaskContainer extends Component{
 
   render() {
     store.set('storedTasks', this.state.taskList);
-    
+
     return (
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
