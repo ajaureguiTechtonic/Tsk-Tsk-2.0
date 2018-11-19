@@ -62,14 +62,14 @@ class EditTaskModal extends Component {
         {/* "This button is just to test the modal!"*/}
         <Modal id="edit-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
           <form>
-            <ModalHeader>
-              <div className="form-row">
-                <div className="col-md-4">
-                <input type="text" id="newTaskName" name="taskName" placeholder="edit task name" value={this.state.taskName} onChange={this.handleChange} required></input>
-                  <span className="modal-title modal-date">Date Added</span>
-                </div>
-              </div>
-            </ModalHeader>
+          <div className="row modal-header">
+            <div className="col-8">
+              <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
+            </div>
+            <div className="col-4">
+              <h6 className="modal-date">{new Date().toDateString()}</h6>
+            </div>
+          </div>
             <ModalBody>
               <div className="form-group">
                 <label htmlFor="form-group-input-1">Task Description</label>

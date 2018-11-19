@@ -10,7 +10,7 @@ const calcDaysOld = (dateAdded) => {
   var difference = (daysOld / oneDay);
 
   // If it isnt a full 24 hours old, return 0,  we can add range to this in the future.
-  if (difference < 1) {
+  if (difference < .99) {
     return 0;
   } else {
     return Math.round(daysOld / oneDay);
@@ -64,23 +64,55 @@ const sortTasks = (task) => {
 
 const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
-  let sortedTaskList = taskList.map((task) => {
-    let newTaskList = Object.assign({}, task);
+  let leveledTaskList = taskList.map((task) => {
     let level = sortTasks(task);
-    newTaskList.level = level;
-    return newTaskList;
+    task.level = level;
+    return task;
   });
 
-  let sortByLevel = sortedTaskList.sort((a, b) => b.level - a.level);
+  let sortByLevel = function () {
+    let sortedByLevel = leveledTaskList.sort((a, b) => b.level - a.level);
+    return sortedByLevel;
+  };
 
-  let tasks = sortByLevel.map((task, i) => {
+  let sortByDateAdded = function () {
+    let levels = sortByLevel();
+    // console.log(levels);
+    let index = 0;
+    console.log(levels);
+    let sortedbyDate = levels.sort((a, b) => {
+      let aDate = new Date (a.dateAdded);
+      let bDate = new Date (b.dateAdded);
+      // console.log('A'+ aDate);
+      // console.log('B'+ bDate);
+      if (levels[index].level == 5){
+        console.log("level five task");
+        if (aDate.getTime() < bDate.getTime()) {
+          console.log('A', levels[index].dateAdded);
+          console.log('B', levels[index + 1].dateAdded);
+          var temp = a;  //Temporary variable to hold the current number
+          levels[index] = b; //Replace current number with adjacent number
+          levels[index + 1] = temp; //Replace adjacent number with current number
+
+        }else {
+          return leveledTaskList;
+        }
+      }
+
+      index++;
+    });
+    // console.log(levels);
+    return levels;
+  };
+
+  let tasks = sortByDateAdded().map((task, i) => {
     let level = sortTasks(task);
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
     if (level <= 3) {
 
-      return <LowerLevelTask key={task.taskID} id={task.taskID}  taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} />;
+      return <LowerLevelTask key={task.taskID} id={task.taskID} taskName={task.taskName} description={task.description} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} />;
     } else {
       daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
       var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
@@ -91,7 +123,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
   return (
     <div>
-      {tasks}
+      { tasks }
     </div>
   );
 };
