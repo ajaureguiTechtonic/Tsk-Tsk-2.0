@@ -101,7 +101,7 @@ class TaskContainer extends Component{
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
         <MediaQuery maxWidth={915}>
-
+        
           {(matches) => {
             if (matches) {
               let style = 'small-add-task-button';

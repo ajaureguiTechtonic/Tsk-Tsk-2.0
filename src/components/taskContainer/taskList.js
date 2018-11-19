@@ -85,7 +85,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
       let bDate = new Date (b.dateAdded);
       // console.log('A'+ aDate);
       // console.log('B'+ bDate);
-      if (levels[index].level == 5){
+      if (levels[index].level === 5){
         console.log("level five task");
         if (aDate.getTime() < bDate.getTime()) {
           console.log('A', levels[index].dateAdded);
