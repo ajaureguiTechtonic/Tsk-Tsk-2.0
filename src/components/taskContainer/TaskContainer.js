@@ -19,6 +19,7 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
+    this.addTaskToDatabase = this.addTaskToDatabase.bind(this);
 
     this.state = {
       addModal: false,
@@ -94,6 +95,10 @@ class TaskContainer extends Component{
     });
   };
 
+  addTaskToDatabase(oTask) {
+    //Axios stuff
+  }
+  
   render() {
     store.set('storedTasks', this.state.taskList);
     
