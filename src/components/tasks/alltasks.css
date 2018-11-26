@@ -24,6 +24,7 @@
   height: unset;
   width: unset;
 }
+
 .edit-button {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, .37);
   background-color: inherit;
