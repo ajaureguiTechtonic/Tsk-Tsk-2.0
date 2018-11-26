@@ -12,6 +12,10 @@
   text-transform: uppercase;
 }
 
+.task-description {
+  padding-right: 8.33%
+}
+
 .task-description p {
   font-size: .6em;
   padding-right: 1vw;
@@ -90,9 +94,6 @@
   visibility: visible;
 }
 /* Edit hover icon styling */
-.edit-content {
-  float: right;
-}
 
 .edit-content > button {
   display: inline;
@@ -132,5 +133,24 @@
 
   .task {
     width: 95vw;
+  }
+
+  .task-description.offset-1 {
+    padding-left: 0px;
+  }
+
+  .collapse {
+    padding: 0px;
+  }
+
+  .collapse > .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .edit-buttons {
+    float: right;
+    max-width: 100%;
+    flex: 0 0 100%;
   }
 }
