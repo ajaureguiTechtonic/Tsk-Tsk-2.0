@@ -135,19 +135,6 @@
     width: 95vw;
   }
 
-  .task-description.offset-1 {
-    padding-left: 0px;
-  }
-
-  .collapse {
-    padding: 0px;
-  }
-
-  .collapse > .row {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
-
   .edit-buttons {
     float: right;
     max-width: 100%;
