@@ -14,14 +14,14 @@ const LandingPage = () => {
               <h4 className='login-text'> Welcome Back</h4>
               <div className='form-row'>
                 <div className='col-12 col-sm-5'>
-                  <input type='text' className='form-control' placeholder='Username/E-mail Address' />
+                  <input name="email" type='text' className='form-control' placeholder='Username/E-mail Address' />
                 </div>
                 <div className='col-12 col-sm-5'>
-                  <input type='text' className='form-control' placeholder='Password' />
+                  <input  name="password" type='text' className='form-control' placeholder='Password' />
                 </div>
                 <div className='col-12 col-sm-2 login-button'>
                   <a href='tasks'>
-                    <button type='button' className='btn edit-button'>
+                    <button type='submit' className='btn edit-button'>
                       Get To Work
                     </button>
                   </a>
