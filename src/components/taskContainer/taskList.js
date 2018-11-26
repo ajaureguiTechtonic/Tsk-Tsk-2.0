@@ -64,10 +64,11 @@ const sortTasks = (task) => {
 
 const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
 
-  let leveledTaskList = taskList.map((task) => {
+  let sortedTaskList = taskList.map((task) => {
+    let newTaskList = Object.assign({}, task);
     let level = sortTasks(task);
-    task.level = level;
-    return task;
+    newTaskList.level = level;
+    return newTaskList;
   });
 
   let sortByLevel = sortedTaskList.sort((a, b) => {
