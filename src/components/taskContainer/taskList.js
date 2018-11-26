@@ -70,42 +70,28 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
     return task;
   });
 
-  let sortByLevel = function () {
-    let sortedByLevel = leveledTaskList.sort((a, b) => b.level - a.level);
-    return sortedByLevel;
-  };
+  let sortByLevel = sortedTaskList.sort((a, b) => {
+    let aDate = new Date(a.dateAdded);
+    let bDate = new Date(b.dateAdded);
 
-  let sortByDateAdded = function () {
-    let levels = sortByLevel();
-    // console.log(levels);
-    let index = 0;
-    // console.log(levels);
-    let sortedbyDate = levels.sort((a, b) => {
-      let aDate = new Date (a.dateAdded);
-      let bDate = new Date (b.dateAdded);
-      // console.log('A'+ aDate);
-      // console.log('B'+ bDate);
-      if (levels[index].level === 5){
-        // console.log("level five task");
-        if (aDate.getTime() < bDate.getTime()) {
-          // console.log('A', levels[index].dateAdded);
-          // console.log('B', levels[index + 1].dateAdded);
-          var temp = a;  //Temporary variable to hold the current number
-          levels[index] = b; //Replace current number with adjacent number
-          levels[index + 1] = temp; //Replace adjacent number with current number
+    if (a.level > b.level) return -1;
+    if (a.level < b.level) return 1;
 
-        }else {
-          return leveledTaskList;
-        }
-      }
+    if (a.level === 1 && b.level === 1) {
+      console.log('hello');
+      if (aDate.getTime() > bDate.getTime()) return 1;
+      if (aDate.getTime() < bDate.getTime()) return -1;
+      if (a.dueDate > b.dueDate) return 1;
+      if (a.dueDate < b.dueDate) return -1;
+    }
 
-      index++;
-    });
-    // console.log(levels);
-    return levels;
-  };
+    if (aDate.getTime() > bDate.getTime()) return -1;
+    if (aDate.getTime() < bDate.getTime()) return 1;
+    if (a.dueDate > b.dueDate) return -1;
+    if (a.dueDate < b.dueDate) return 1;
+  });
 
-  let tasks = sortByDateAdded().map((task, i) => {
+  let tasks = sortByLevel.map((task, i) => {
     let level = sortTasks(task);
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
