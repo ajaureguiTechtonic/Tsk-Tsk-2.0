@@ -40,7 +40,7 @@ class SignUpModal extends Component {
         axios.post(`${authURL}/register`, newUser)
         .then((jwt) => {
           console.log(jwt);
-          // sessionStorage.setItem('jwt-token', jwt.token);
+          sessionStorage.setItem('jwt-token', jwt.token);
           this.setState({ toDashboard: true });
         });
       }

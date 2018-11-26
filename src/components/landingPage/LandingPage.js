@@ -23,8 +23,8 @@ class LandingPage extends Component {
 
     axios.post(`${authURL}/login`, postData)
     .then((jwt) => {
-      console.log(jwt);
-      // sessionStorage.setItem('jwt-token', jwt.token);
+      console.log(jwt.data);
+      sessionStorage.setItem('jwt-token', jwt.data.token);
       this.setState({ toDashboard: true });
     });
   }
@@ -48,11 +48,9 @@ class LandingPage extends Component {
                       <input  id="password" type='text' className='form-control' placeholder='Password' />
                     </div>
                     <div className='col-12 col-sm-2 login-button'>
-                      {/* <a href='tasks'> */}
                       <button type='button' onClick={(e) => this.handleLogIn(document.getElementById("email").value, document.getElementById("password").value)} className='btn edit-button'>
                         Get To Work
                       </button>
-                      {/* </a> */}
                     </div>
                   </div>
                 </form>

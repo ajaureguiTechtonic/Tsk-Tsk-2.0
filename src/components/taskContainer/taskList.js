@@ -79,17 +79,17 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
     let levels = sortByLevel();
     // console.log(levels);
     let index = 0;
-    console.log(levels);
+    // console.log(levels);
     let sortedbyDate = levels.sort((a, b) => {
       let aDate = new Date (a.dateAdded);
       let bDate = new Date (b.dateAdded);
       // console.log('A'+ aDate);
       // console.log('B'+ bDate);
       if (levels[index].level === 5){
-        console.log("level five task");
+        // console.log("level five task");
         if (aDate.getTime() < bDate.getTime()) {
-          console.log('A', levels[index].dateAdded);
-          console.log('B', levels[index + 1].dateAdded);
+          // console.log('A', levels[index].dateAdded);
+          // console.log('B', levels[index + 1].dateAdded);
           var temp = a;  //Temporary variable to hold the current number
           levels[index] = b; //Replace current number with adjacent number
           levels[index + 1] = temp; //Replace adjacent number with current number
