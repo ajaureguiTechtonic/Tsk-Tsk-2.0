@@ -7,6 +7,8 @@ import TaskList from './taskList';
 import storedTasks from '../../components/storedTasks';
 import MediaQuery from 'react-responsive';
 const store = require('store');
+const taskURL = 'http://127.0.0.1:4000/tsktsk';
+const axios = require('axios');
 
 class TaskContainer extends Component{
   constructor (props) {
@@ -19,7 +21,7 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
-    this.addTaskToDatabase = this.addTaskToDatabase.bind(this);
+    // this.addTaskToDatabase = this.addTaskToDatabase.bind(this);
 
     this.state = {
       addModal: false,
@@ -44,8 +46,16 @@ class TaskContainer extends Component{
   };
 
   createTask(task) {
-    this.setState({
-      taskList: this.state.taskList.concat(task),
+  // console.log(task);
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
+    axios.post(taskURL, task, { headers: headers })
+    .then((response) => {
+      console.log(response);
+      this.setState({
+        taskList: this.state.taskList.concat(task),
+      });
     });
   };
 
@@ -95,13 +105,14 @@ class TaskContainer extends Component{
     });
   };
 
-  addTaskToDatabase(oTask) {
-    //Axios stuff
-  }
-  
+  // addTaskToDatabase(oTask) {
+  //   //Axios stuff
+  //   axios.post(authURL/).
+  // }
+
   render() {
     store.set('storedTasks', this.state.taskList);
-    
+
     return (
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>

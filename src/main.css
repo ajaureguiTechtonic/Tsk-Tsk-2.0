@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Quicksand');
+
 /* styling for nav add task button */
 #navAddTaskButton {
   color: #586060;
@@ -39,6 +41,10 @@
 
 #validation-01 {
   border-radius: 5px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 @media (max-width: 575px) {
