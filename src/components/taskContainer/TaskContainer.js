@@ -55,11 +55,11 @@ class TaskContainer extends Component{
     });
   };
 
-  toggleEdit(id) {
+  toggleEdit(id) { // is fed id.
     let taskIndex;
     if (!this.state.editModal) {
       const taskList = this.state.taskList;
-      taskIndex = taskList.findIndex(task => task.taskID === id);
+      taskIndex = taskList.findIndex(task => task.taskID === id); // not necessary?
       this.setState({
         taskIdToEdit: id,
         taskIndex: taskIndex,
@@ -98,7 +98,7 @@ class TaskContainer extends Component{
   addTaskToDatabase(oTask) {
     //Axios stuff
   }
-  
+
   render() {
 
     store.set('storedTasks', this.state.taskList);

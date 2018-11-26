@@ -10,9 +10,11 @@ class LowerLevelTask extends Component {
 
     this.state = {
       isCollapsed: false,
+      editing: false,
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
+
   };
 
   toggleCollapse() {
@@ -20,6 +22,47 @@ class LowerLevelTask extends Component {
       isCollapsed: !this.state.isCollapsed,
     });
   };
+
+  //// TODO:
+  // have edit button txt changed to done, when edit is clicked.
+  //have edit button toggle "edit mode"
+  // Create 'editmode' where the name, date, description fields become editable.
+  // lower level task should be easy to implement, HigherLevelTask will require some more intensive editing to the task div to accomadate a date field/DatePicker
+  // decide if editmode should be imported in from task container or if it will need to be customised per level
+
+  editModaLLT() {
+    // example p tag for name <p className="m-0 align-self-center">{this.props.taskName}</p>
+    // need to empty out the ptag and replace ? or hide so that an edit field can take its place.
+    // created ref called name nameDiv
+    //need to access nameDiv and clear out the ptag or just the txt in it.
+    // the task id will be required or some reference to self.
+    // // TODO: need an edit on/off type bool state
+    // date is broke out into two paragraphs, this will make things trickier,
+    //description p is classless.
+
+
+    let editBtn = this.refs.editBtn;
+    let nameP = this.refs.nameP;
+    let contentName = this.props.taskName;
+
+//// TODO:  function layout
+    if (!this.state.editing) {
+      editBtn.innerHTML = 'Done';
+
+      // // NOTE: set inline styling to a more perm solution in a .css file.
+      nameP.innerHTML = '<textarea className="removeMeLLT" style="width: 40vw; height: 5vh; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  contentName + '</textarea>';
+      
+    } else {
+
+      editBtn.innerHTML = 'Edit';
+      console.log('is editing true already');
+    }
+
+
+      this.setState({
+        editing: !this.state.editing,
+      });
+  }
 
   render() {
     if (this.props.dueDate === undefined) {
@@ -42,7 +85,7 @@ class LowerLevelTask extends Component {
                     <span className="checkmark"></span>
                   </div>
                   <div className="col-7 col-md-9 d-flex" onTouchStart={this.toggleCollapse}>
-                    <p className="m-0 align-self-center">{this.props.taskName}</p>
+                    <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p>
                   </div>
                   <div className="col-3 col-md-2 d-flex justify-content-center">
                     <div className="align-self-center text-center days-old-count">
@@ -57,7 +100,10 @@ class LowerLevelTask extends Component {
                       </div>
                       <div className={`col-12 col-sm-4 edit-this-task-${this.props.taskID}`}>
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                          <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={(e) => this.props.handleOnEdit(this.props.id)}>Edit</button>
+                          <button type="button" className="btn edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
+                            // this.props.handleOnEdit(this.props.id);
+                            this.editModaLLT();
+                          }}>Edit</button>
                           <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {
                             this.props.handleOnDelete(this.props.id);
                           }}> Delete </button>
