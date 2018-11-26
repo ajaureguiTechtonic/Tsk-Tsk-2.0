@@ -11,6 +11,7 @@
    height: 70px;
    width: 150px;
    z-index: 1040;
+   font-family: 'Josefin+Sans', sans-serif;
 }
 .small-add-task-button {
   color: #586060;
@@ -25,6 +26,8 @@
    height: 50px;
    width: 125px;
    z-index: 1040;
+
+   font-family: 'Josefin+Sans', sans-serif;
 }
 .add-task-button img {
    position: sticky;
