@@ -29,7 +29,6 @@ class App extends Component {
   }
 
   _logout () {
-    console.log("woerking");
     this.setState({ isLoggedIn: false });
     sessionStorage.removeItem('jwt-token');
     sessionStorage.removeItem('user');
@@ -37,21 +36,29 @@ class App extends Component {
   }
 
   render () {
-    return (
-      <Router>
-        <div className='main-container'>
-          <Route exact path='/' render={(props) => <div>
-            <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-            <LandingPage checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
-          </div>}/>
-
-          <Route exact path='/tasks' render={(props) => <div>
-            <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-            <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
-          </div>}/>
-        </div>
-      </Router>
-    );
+    if (this.state.isLoggedIn === true) {
+      return (
+        <Router>
+          <div className='main-container'>
+            <Route exact path='/' render={(props) => <div>
+              <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn }/>
+              <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
+            </div>}/>
+          </div>
+        </Router>
+          );
+    } else {
+      return (
+        <Router>
+          <div className='main-container'>
+            <Route exact path='/' render={(props) => <div>
+              <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+              <LandingPage checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
+            </div>}/>
+          </div>
+        </Router>
+      );
+    }
   }
 };
 
