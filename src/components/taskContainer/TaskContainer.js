@@ -105,11 +105,6 @@ class TaskContainer extends Component{
     });
   };
 
-  // addTaskToDatabase(oTask) {
-  //   //Axios stuff
-  //   axios.post(authURL/).
-  // }
-
   render() {
     store.set('storedTasks', this.state.taskList);
 
