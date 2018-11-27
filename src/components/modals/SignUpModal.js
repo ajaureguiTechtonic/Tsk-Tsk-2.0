@@ -42,6 +42,8 @@ class SignUpModal extends Component {
           console.log(jwt);
           sessionStorage.setItem('jwt-token', jwt.token);
           this.setState({ toDashboard: true });
+        }).catch(() => {
+          alert('An account with this email address already exists.');
         });
       }
     } else {
