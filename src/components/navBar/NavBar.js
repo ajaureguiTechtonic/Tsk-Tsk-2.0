@@ -21,12 +21,7 @@ class NavBar extends Component {
       modal: !this.state.modal,
     });
   };
-
-  taskView() {
-    this.setState({
-
-    });
-  };
+  
 
   render() {
     return (
