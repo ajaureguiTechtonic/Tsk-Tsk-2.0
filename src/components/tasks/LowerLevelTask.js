@@ -14,6 +14,8 @@ class LowerLevelTask extends Component {
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
 
   };
 
@@ -30,6 +32,13 @@ class LowerLevelTask extends Component {
   // lower level task should be easy to implement, HigherLevelTask will require some more intensive editing to the task div to accomadate a date field/DatePicker
   // decide if editmode should be imported in from task container or if it will need to be customised per level
 
+  handleChange(e) {
+    console.log(e.target.value);
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   editModaLLT() {
     // example p tag for name <p className="m-0 align-self-center">{this.props.taskName}</p>
     // need to empty out the ptag and replace ? or hide so that an edit field can take its place.
@@ -43,19 +52,32 @@ class LowerLevelTask extends Component {
 
     let editBtn = this.refs.editBtn;
     let nameP = this.refs.nameP;
-    let contentName = this.props.taskName;
+    let nameContent = this.props.taskName;
+    let dateDiv = this.refs.dateDiv;
+    let descP = this.refs.descP;
 
 //// TODO:  function layout
     if (!this.state.editing) {
       editBtn.innerHTML = 'Done';
 
       // // NOTE: set inline styling to a more perm solution in a .css file.
-      nameP.innerHTML = '<textarea className="removeMeLLT" style="width: 40vw; height: 5vh; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  contentName + '</textarea>';
-      
+      nameP.innerHTML = '<textarea ref="textareaName" name="taskName" onChange={this.handleChange} value={this.state.taskName}  style="width: 20vw; height: 7vh; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  nameContent + '</textarea>';
+      dateDiv.innerHTML = '<textarea ref="textareaDate" style="width: 15vw; height: 10vh; margin-right: 50px; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  this.props.dueDate + '</textarea>';
+      descP.innerHTML = '<textarea ref="textareaDesc" style="width: 20vw; height: 7vh; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  this.props.description + '</textarea>';
     } else {
-
       editBtn.innerHTML = 'Edit';
       console.log('is editing true already');
+      //// TODO:  insert logic to grab name,date,desc, and update state.
+      // console.log('textarea', this.refs.textareaName.innerHTML); // this may not work, may have to update state on change .. . .
+
+      var dueDate = (this.props.dueDate).split(' '); //// NOTE:  barrowed from render below.
+      let month = dueDate[1];
+      let day = dueDate[2];
+      // NOTE: instead of changing al lthis shit, can we just update state and rerender the shit below??? XXX 
+      nameP.innerHTML = this.props.taskName ;
+      dateDiv.innerHTML = `<p className="m-0">${month}</p>
+      <p className="m-0 days-old">${day}</p>`;
+      descP.innerHTML = this.props.description;
     }
 
 
@@ -88,7 +110,7 @@ class LowerLevelTask extends Component {
                     <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p>
                   </div>
                   <div className="col-3 col-md-2 d-flex justify-content-center">
-                    <div className="align-self-center text-center days-old-count">
+                    <div className="align-self-center text-center days-old-count" ref="dateDiv">
                       <p className="m-0">{month}</p>
                       <p className="m-0 days-old">{day}</p>
                     </div>
@@ -96,7 +118,7 @@ class LowerLevelTask extends Component {
                   <Collapse className="col-12 col-md-10 offset-1" isOpen={this.state.isCollapsed} >
                     <div className="row">
                       <div className={`col-10 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
-                        <p>{this.props.description}</p>
+                        <p ref="descP">{this.props.description}</p>
                       </div>
                       <div className={`col-12 col-sm-4 edit-this-task-${this.props.taskID}`}>
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
