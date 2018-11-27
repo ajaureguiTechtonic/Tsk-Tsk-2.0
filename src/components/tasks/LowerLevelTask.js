@@ -3,6 +3,8 @@ import editButton from '../../assets/edit.png';
 import './alltasks.css';
 import './lowerlevel.css';
 import { Collapse } from 'reactstrap';
+import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
+import _ from 'lodash';
 
 class LowerLevelTask extends Component {
   constructor (props) {
@@ -14,9 +16,23 @@ class LowerLevelTask extends Component {
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
-    this.handleChange = this.handleChange.bind(this);
 
+    this.editTaskLLT = (taskedits) => {
+      // console.log(taskedits);
+      // console.log(this.props);
+      let tTask = _.clone(this.props); //// NOTE: like seriously? where has lodash been this whole time?????
+      if (taskedits.taskName) {
+        tTask.taskName = taskedits.taskName;
+      }
+      if (taskedits.description) {
+        tTask.description = taskedits.description;
+      }
+      if (taskedits.dueDate) {
+        tTask.dueDate = taskedits.dueDate;
+      }
 
+      this.props.handleEditfn(tTask, this.props.id);//sent up the line to tasklist then back to task container
+    };
   };
 
   toggleCollapse() {
@@ -25,65 +41,15 @@ class LowerLevelTask extends Component {
     });
   };
 
-  //// TODO:
-  // have edit button txt changed to done, when edit is clicked.
-  //have edit button toggle "edit mode"
-  // Create 'editmode' where the name, date, description fields become editable.
-  // lower level task should be easy to implement, HigherLevelTask will require some more intensive editing to the task div to accomadate a date field/DatePicker
-  // decide if editmode should be imported in from task container or if it will need to be customised per level
-
-  handleChange(e) {
-    console.log(e.target.value);
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  editModaLLT() {
-    // example p tag for name <p className="m-0 align-self-center">{this.props.taskName}</p>
-    // need to empty out the ptag and replace ? or hide so that an edit field can take its place.
-    // created ref called name nameDiv
-    //need to access nameDiv and clear out the ptag or just the txt in it.
-    // the task id will be required or some reference to self.
-    // // TODO: need an edit on/off type bool state
-    // date is broke out into two paragraphs, this will make things trickier,
-    //description p is classless.
-
-
-    let editBtn = this.refs.editBtn;
-    let nameP = this.refs.nameP;
-    let nameContent = this.props.taskName;
-    let dateDiv = this.refs.dateDiv;
-    let descP = this.refs.descP;
-
-//// TODO:  function layout
+  toggleEditLLT() {
     if (!this.state.editing) {
-      editBtn.innerHTML = 'Done';
-
-      // // NOTE: set inline styling to a more perm solution in a .css file.
-      nameP.innerHTML = '<textarea ref="textareaName" name="taskName" onChange={this.handleChange} value={this.state.taskName}  style="width: 20vw; height: 7vh; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  nameContent + '</textarea>';
-      dateDiv.innerHTML = '<textarea ref="textareaDate" style="width: 15vw; height: 10vh; margin-right: 50px; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  this.props.dueDate + '</textarea>';
-      descP.innerHTML = '<textarea ref="textareaDesc" style="width: 20vw; height: 7vh; resize: none; background: none; border: 1px solid black; border-radius: 5px;">' +  this.props.description + '</textarea>';
+      this.refs.editBtn.innerHTML = 'Done';
     } else {
-      editBtn.innerHTML = 'Edit';
-      console.log('is editing true already');
-      //// TODO:  insert logic to grab name,date,desc, and update state.
-      // console.log('textarea', this.refs.textareaName.innerHTML); // this may not work, may have to update state on change .. . .
-
-      var dueDate = (this.props.dueDate).split(' '); //// NOTE:  barrowed from render below.
-      let month = dueDate[1];
-      let day = dueDate[2];
-      // NOTE: instead of changing al lthis shit, can we just update state and rerender the shit below??? XXX 
-      nameP.innerHTML = this.props.taskName ;
-      dateDiv.innerHTML = `<p className="m-0">${month}</p>
-      <p className="m-0 days-old">${day}</p>`;
-      descP.innerHTML = this.props.description;
+      this.refs.editBtn.innerHTML = 'Edit';
     }
-
-
-      this.setState({
-        editing: !this.state.editing,
-      });
+    this.setState({
+      editing: !this.state.editing,
+    });
   }
 
   render() {
@@ -107,24 +73,39 @@ class LowerLevelTask extends Component {
                     <span className="checkmark"></span>
                   </div>
                   <div className="col-7 col-md-9 d-flex" onTouchStart={this.toggleCollapse}>
-                    <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p>
+                    {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
+                    <RIEInput
+                      value={this.props.taskName}
+                      className="m-0 align-self-center"
+                      change={this.editTaskLLT}
+                      propName='taskName'
+                      validate={_.isString}
+                      isDisabled= {!this.state.editing}/>
                   </div>
                   <div className="col-3 col-md-2 d-flex justify-content-center">
                     <div className="align-self-center text-center days-old-count" ref="dateDiv">
                       <p className="m-0">{month}</p>
                       <p className="m-0 days-old">{day}</p>
+                      {/* not sure how to implement date... */}
                     </div>
                   </div>
                   <Collapse className="col-12 col-md-10 offset-1" isOpen={this.state.isCollapsed} >
                     <div className="row">
                       <div className={`col-10 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
-                        <p ref="descP">{this.props.description}</p>
+                        {/* <p ref="descP">{this.props.description}</p> */}
+                        <RIEInput
+                          value={this.props.description}
+                          className="m-0 align-self-center"
+                          change={this.editTaskLLT}
+                          propName='description'
+                          validate={_.isString}
+                          isDisabled= {!this.state.editing}/>
                       </div>
                       <div className={`col-12 col-sm-4 edit-this-task-${this.props.taskID}`}>
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                           <button type="button" className="btn edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
-                            // this.props.handleOnEdit(this.props.id);
-                            this.editModaLLT();
+                            // this.props.handleOnEdit(this.props.id); XXX deleteME
+                            this.toggleEditLLT();
                           }}>Edit</button>
                           <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {
                             this.props.handleOnDelete(this.props.id);

@@ -55,15 +55,15 @@ class TaskContainer extends Component{
     });
   };
 
-  toggleEdit(id) { // is fed id.
+  toggleEdit(id) { // is fed id. // NOTE: obsolete, remove.
     let taskIndex;
     if (!this.state.editModal) {
       const taskList = this.state.taskList;
       taskIndex = taskList.findIndex(task => task.taskID === id); // not necessary?
       this.setState({
-        taskIdToEdit: id,
-        taskIndex: taskIndex,
-        taskToEdit: this.state.taskList[taskIndex],
+        taskIdToEdit: id, // XXX: no longer needed remove from state
+        taskIndex: taskIndex, // XXX: no longer needed remove from state and componets below, chase down the line. // NOTE: leave edit task alone those are block scoped and are unrelated.
+        taskToEdit: this.state.taskList[taskIndex], //XXX: no longer needed remove from state and componets below, chase down the line.
       });
     }
 
@@ -86,10 +86,13 @@ class TaskContainer extends Component{
     taskList.splice(index, 1);
   };
 
-  editTask(editedTask, index) {
+  editTask(editedTask, id) {
     let tempList;
     tempList = this.state.taskList.slice();
-    tempList[index] = editedTask;
+
+    let taskIndex = tempList.findIndex(task => task.taskID === id);
+
+    tempList[taskIndex] = editedTask;
     this.setState({
       taskList: tempList,
     });
@@ -104,7 +107,7 @@ class TaskContainer extends Component{
     store.set('storedTasks', this.state.taskList);
     return (
       <div>
-        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask}/>
         <MediaQuery maxWidth={915}>
 
           {(matches) => {
