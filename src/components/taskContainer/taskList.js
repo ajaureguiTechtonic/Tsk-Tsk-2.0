@@ -63,7 +63,7 @@ const sortTasks = (task) => {
 };
 
 const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
-  console.log(taskList);
+  // console.log(taskList);
 
   let sortedTaskList = taskList.map((task) => {
     let newTaskList = Object.assign({}, task);

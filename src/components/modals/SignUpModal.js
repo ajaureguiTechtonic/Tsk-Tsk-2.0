@@ -40,7 +40,8 @@ class SignUpModal extends Component {
         axios.post(`${authURL}/register`, newUser)
         .then((jwt) => {
           console.log(jwt);
-          sessionStorage.setItem('jwt-token', jwt.token);
+          sessionStorage.setItem('jwt-token', jwt.data.token);
+          sessionStorage.setItem('jwt-token', jwt.data.name);
           this.setState({ toDashboard: true });
         }).catch(() => {
           alert('An account with this email address already exists.');

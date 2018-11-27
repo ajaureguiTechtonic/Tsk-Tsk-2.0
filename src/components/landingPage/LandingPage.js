@@ -14,7 +14,7 @@ class LandingPage extends Component {
   }
 
   handleLogIn (email, password) {
-    console.log(email, password);
+    // console.log(email, password);
     let postData = {
       email: email,
       password: password,
@@ -22,7 +22,7 @@ class LandingPage extends Component {
 
     axios.post(`${authURL}/login`, postData)
     .then((jwt) => {
-      console.log(jwt);
+      console.log('Logged In');
       this.props.checkLogin(jwt);
     })
     .catch((jwt) => {
