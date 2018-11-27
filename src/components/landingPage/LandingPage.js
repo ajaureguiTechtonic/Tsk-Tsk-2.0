@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { _handleLogIn } from '../../login.js';
 import '../../main.css';
 import MobileView from '../../../src/assets/mobile-view.png';
 import MockupImage from '../../../src/assets/mockup-image.png';
