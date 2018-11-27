@@ -10,7 +10,7 @@ const store = require('store');
 const taskURL = 'http://127.0.0.1:4000/tsktsk';
 const axios = require('axios');
 
-class TaskContainer extends Component{
+class TaskContainer extends Component {
   constructor (props) {
     super(props);
 
@@ -32,8 +32,6 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
-    // this.addTaskToDatabase = this.addTaskToDatabase.bind(this);
-
   };
 
   checkStorage() {
@@ -54,7 +52,6 @@ class TaskContainer extends Component{
   }
 
   createTask(task) {
-  // console.log(task);
     let headers = {
       'x-access-token': sessionStorage.getItem('jwt-token'),
     };
@@ -98,10 +95,29 @@ class TaskContainer extends Component{
   };
 
   deleteTask() {
-    const idToDelete = this.state.taskToDelete;
-    const taskList = this.state.taskList;
-    const index = taskList.findIndex(task => task.taskID === idToDelete);
-    taskList.splice(index, 1);
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
+
+    let id = this.state.taskToDelete;
+    console.log(id);
+    axios({
+      method: 'delete',
+      url: 'http://127.0.0.1:4000/tsktsk',
+      data: {
+        _id: id,
+      },
+      headers,
+    })
+    .then((response) => {
+      const taskList = this.state.taskList;
+      const index = taskList.findIndex(task => task._id === id);
+      taskList.splice(index, 1);
+      this.setState({
+        taskList: taskList,
+      });
+    })
+    .catch(error => console.log(error));
   };
 
   editTask(editedTask, index) {
@@ -112,11 +128,6 @@ class TaskContainer extends Component{
       taskList: tempList,
     });
   };
-
-  // addTaskToDatabase(oTask) {
-  //   //Axios stuff
-  //   axios.post(authURL/).
-  // }
 
   render() {
     return (
