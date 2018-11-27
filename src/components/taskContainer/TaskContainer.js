@@ -113,11 +113,6 @@ class TaskContainer extends Component{
     });
   };
 
-  // addTaskToDatabase(oTask) {
-  //   //Axios stuff
-  //   axios.post(authURL/).
-  // }
-
   render() {
     return (
       <div>

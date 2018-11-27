@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { _handleLogIn } from '../../login.js';
 import '../../main.css';
 import MobileView from '../../../src/assets/mobile-view.png';
 import MockupImage from '../../../src/assets/mockup-image.png';
@@ -10,7 +11,6 @@ const axios = require('axios');
 class LandingPage extends Component {
   constructor (props) {
     super(props);
-    this.state = { toDashboard: false };
     this.handleLogIn = this.handleLogIn.bind(this);
   }
 
@@ -23,15 +23,17 @@ class LandingPage extends Component {
 
     axios.post(`${authURL}/login`, postData)
     .then((jwt) => {
-      console.log(jwt.data);
-      sessionStorage.setItem('jwt-token', jwt.data.token);
-      this.setState({ toDashboard: true });
+      console.log(jwt);
+      this.props.checkLogin(jwt);
+    })
+    .catch((jwt) => {
+      console.log(jwt.response.data);
     });
   }
 
   render () {
-    if (this.state.toDashboard === true) {
-      return <Redirect to='tasks' />;
+    if (this.props.isLoggedIn === true) {
+      return <Redirect to='tasks' />
     } else {
       return (
         <div>
