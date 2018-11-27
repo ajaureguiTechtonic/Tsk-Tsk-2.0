@@ -10,12 +10,11 @@ const axios = require('axios');
 class LandingPage extends Component {
   constructor (props) {
     super(props);
-    this.state = { toDashboard: false };
     this.handleLogIn = this.handleLogIn.bind(this);
   }
 
   handleLogIn (email, password) {
-    console.log(email, password);
+    // console.log(email, password);
     let postData = {
       email: email,
       password: password,
@@ -23,15 +22,17 @@ class LandingPage extends Component {
 
     axios.post(`${authURL}/login`, postData)
     .then((jwt) => {
-      console.log(jwt.data);
-      sessionStorage.setItem('jwt-token', jwt.data.token);
-      this.setState({ toDashboard: true });
+      console.log('Logged In');
+      this.props.checkLogin(jwt);
+    })
+    .catch((jwt) => {
+      console.log(jwt.response.data);
     });
   }
 
   render () {
-    if (this.state.toDashboard === true) {
-      return <Redirect to='tasks' />;
+    if (this.props.isLoggedIn === true) {
+      return <Redirect to='tasks' />
     } else {
       return (
         <div>

@@ -63,7 +63,7 @@ const sortTasks = (task) => {
 };
 
 const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
-  console.log(taskList);
+  // console.log(taskList);
 
   let sortedTaskList = taskList.map((task) => {
     let newTaskList = Object.assign({}, task);
@@ -80,7 +80,6 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete }) => {
     if (a.level < b.level) return 1;
 
     if (a.level === 1 && b.level === 1) {
-      console.log('hello');
       if (aDate.getTime() > bDate.getTime()) return 1;
       if (aDate.getTime() < bDate.getTime()) return -1;
       if (a.dueDate > b.dueDate) return 1;
