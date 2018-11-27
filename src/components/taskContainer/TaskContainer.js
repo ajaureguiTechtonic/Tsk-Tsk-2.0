@@ -7,45 +7,63 @@ import TaskList from './taskList';
 import storedTasks from '../../components/storedTasks';
 import MediaQuery from 'react-responsive';
 const store = require('store');
+const taskURL = 'http://127.0.0.1:4000/tsktsk';
+const axios = require('axios');
 
 class TaskContainer extends Component{
   constructor (props) {
     super(props);
 
-    this.storageTasks = this.checkStorage();
+    this.state = {
+      addModal: false,
+      editModal: false,
+      deleteModal: false,
+      taskList: [],
+      taskToDelete: '',
+      taskIdToEdit: '',
+      taskIndex: '',
+      taskToEdit: {},
+    };
+
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
-    this.addTaskToDatabase = this.addTaskToDatabase.bind(this);
-
-    this.state = {
-      addModal: false,
-      editModal: false,
-      deleteModal: false,
-      taskList: this.storageTasks,
-      taskToDelete: '',
-      taskIdToEdit: '',
-      taskIndex: '',
-      taskToEdit: {},
-    };
+    this.checkStorage();
   };
 
   checkStorage() {
-    if (store.get('storedTasks')) {
-      this.storageTasks = store.get('storedTasks');
+    if (this.props.isLoggedIn === true) {
+      console.log('checking storage');
+      let headers = {
+        'x-access-token': sessionStorage.getItem('jwt-token'),
+      }
+      axios.get(taskURL, { headers: headers })
+      .then((response) => {
+        console.log(response.data);
+        this.storageTasks = response.data;
+        this.setState({
+          taskList: response.data,
+        });
+      });
     } else {
-      this.storageTasks = storedTasks;
+      console.log("not able to bruh");
+      }
     };
 
-    return this.storageTasks;
-  };
-
   createTask(task) {
-    this.setState({
-      taskList: this.state.taskList.concat(task),
+    // console.log(task);
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
+    axios.post(taskURL, task, { headers: headers })
+    .then((response) => {
+      // console.log(response);
+      this.setState({
+        taskList: this.state.taskList.concat(task),
+      });
     });
   };
 
@@ -103,8 +121,6 @@ class TaskContainer extends Component{
   }
 
   render() {
-
-    store.set('storedTasks', this.state.taskList);
     return (
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask}/>
