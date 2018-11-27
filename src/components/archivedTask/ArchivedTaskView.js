@@ -5,6 +5,7 @@ const store = require('store');
 const taskURL = 'http://127.0.0.1:4000/tsktsk';
 const axios = require('axios');
 
+
 class ArchivedTaskView extends Component{
   constructor (props) {
     super(props);
@@ -34,12 +35,6 @@ class ArchivedTaskView extends Component{
       console.log("not able to bruh");
       }
 };
-
-
-
-  archivedTaskToDatabase(oTask) {
-    //Axios stuff
-  }
 
   render() {
 

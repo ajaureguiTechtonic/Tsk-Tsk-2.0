@@ -3,11 +3,12 @@ import '../../main.css';
 import Logo from '../../assets/first_logo.png';
 import SignUpModal from '../../components/modals/SignUpModal';
 import './navbar.css';
+const authURL = 'http://127.0.0.1:4000/auth';
+const axios = require('axios');
 
 class NavBar extends Component {
   constructor (props) {
     super(props);
-
     this.state = {
       modal: false,
     };
@@ -21,6 +22,20 @@ class NavBar extends Component {
   };
   
 
+  handleLogout() {
+    axios.get(`${authURL}/logout`).then((response) => {
+      this.props.checkLogout(); // Handle loggin out of a user, dumping token
+    });
+  }
+
+  headerButton() {
+    if (this.props.isLoggedIn === false) {
+      return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
+    } else if (this.props.isLoggedIn === true) {
+      return <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+    }
+  }
+
   render() {
     return (
       <div>
@@ -30,12 +45,7 @@ class NavBar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            {
-              this.props.match.path === '/' &&
-              <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">
-                Sign Up
-              </button>
-            }
+            { this.headerButton() }
           </div>
           <div>
             {
@@ -53,9 +63,3 @@ class NavBar extends Component {
 };
 
 export default NavBar;
-
-// TODO:
-//
-// NOTE: href now redirects to root: "/"
-// nav button is hard coded in, will need to make it conditional to the respective page.
-// still targets #modal-signup
