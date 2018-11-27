@@ -48,7 +48,7 @@ class LandingPage extends Component {
                       <input  id="password" type='password' className='form-control' placeholder='Password' />
                     </div>
                     <div className='col-12 col-sm-2 login-button'>
-                      <button type='button' onClick={(e) => this.handleLogIn(document.getElementById("email").value, document.getElementById("password").value)} className='btn edit-button'>
+                      <button type='button' onClick={(e) => this.handleLogIn(document.getElementById('email').value, document.getElementById('password').value)} className='btn edit-button'>
                         Get To Work
                       </button>
                     </div>
