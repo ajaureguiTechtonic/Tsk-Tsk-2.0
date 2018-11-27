@@ -13,11 +13,18 @@ class NavBar extends Component {
     };
 
     this.toggle = this.toggle.bind(this);
+
   }
 
   toggle() {
     this.setState({
       modal: !this.state.modal,
+    });
+  };
+
+  taskView() {
+    this.setState({
+
     });
   };
 
@@ -35,6 +42,14 @@ class NavBar extends Component {
               <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">
                 Sign Up
               </button>
+            }
+          </div>
+          <div>
+            {
+              this.props.match.path === '/tasks' &&
+              <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">
+                Archived Task
+              </button></a>
             }
           </div>
         </nav>
