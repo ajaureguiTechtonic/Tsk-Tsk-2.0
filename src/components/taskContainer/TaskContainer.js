@@ -132,7 +132,7 @@ class TaskContainer extends Component {
   render() {
     return (
       <div>
-        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} archiveCompletedTask={this.archiveCompletedTask}/>
         <MediaQuery maxWidth={915}>
 
           {(matches) => {
