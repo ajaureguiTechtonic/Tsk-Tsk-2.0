@@ -25,7 +25,6 @@ class App extends Component {
 
     axios.get(`${authURL}/verify`, { headers: headers })
     .then((jwt) => {
-      console.log(jwt);
       if (jwt.data.auth === true) {
         this.setState({ isLoggedIn: true });
       } else {
@@ -36,22 +35,22 @@ class App extends Component {
 
   _login(jwt) {
     if (jwt.data.auth === true) {
-      this.setState({ isLoggedIn: true });
       sessionStorage.setItem('jwt-token', jwt.data.token);
       sessionStorage.setItem('user', jwt.data.name);
+      this.setState({ isLoggedIn: true });
       console.log('Hello ' + jwt.data.name);
     } else {
-      this.setState({ isLoggedIn: false });
       sessionStorage.setItem('jwt-token', null);
       sessionStorage.setItem('user', null);
+      this.setState({ isLoggedIn: false });
       console.log('Invalid authorization');
     }
   }
 
   _logout () {
-    this.setState({ isLoggedIn: false });
     sessionStorage.removeItem('jwt-token');
     sessionStorage.removeItem('user');
+    this.setState({ isLoggedIn: false });
     console.log('You are logged out');
   }
 
