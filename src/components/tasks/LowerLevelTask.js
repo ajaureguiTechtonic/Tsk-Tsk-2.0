@@ -26,9 +26,12 @@ class LowerLevelTask extends Component {
       var month = this.props.daysOld;
       var day = 'Days Old';
     } else {
-      var dueDate = (this.props.dueDate).split(' ');
-      month = dueDate[1];
-      day = dueDate[2];
+      let options = { weekday: 'short', month: 'short', day: '2-digit'}
+      let unparsedDate = new Date(this.props.dueDate);
+      var dueDate = unparsedDate.toLocaleDateString('en-US', options);
+      let dueDateArray = dueDate.split(' ');
+      month = dueDateArray[1];
+      day = dueDateArray[2];
     };
 
     return (

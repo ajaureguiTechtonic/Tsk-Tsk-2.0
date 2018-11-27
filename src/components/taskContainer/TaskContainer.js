@@ -14,6 +14,17 @@ class TaskContainer extends Component{
   constructor (props) {
     super(props);
 
+    this.state = {
+      addModal: false,
+      editModal: false,
+      deleteModal: false,
+      taskList: [],
+      taskToDelete: '',
+      taskIdToEdit: '',
+      taskIndex: '',
+      taskToEdit: {},
+    };
+
     this.storageTasks = this.checkStorage();
     this.toggleAdd = this.toggleAdd.bind(this);
     this.toggleEdit = this.toggleEdit.bind(this);
@@ -23,27 +34,24 @@ class TaskContainer extends Component{
     this.editTask = this.editTask.bind(this);
     // this.addTaskToDatabase = this.addTaskToDatabase.bind(this);
 
-    this.state = {
-      addModal: false,
-      editModal: false,
-      deleteModal: false,
-      taskList: this.storageTasks,
-      taskToDelete: '',
-      taskIdToEdit: '',
-      taskIndex: '',
-      taskToEdit: {},
-    };
   };
 
   checkStorage() {
-    if (store.get('storedTasks')) {
-      this.storageTasks = store.get('storedTasks');
-    } else {
-      this.storageTasks = storedTasks;
+    console.log('checking storage');
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
     };
 
-    return this.storageTasks;
-  };
+    axios.get(taskURL, { headers: headers })
+    .then((response) => {
+      console.log(response.data);
+      this.storageTasks = response.data;
+      this.setState({
+        taskList: this.storageTasks,
+      });
+      return this.storageTasks;
+    });
+  }
 
   createTask(task) {
   // console.log(task);
@@ -111,8 +119,6 @@ class TaskContainer extends Component{
   // }
 
   render() {
-    store.set('storedTasks', this.state.taskList);
-
     return (
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete}/>
