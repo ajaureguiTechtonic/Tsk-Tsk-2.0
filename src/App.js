@@ -61,9 +61,13 @@ class App extends Component {
         <Router>
           <div className='main-container'>
             <Route exact path='/' render={(props) => <div>
-              <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn }/>
+              <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
               <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
             </div>}/>
+            <Route exact path='/archived' render={(props) => <div>
+                <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                <ArchivedTaskView />
+              </div>}/>
           </div>
         </Router>
           );
@@ -76,10 +80,7 @@ class App extends Component {
               <LandingPage checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
             </div>}/>
 
-            <Route exact path='/archived' render={(props) => <div>
-                <NavBar {...props}/>
-                <ArchivedTaskView />
-              </div>}/>
+
           </div>
 
         </Router>
