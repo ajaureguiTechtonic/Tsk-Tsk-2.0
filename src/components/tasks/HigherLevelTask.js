@@ -18,20 +18,7 @@ class HigherLevelTask extends Component{
     this.toggleCollapse = this.toggleCollapse.bind(this);
 
     this.editTaskHLT = (taskedits) => {
-      // console.log(taskedits);
-      // console.log(this.props);
-      let tTask = _.clone(this.props); //// NOTE: like seriously? where has lodash been this whole time?????
-      if (taskedits.taskName) {
-        tTask.taskName = taskedits.taskName;
-      }
-      if (taskedits.description) {
-        tTask.description = taskedits.description;
-      }
-      if (taskedits.dueDate) {
-        tTask.dueDate = taskedits.dueDate;
-      }
-
-      this.props.handleEditfn(tTask, this.props.id);//sent up the line to tasklist then back to task container
+      this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
     };
   };
 

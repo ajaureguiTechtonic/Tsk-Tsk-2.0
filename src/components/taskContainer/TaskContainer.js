@@ -6,7 +6,10 @@ import DeleteTaskModal from '../../components/modals/DeleteTaskModal';
 import TaskList from './taskList';
 import storedTasks from '../../components/storedTasks';
 import MediaQuery from 'react-responsive';
+import _ from 'lodash';
+
 const store = require('store');
+
 
 class TaskContainer extends Component{
   constructor (props) {
@@ -90,9 +93,21 @@ class TaskContainer extends Component{
     let tempList;
     tempList = this.state.taskList.slice();
 
-    let taskIndex = tempList.findIndex(task => task.taskID === id);
+    let eIndex = tempList.findIndex(task => task.taskID === id);
+    let tTask = _.clone(tempList[eIndex]);
+    console.log(tTask);
 
-    tempList[taskIndex] = editedTask;
+    if (editedTask.taskName) {
+      tTask.taskName = editedTask.taskName;
+    }
+    if (editedTask.description) {
+      tTask.description = editedTask.description;
+    }
+    if (editedTask.dueDate) {
+      tTask.dueDate = editedTask.dueDate;
+    }
+
+    tempList[eIndex] = tTask;
     this.setState({
       taskList: tempList,
     });
