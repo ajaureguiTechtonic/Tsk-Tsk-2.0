@@ -156,26 +156,24 @@ class TaskContainer extends Component{
        .catch(error => console.log(error));
   }
 
-  editTask(editedTask, id) {
-    let tempList;
-    tempList = this.state.taskList.slice();
-
+  editTask(taskEdits, id) {
+    let tempList = this.state.taskList.slice();
     let eIndex = tempList.findIndex(task => task._id === id);
-    let tTask = _.clone(tempList[eIndex]);
 
-    if (editedTask.taskTitle) {
-      tTask.taskTitle = editedTask.taskTitle;
-    }
-    if (editedTask.taskDescription) {
-      tTask.taskDescription = editedTask.taskDescription;
-    }
-    if (editedTask.dateDue) {
-      tTask.dateDue = editedTask.dateDue;
-    }
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
 
-    tempList[eIndex] = tTask;
-    this.setState({
-      taskList: tempList,
+    axios.put(`${taskURL}/${id}`, taskEdits, { headers: headers })
+    .then((response) => {
+      // console.log(response.data);
+      // console.log(tempList[eIndex]);
+      tempList[eIndex] = response.data;
+      this.setState({
+        taskList: tempList,
+      });
+    }).catch((res) => {
+      console.log('edit fail res:', res);
     });
   };
 

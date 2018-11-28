@@ -68,7 +68,7 @@ class LowerLevelTask extends Component {
                       value={this.props.taskName}
                       className="m-0 align-self-center"
                       change={this.editTaskLLT}
-                      propName='taskName'
+                      propName='taskTitle'
                       validate={_.isString}
                       isDisabled= {!this.state.editing}/>
                   </div>
@@ -87,7 +87,7 @@ class LowerLevelTask extends Component {
                           value={this.props.description}
                           className="m-0 align-self-center"
                           change={this.editTaskLLT}
-                          propName='description'
+                          propName='taskDescription'
                           validate={_.isString}
                           isDisabled= {!this.state.editing}/>
                       </div>
