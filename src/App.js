@@ -5,6 +5,7 @@ import './main.css';
 import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/taskContainer/TaskContainer';
 import LandingPage from './components/landingPage/LandingPage';
+import ArchivedTaskView from './components/archivedTask/ArchivedTaskView';
 import NavBar from './components/navBar/NavBar';
 const authURL = 'http://127.0.0.1:4000/auth';
 const axios = require('axios');
@@ -60,9 +61,13 @@ class App extends Component {
         <Router>
           <div className='main-container'>
             <Route exact path='/' render={(props) => <div>
-              <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn }/>
+              <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
               <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
             </div>}/>
+            <Route exact path='/archived' render={(props) => <div>
+                <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                <ArchivedTaskView />
+              </div>}/>
           </div>
         </Router>
           );
@@ -74,7 +79,10 @@ class App extends Component {
               <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
               <LandingPage checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
             </div>}/>
+
+
           </div>
+
         </Router>
       );
     }

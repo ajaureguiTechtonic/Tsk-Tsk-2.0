@@ -12,7 +12,6 @@ class NavBar extends Component {
     this.state = {
       modal: false,
     };
-
     this.toggle = this.toggle.bind(this);
   }
 
@@ -22,6 +21,7 @@ class NavBar extends Component {
     });
   };
 
+
   handleLogout() {
     axios.get(`${authURL}/logout`).then((response) => {
       this.props.checkLogout(); // Handle loggin out of a user, dumping token
@@ -29,11 +29,24 @@ class NavBar extends Component {
   }
 
   headerButton() {
+    console.log(this.props)
     if (this.props.isLoggedIn === false) {
       return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
-    } else if (this.props.isLoggedIn === true) {
-      return <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
-    }
+    } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
+      return (
+        <div>
+          <a href="/"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Active Tasks </button></a>
+          <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+        </div>
+      )
+    } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
+      return (
+        <div>
+          <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Archived Tasks </button></a>
+          <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+        </div>
+      )
+
   }
 
   render() {
@@ -46,6 +59,14 @@ class NavBar extends Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             { this.headerButton() }
+          </div>
+          <div>
+            {
+              this.props.match.path === '/tasks' &&
+              <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">
+                Archived Task
+              </button></a>
+            }
           </div>
         </nav>
         <SignUpModal isOpen={this.state.modal} onClick={this.toggle} />

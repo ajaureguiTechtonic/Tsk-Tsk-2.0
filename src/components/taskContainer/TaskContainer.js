@@ -6,9 +6,12 @@ import DeleteTaskModal from '../../components/modals/DeleteTaskModal';
 import TaskList from './taskList';
 import storedTasks from '../../components/storedTasks';
 import MediaQuery from 'react-responsive';
+import _ from 'lodash';
+
 const store = require('store');
 const taskURL = 'http://127.0.0.1:4000/tsktsk';
 const axios = require('axios');
+
 
 class TaskContainer extends Component{
   constructor (props) {
@@ -75,15 +78,15 @@ class TaskContainer extends Component{
     });
   };
 
-  toggleEdit(id) {
+  toggleEdit(id) { // is fed id. // NOTE: obsolete, remove.
     let taskIndex;
     if (!this.state.editModal) {
       const taskList = this.state.taskList;
-      taskIndex = taskList.findIndex(task => task.taskID === id);
+      taskIndex = taskList.findIndex(task => task.id === id); // not necessary?
       this.setState({
-        taskIdToEdit: id,
-        taskIndex: taskIndex,
-        taskToEdit: this.state.taskList[taskIndex],
+        taskIdToEdit: id, // XXX: no longer needed remove from state
+        taskIndex: taskIndex, // XXX: no longer needed remove from state and componets below, chase down the line. // NOTE: leave edit task alone those are block scoped and are unrelated.
+        taskToEdit: this.state.taskList[taskIndex], //XXX: no longer needed remove from state and componets below, chase down the line.
       });
     }
 
@@ -126,6 +129,7 @@ class TaskContainer extends Component{
       .catch(error => console.log(error));
   };
 
+
   archiveCompletedTask(id) {
     console.log('hey you clicked me! Im done!');
     let headers = {
@@ -152,19 +156,37 @@ class TaskContainer extends Component{
        .catch(error => console.log(error));
   }
 
-  editTask(editedTask, index) {
+  editTask(editedTask, id) {
     let tempList;
     tempList = this.state.taskList.slice();
-    tempList[index] = editedTask;
+
+    let eIndex = tempList.findIndex(task => task._id === id);
+    let tTask = _.clone(tempList[eIndex]);
+
+    if (editedTask.taskTitle) {
+      tTask.taskTitle = editedTask.taskTitle;
+    }
+    if (editedTask.taskDescription) {
+      tTask.taskDescription = editedTask.taskDescription;
+    }
+    if (editedTask.dateDue) {
+      tTask.dateDue = editedTask.dateDue;
+    }
+
+    tempList[eIndex] = tTask;
     this.setState({
       taskList: tempList,
     });
   };
 
+  addTaskToDatabase(oTask) {
+    //Axios stuff
+  }
+
   render() {
     return (
       <div>
-        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} archiveCompletedTask={this.archiveCompletedTask}/>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask} archiveCompletedTask={this.archiveCompletedTask}/>
         <MediaQuery maxWidth={915}>
 
           {(matches) => {
