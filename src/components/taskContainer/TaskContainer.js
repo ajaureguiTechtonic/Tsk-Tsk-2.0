@@ -31,6 +31,7 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
+    this.archiveCompletedTask = this.archiveCompletedTask.bind(this);
     this.checkStorage();
   };
 
@@ -39,7 +40,7 @@ class TaskContainer extends Component{
       console.log('checking storage');
       let headers = {
         'x-access-token': sessionStorage.getItem('jwt-token'),
-      }
+      };
       axios.get(taskURL, { headers: headers })
       .then((response) => {
         console.log(response.data);
@@ -49,9 +50,9 @@ class TaskContainer extends Component{
         });
       });
     } else {
-      console.log("not able to bruh");
-      }
-    };
+      console.log('not able to bruh');
+    }
+  };
 
   createTask(task) {
     // console.log(task);
@@ -64,9 +65,8 @@ class TaskContainer extends Component{
       task._id = response.data._id;
       this.setState({
         taskList: this.state.taskList.concat(task),
-      },console.log(this.state.taskList));
+      });
     });
-    // console.log(this.state.taskList);
   };
 
   toggleAdd() {
@@ -125,6 +125,32 @@ class TaskContainer extends Component{
     })
       .catch(error => console.log(error));
   };
+
+  archiveCompletedTask(id) {
+    console.log('hey you clicked me! Im done!');
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
+
+    console.log(id);
+    axios({
+      method: 'put',
+      url: `http://127.0.0.1:4000/tsktsk/${id}`,
+      data: {
+        completed: true,
+      },
+      headers,
+    })
+      .then((response) => {
+        const taskList = this.state.taskList;
+        const index = taskList.findIndex(task => task._id === id);
+        taskList.splice(index, 1);
+        this.setState({
+          taskList: taskList,
+        });
+      })
+       .catch(error => console.log(error));
+  }
 
   editTask(editedTask, index) {
     let tempList;
