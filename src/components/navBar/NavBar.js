@@ -3,15 +3,15 @@ import '../../main.css';
 import Logo from '../../assets/first_logo.png';
 import SignUpModal from '../../components/modals/SignUpModal';
 import './navbar.css';
+const authURL = 'http://127.0.0.1:4000/auth';
+const axios = require('axios');
 
 class NavBar extends Component {
   constructor (props) {
     super(props);
-
     this.state = {
       modal: false,
     };
-
     this.toggle = this.toggle.bind(this);
   }
 
@@ -20,6 +20,34 @@ class NavBar extends Component {
       modal: !this.state.modal,
     });
   };
+
+
+  handleLogout() {
+    axios.get(`${authURL}/logout`).then((response) => {
+      this.props.checkLogout(); // Handle loggin out of a user, dumping token
+    });
+  }
+
+  headerButton() {
+    console.log(this.props)
+    if (this.props.isLoggedIn === false) {
+      return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
+    } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
+      return (
+        <div>
+          <a href="/"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Active Tasks </button></a>
+          <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+        </div>
+      )
+    } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
+      return (
+        <div>
+          <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Archived Tasks </button></a>
+          <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+        </div>
+      )
+
+  }
 
   render() {
     return (
@@ -30,11 +58,14 @@ class NavBar extends Component {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
+            { this.headerButton() }
+          </div>
+          <div>
             {
-              this.props.match.path === '/' &&
-              <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">
-                Sign Up
-              </button>
+              this.props.match.path === '/tasks' &&
+              <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">
+                Archived Task
+              </button></a>
             }
           </div>
         </nav>
@@ -45,9 +76,3 @@ class NavBar extends Component {
 };
 
 export default NavBar;
-
-// TODO:
-//
-// NOTE: href now redirects to root: "/"
-// nav button is hard coded in, will need to make it conditional to the respective page.
-// still targets #modal-signup

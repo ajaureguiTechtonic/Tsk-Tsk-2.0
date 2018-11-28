@@ -69,10 +69,9 @@ class HigherLevelTask extends Component{
                     validate={_.isString}
                     isDisabled= {!this.state.editing}/>
                 </div>
-                <Collapse className="col-12 col-md-10 offset-1" isOpen={this.state.isCollapsed} >
+                <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                   <div className="row">
-                    <div className={`col-10 col-sm-7 task-description edit-this-task-${this.props.taskID}`}>
-                      {/* <p>{this.props.description}</p> */}
+                    <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
                       <RIEInput
                         value={this.props.description}
                         className="m-0 align-self-center"
@@ -81,7 +80,7 @@ class HigherLevelTask extends Component{
                         validate={_.isString}
                         isDisabled= {!this.state.editing}/>
                     </div>
-                    <div className={`col-12 col-sm-4 edit-this-task-${this.props.taskID}`}>
+                    <div className={`col-2 col-sm-3 edit-buttons edit-this-task-${this.props.taskID}`}>
                       <div className="edit-content btn-group" role="group" aria-label="edit buttons">
                         <button type="button" className="btn edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
                           // this.props.handleOnEdit(this.props.id)
@@ -89,7 +88,7 @@ class HigherLevelTask extends Component{
                         }}>Edit</button>
                         <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {
                           this.props.handleOnDelete(this.props.id);
-                        }}>Delete</button>
+                        }}> Delete </button>
 
                       </div>
                     </div>
