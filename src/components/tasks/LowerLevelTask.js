@@ -59,7 +59,7 @@ class LowerLevelTask extends Component {
               <div className={`col-12 col-md-10 offset-1 task-content level-${this.props.level}`}>
                 <div className="row">
                   <div className="col-1 justify-content-center complete-box my-auto ">
-                    <input type="checkbox" />
+                    <input type="checkbox" onClick={() => this.props.archiveCompletedTask(this.props.id)}/>
                     <span className="checkmark"></span>
                   </div>
                   <div className="col-8 col-sm-9 d-flex" onTouchStart={this.toggleCollapse}>
