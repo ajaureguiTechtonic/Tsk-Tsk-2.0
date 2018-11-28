@@ -80,7 +80,7 @@ class TaskContainer extends Component{
     let taskIndex;
     if (!this.state.editModal) {
       const taskList = this.state.taskList;
-      taskIndex = taskList.findIndex(task => task.taskID === id); // not necessary?
+      taskIndex = taskList.findIndex(task => task.id === id); // not necessary?
       this.setState({
         taskIdToEdit: id, // XXX: no longer needed remove from state
         taskIndex: taskIndex, // XXX: no longer needed remove from state and componets below, chase down the line. // NOTE: leave edit task alone those are block scoped and are unrelated.
@@ -111,18 +111,17 @@ class TaskContainer extends Component{
     let tempList;
     tempList = this.state.taskList.slice();
 
-    let eIndex = tempList.findIndex(task => task.taskID === id);
+    let eIndex = tempList.findIndex(task => task._id === id);
     let tTask = _.clone(tempList[eIndex]);
-    console.log(tTask);
 
-    if (editedTask.taskName) {
-      tTask.taskName = editedTask.taskName;
+    if (editedTask.taskTitle) {
+      tTask.taskTitle = editedTask.taskTitle;
     }
-    if (editedTask.description) {
-      tTask.description = editedTask.description;
+    if (editedTask.taskDescription) {
+      tTask.taskDescription = editedTask.taskDescription;
     }
-    if (editedTask.dueDate) {
-      tTask.dueDate = editedTask.dueDate;
+    if (editedTask.dateDue) {
+      tTask.dateDue = editedTask.dateDue;
     }
 
     tempList[eIndex] = tTask;
