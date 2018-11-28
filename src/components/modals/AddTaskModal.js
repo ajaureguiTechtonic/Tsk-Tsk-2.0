@@ -34,7 +34,7 @@ class AddTaskModal extends Component {
       taskDescription: this.state.description,
       dateAdded: new Date().toDateString(),
       dateDue: this.state.dueDate,
-      taskID: uuidv4(),
+      // taskID: uuidv4(),
     };
 
     this.props.createTask(newTask);
