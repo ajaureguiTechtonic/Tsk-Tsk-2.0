@@ -3,6 +3,8 @@ import editButton from '../../assets/edit.png';
 import './alltasks.css';
 import './higherlevel.css';
 import { Collapse } from 'reactstrap';
+import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
+import _ from 'lodash';
 
 class HigherLevelTask extends Component{
   constructor (props) {
@@ -10,9 +12,14 @@ class HigherLevelTask extends Component{
 
     this.state = {
       isCollapsed: false,
+      editing: false,
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
+
+    this.editTaskHLT = (taskedits) => {
+      this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
+    };
   };
 
   toggleCollapse() {
@@ -20,6 +27,17 @@ class HigherLevelTask extends Component{
       isCollapsed: !this.state.isCollapsed,
     });
   };
+
+  toggleEditHLT() {
+    if (!this.state.editing) {
+      this.refs.editBtn.innerHTML = 'Done';
+    } else {
+      this.refs.editBtn.innerHTML = 'Edit';
+    }
+    this.setState({
+      editing: !this.state.editing,
+    });
+  }
 
   render () {
     if (this.props.dueDate === undefined) {
@@ -42,16 +60,32 @@ class HigherLevelTask extends Component{
                 </div>
                 <div className="col-10 my-auto" onTouchStart={this.toggleCollapse}>
                   <p className="counter">{month} {day}</p>
-                  <p className="task-name">{this.props.taskName}</p>
+                  {/* <p className="task-name">{this.props.taskName}</p> */}
+                  <RIEInput
+                    value={this.props.taskName}
+                    className="m-0 align-self-center"
+                    change={this.editTaskHLT}
+                    propName='taskName'
+                    validate={_.isString}
+                    isDisabled= {!this.state.editing}/>
                 </div>
                 <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                   <div className="row">
                     <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
-                      <p>{this.props.description}</p>
+                      <RIEInput
+                        value={this.props.description}
+                        className="m-0 align-self-center"
+                        change={this.editTaskHLT}
+                        propName='description'
+                        validate={_.isString}
+                        isDisabled= {!this.state.editing}/>
                     </div>
                     <div className={`col-2 col-sm-3 edit-buttons edit-this-task-${this.props.taskID}`}>
                       <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                        <button type="button" className="btn edit-button listen-for-me-edit-task" onClick={(e) => this.props.handleOnEdit(this.props.id)}>Edit</button>
+                        <button type="button" className="btn edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
+                          // this.props.handleOnEdit(this.props.id)
+                          this.toggleEditHLT();
+                        }}>Edit</button>
                         <button type="button" className="btn edit-button listen-for-me-delete-task" onClick={(e) => {
                           this.props.handleOnDelete(this.props.id);
                         }}> Delete </button>
