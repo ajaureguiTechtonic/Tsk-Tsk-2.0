@@ -29,7 +29,6 @@ class NavBar extends Component {
   }
 
   headerButton() {
-    console.log(this.props)
     if (this.props.isLoggedIn === false) {
       return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
