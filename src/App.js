@@ -75,12 +75,13 @@ class App extends Component {
               <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
               <LandingPage checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } />
             </div>}/>
-          </div>
-      
+
             <Route exact path='/archived' render={(props) => <div>
                 <NavBar {...props}/>
                 <ArchivedTaskView />
               </div>}/>
+          </div>
+
         </Router>
       );
     }

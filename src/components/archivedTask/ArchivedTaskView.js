@@ -14,7 +14,7 @@ class ArchivedTaskView extends Component{
     };
 
     this.storageTasks = this.checkStorage();
-    this.archivedTaskToDatabase = this.archivedTaskToDatabase.bind(this);
+    // this.archivedTaskToDatabase = this.archivedTaskToDatabase.bind(this);
   };
 
   checkStorage() {
@@ -41,9 +41,8 @@ class ArchivedTaskView extends Component{
     store.set('storedTasks', this.state.taskList);
     return (
        <div>
-         <nav>
+         <nav></nav>
         <TaskList taskList={this.state.taskList}/>
-        </nav>
       </div>
     );
   }
