@@ -3,6 +3,7 @@ import editButton from '../../assets/edit.png';
 import './alltasks.css';
 import './lowerlevel.css';
 import { Collapse } from 'reactstrap';
+import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import DatePicker from 'react-datepicker'; //for date picker
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
@@ -53,7 +54,9 @@ class LowerLevelTask extends Component {
   //edit forwarding here
   forwardEdits(editsToFWD) {
     //sent up the line to tasklist then back to task container
-    this.props.handleEditfn(editsToFWD, this.props.id);
+    if (this.state.editing) {// this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
+      this.props.handleEditfn(editsToFWD, this.props.id);
+    }
   }
 
   toggleEditLLT() {
@@ -71,10 +74,12 @@ class LowerLevelTask extends Component {
 
   handleChange (date) {
     this.editTaskLLT({ dateDue: date._d });
+    console.log('handle called');
     this.toggleCalendar();
   }
 
   toggleCalendar (e) {
+    console.log('toggle called');
     if (this.state.editing) {
       e && e.preventDefault();
       this.setState({isOpen: !this.state.isOpen});
@@ -122,16 +127,19 @@ class LowerLevelTask extends Component {
                       <p className="m-0">{month}</p>
                       <p className="m-0 days-old">{day}</p>
                       {/* not sure how to implement date... */}
-                      {
-                        this.state.isOpen && (
-                          <DatePicker
-                              selected={this.state.startDate}
-                              onChange={this.handleChange}
-                              withPortal
-                              inline />
-                        )
-                      }
+
                     </div>
+                    {
+                      this.state.isOpen && (
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                            minDate={moment().subtract(10, 'days')}
+                            maxDate={moment().add(45, 'days')}
+                            withPortal
+                            inline />
+                      )
+                    }
                   </div>
                   <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                     <div className="row">

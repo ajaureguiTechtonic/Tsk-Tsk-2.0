@@ -3,6 +3,7 @@ import editButton from '../../assets/edit.png';
 import './alltasks.css';
 import './higherlevel.css';
 import { Collapse } from 'reactstrap';
+import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import DatePicker from 'react-datepicker'; //for date picker
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
@@ -53,7 +54,9 @@ class HigherLevelTask extends Component{
   //edit forwarding here
   forwardEdits(editsToFWD) {
     //sent up the line to tasklist then back to task container
-    this.props.handleEditfn(editsToFWD, this.props.id);
+    if (this.state.editing) { // this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
+      this.props.handleEditfn(editsToFWD, this.props.id);
+    }
   }
 
   toggleEditHLT() {
@@ -105,16 +108,18 @@ class HigherLevelTask extends Component{
                     this.toggleCalendar();
                   }}>
                     {month} {day}
-                    {
-                      this.state.isOpen && (
-                        <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                            withPortal
-                            inline />
-                      )
-                    }
                   </p>
+                  {
+                    this.state.isOpen && (
+                      <DatePicker
+                          selected={this.state.startDate}
+                          onChange={this.handleChange}
+                          minDate={moment().subtract(10, 'days')}
+                          maxDate={moment().add(45, 'days')}
+                          withPortal
+                          inline />
+                    )
+                  }
                   {/* <p className="task-name">{this.props.taskName}</p> */}
                   <RIEInput
                     value={this.props.taskName}
