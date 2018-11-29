@@ -12,9 +12,8 @@ class ArchivedTaskView extends Component{
     this.state = {
       taskList: [],
     };
-
-    this.storageTasks = this.checkStorage();
-    // this.archivedTaskToDatabase = this.archivedTaskToDatabase.bind(this);
+    this.checkStorage = this.checkStorage.bind(this);
+    this.checkStorage();
   };
 
   checkStorage() {
@@ -22,17 +21,17 @@ class ArchivedTaskView extends Component{
       console.log('checking storage');
       let headers = {
         'x-access-token': sessionStorage.getItem('jwt-token'),
-      }
+        'pathname': this.props.location.pathname,
+      };
       axios.get(taskURL, { headers: headers })
       .then((response) => {
-        console.log(response.data);
         this.storageTasks = response.data;
         this.setState({
           taskList: response.data,
         });
       });
     } else {
-      console.log("not able to bruh");
+      console.log('not able to bruh');
       }
 };
 

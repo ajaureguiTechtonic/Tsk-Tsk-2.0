@@ -9,19 +9,15 @@
     text-align: center;
 }
 
-.days-old {
-  text-transform: uppercase;
-}
-
 .task-description {
   padding-right: 8.33%
+
 }
 
-.task-description p {
-  font-size: .6em;
+.task-description span {
+  font-size: .75em;
   padding-right: 1vw;
   font-family: 'Quicksand', sans-serif;
-
 }
 
 .edit-button {
@@ -119,10 +115,37 @@
   opacity: 1;
 }
 
+.right-content{
+  padding-left: 0px;
+}
+
 .days-old-count {
   font-weight: bold;
   line-height: 1.1;
   padding: 10px;
+}
+
+.date {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.dropdown {
+  display: inline-block;
+  margin-left: -10%;
+  vertical-align: middle;
+}
+
+.dropdown-image {
+  height: auto;
+  max-height: 60px;
+  padding-left: -15px;
+  padding-right: 5px;
+  vertical-align: middle;
+}
+
+.dropdown-image:hover {
+  cursor:pointer;
 }
 
 @media (max-width: 575px) {

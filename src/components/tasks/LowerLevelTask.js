@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import editButton from '../../assets/edit.png';
+import editButton from '../../assets/transparent.png';
 import './alltasks.css';
 import './lowerlevel.css';
 import { Collapse } from 'reactstrap';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import DatePicker from 'react-datepicker'; //for date picker
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
 import _ from 'lodash';
 
@@ -15,29 +18,74 @@ class LowerLevelTask extends Component {
       editing: false,
     };
 
-    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.tempEditHolder = {};
 
-    this.editTaskLLT = (taskedits) => {
-      this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
-    };
+    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.editTaskLLT = this.editTaskLLT.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+  };
+
+  editTaskLLT(taskedits) {
+    if (this.state.editing) {
+      if (taskedits.taskTitle) {
+        this.tempEditHolder.taskTitle = taskedits.taskTitle;
+      }
+      if (taskedits.taskDescription) {
+        this.tempEditHolder.taskDescription = taskedits.taskDescription;
+      }
+      if (taskedits.dueDate) {
+        this.tempEditHolder.dueDate = taskedits.dueDate;
+      }
+    }
+    console.log(this.tempEditHolder);
   };
 
   toggleCollapse() {
+    if (this.state.isCollapsed) {
+      this.toggleEditLLT();
+    }
+
     this.setState({
       isCollapsed: !this.state.isCollapsed,
     });
   };
+
+  //edit forwarding here
+  forwardEdits(editsToFWD) {
+    //sent up the line to tasklist then back to task container
+    if (this.state.editing) {// this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
+      this.props.handleEditfn(editsToFWD, this.props.id);
+    }
+  }
 
   toggleEditLLT() {
     if (!this.state.editing) {
       this.refs.editBtn.innerHTML = 'Done';
     } else {
       this.refs.editBtn.innerHTML = 'Edit';
+      this.forwardEdits(this.tempEditHolder);
+      this.tempEditHolder = {};
     }
     this.setState({
       editing: !this.state.editing,
     });
   }
+
+  handleChange (date) {
+    this.editTaskLLT({ dueDate: date._d });
+    console.log('handle called');
+    this.toggleCalendar();
+  }
+
+  toggleCalendar (e) {
+    console.log('toggle called');
+    if (this.state.editing) {
+      e && e.preventDefault();
+      this.setState({isOpen: !this.state.isOpen});
+    }
+  }
+
 
   render() {
     if (this.props.dueDate === undefined) {
@@ -59,7 +107,7 @@ class LowerLevelTask extends Component {
               <div className={`col-12 col-md-10 offset-1 task-content level-${this.props.level}`}>
                 <div className="row">
                   <div className="col-1 justify-content-center complete-box my-auto ">
-                    <input type="checkbox" />
+                    <input type="checkbox" onClick={() => this.props.archiveCompletedTask(this.props.id)}/>
                     <span className="checkmark"></span>
                   </div>
                   <div className="col-8 col-sm-9 d-flex" onTouchStart={this.toggleCollapse}>
@@ -68,15 +116,30 @@ class LowerLevelTask extends Component {
                       value={this.props.taskName}
                       className="m-0 align-self-center"
                       change={this.editTaskLLT}
-                      propName='taskName'
+                      propName='taskTitle'
                       validate={_.isString}
                       isDisabled= {!this.state.editing}/>
                   </div>
-                  <div className="col-2 d-flex justify-content-center">
-                    <div className="align-self-center text-center days-old-count" ref="dateDiv">
-                      <p className="m-0">{month}</p>
-                      <p className="m-0 days-old">{day}</p>
-                      {/* not sure how to implement date... */}
+                  <div className="col-2 d-flex right-content">
+                    <div className="col-10 days-old-count" ref="dateDiv" onClick={(e) => {
+                      this.toggleCalendar();
+                    }}>
+                      <p className="date m-0">{month}</p>
+                      <p className="date m-0">{day}</p>
+                    </div>
+                    {
+                      this.state.isOpen && (
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                            minDate={moment().subtract(10, 'days')}
+                            maxDate={moment().add(45, 'days')}
+                            withPortal
+                            inline />
+                      )
+                    }
+                    <div className="col-2 d-inline-flex dropdown" onClick={this.toggleCollapse}>
+                      <img src={editButton} alt='v' className='dropdown-image'/>
                     </div>
                   </div>
                   <Collapse className="col-12" isOpen={this.state.isCollapsed} >
@@ -87,7 +150,7 @@ class LowerLevelTask extends Component {
                           value={this.props.description}
                           className="m-0 align-self-center"
                           change={this.editTaskLLT}
-                          propName='description'
+                          propName='taskDescription'
                           validate={_.isString}
                           isDisabled= {!this.state.editing}/>
                       </div>
@@ -106,9 +169,6 @@ class LowerLevelTask extends Component {
                     </div>
                   </Collapse>
                 </div>
-              </div>
-              <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-                <img src={editButton} alt='' onClick={this.toggleCollapse} />
               </div>
             </div>
           </div>

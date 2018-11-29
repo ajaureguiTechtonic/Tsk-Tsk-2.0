@@ -34,6 +34,7 @@ class TaskContainer extends Component{
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.editTask = this.editTask.bind(this);
+    this.archiveCompletedTask = this.archiveCompletedTask.bind(this);
     this.checkStorage();
   };
 
@@ -42,7 +43,9 @@ class TaskContainer extends Component{
       console.log('checking storage');
       let headers = {
         'x-access-token': sessionStorage.getItem('jwt-token'),
-      }
+        'pathname': this.props.location.pathname,
+      };
+
       axios.get(taskURL, { headers: headers })
       .then((response) => {
         console.log(response.data);
@@ -52,9 +55,9 @@ class TaskContainer extends Component{
         });
       });
     } else {
-      console.log("not able to bruh");
-      }
-    };
+      console.log('not able to bruh');
+    }
+  };
 
   createTask(task) {
     // console.log(task);
@@ -64,6 +67,7 @@ class TaskContainer extends Component{
     axios.post(taskURL, task, { headers: headers })
     .then((response) => {
       // console.log(response);
+      task._id = response.data._id;
       this.setState({
         taskList: this.state.taskList.concat(task),
       });
@@ -101,32 +105,77 @@ class TaskContainer extends Component{
   };
 
   deleteTask() {
-    const idToDelete = this.state.taskToDelete;
-    const taskList = this.state.taskList;
-    const index = taskList.findIndex(task => task.taskID === idToDelete);
-    taskList.splice(index, 1);
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
+
+    let id = this.state.taskToDelete;
+    console.log(this.state.taskToDelete);
+
+    axios({
+      method: 'delete',
+      url: 'http://127.0.0.1:4000/tsktsk',
+      data: {
+        _id: this.state.taskToDelete,
+      },
+      headers,
+    })
+      .then((response) => {
+      const taskList = this.state.taskList;
+      const index = taskList.findIndex(task => task._id === id);
+      taskList.splice(index, 1);
+      this.setState({
+        taskList: taskList,
+      });
+    })
+      .catch(error => console.log(error));
   };
 
-  editTask(editedTask, id) {
-    let tempList;
-    tempList = this.state.taskList.slice();
 
+  archiveCompletedTask(id) {
+    console.log('hey you clicked me! Im done!');
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
+
+    console.log(id);
+    axios({
+      method: 'put',
+      url: `http://127.0.0.1:4000/tsktsk/${id}`,
+      data: {
+        completed: true,
+      },
+      headers,
+    })
+      .then((response) => {
+        const taskList = this.state.taskList;
+        const index = taskList.findIndex(task => task._id === id);
+        taskList.splice(index, 1);
+        this.setState({
+          taskList: taskList,
+        });
+      })
+       .catch(error => console.log(error));
+  }
+
+  editTask(taskEdits, id) {
+    let tempList = this.state.taskList.slice();
     let eIndex = tempList.findIndex(task => task._id === id);
-    let tTask = _.clone(tempList[eIndex]);
 
-    if (editedTask.taskTitle) {
-      tTask.taskTitle = editedTask.taskTitle;
-    }
-    if (editedTask.taskDescription) {
-      tTask.taskDescription = editedTask.taskDescription;
-    }
-    if (editedTask.dateDue) {
-      tTask.dateDue = editedTask.dateDue;
-    }
+    let headers = {
+      'x-access-token': sessionStorage.getItem('jwt-token'),
+    };
 
-    tempList[eIndex] = tTask;
-    this.setState({
-      taskList: tempList,
+    axios.put(`${taskURL}/${id}`, taskEdits, { headers: headers })
+    .then((response) => {
+      // console.log(response.data);
+      // console.log(tempList[eIndex]);
+      tempList[eIndex] = response.data;
+      this.setState({
+        taskList: tempList,
+      });
+    }).catch((res) => {
+      console.log('edit fail res:', res);
     });
   };
 
@@ -137,7 +186,7 @@ class TaskContainer extends Component{
   render() {
     return (
       <div>
-        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask}/>
+        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask} archiveCompletedTask={this.archiveCompletedTask}/>
         <MediaQuery maxWidth={915}>
 
           {(matches) => {

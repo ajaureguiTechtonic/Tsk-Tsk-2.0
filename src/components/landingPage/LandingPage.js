@@ -18,6 +18,7 @@ class LandingPage extends Component {
     let postData = {
       email: email,
       password: password,
+      loggingIn: true,
     };
 
     axios.post(`${authURL}/login`, postData)
