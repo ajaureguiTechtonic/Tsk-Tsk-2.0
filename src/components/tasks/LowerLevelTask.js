@@ -34,8 +34,8 @@ class LowerLevelTask extends Component {
       if (taskedits.taskDescription) {
         this.tempEditHolder.taskDescription = taskedits.taskDescription;
       }
-      if (taskedits.dateDue) {
-        this.tempEditHolder.dateDue = taskedits.dateDue;
+      if (taskedits.dueDate) {
+        this.tempEditHolder.dueDate = taskedits.dueDate;
       }
     }
     console.log(this.tempEditHolder);
@@ -73,7 +73,7 @@ class LowerLevelTask extends Component {
   }
 
   handleChange (date) {
-    this.editTaskLLT({ dateDue: date._d });
+    this.editTaskLLT({ dueDate: date._d });
     console.log('handle called');
     this.toggleCalendar();
   }
