@@ -3,6 +3,8 @@ import editButton from '../../assets/edit.png';
 import './alltasks.css';
 import './higherlevel.css';
 import { Collapse } from 'reactstrap';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import DatePicker from 'react-datepicker'; //for date picker
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
 import _ from 'lodash';
 
@@ -15,30 +17,70 @@ class HigherLevelTask extends Component{
       editing: false,
     };
 
-    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.tempEditHolder = {};
 
-    this.editTaskHLT = (taskedits) => {
-      this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
-    };
+    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.editTaskLLT = this.editTaskLLT.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+  };
+
+  editTaskHLT(taskedits) {
+    if (this.state.editing) {
+      if (taskedits.taskTitle) {
+        this.tempEditHolder.taskTitle = taskedits.taskTitle;
+      }
+      if (taskedits.taskDescription) {
+        this.tempEditHolder.taskDescription = taskedits.taskDescription;
+      }
+      if (taskedits.dateDue) {
+        this.tempEditHolder.dateDue = taskedits.dateDue;
+      }
+    }
+    console.log(this.tempEditHolder);
   };
 
   toggleCollapse() {
+    if (this.state.isCollapsed) {
+      this.toggleEditLLT();
+    }
+
     this.setState({
       isCollapsed: !this.state.isCollapsed,
     });
   };
+
+  //edit forwarding here
+  forwardEdits(editsToFWD) {
+    //sent up the line to tasklist then back to task container
+    this.props.handleEditfn(editsToFWD, this.props.id);
+  }
 
   toggleEditHLT() {
     if (!this.state.editing) {
       this.refs.editBtn.innerHTML = 'Done';
     } else {
       this.refs.editBtn.innerHTML = 'Edit';
+      this.forwardEdits(this.tempEditHolder);
+      this.tempEditHolder = {};
     }
     this.setState({
       editing: !this.state.editing,
     });
   }
 
+  handleChange (date) {
+    this.editTaskHLT({ dateDue: date._d });
+    this.toggleCalendar();
+  }
+
+  toggleCalendar (e) {
+    if (this.state.editing) {
+      e && e.preventDefault();
+      this.setState({isOpen: !this.state.isOpen});
+    }
+  }
+//NOTE check if date picker is workin righ in HigherLevelTasks
   render () {
     if (this.props.dueDate === undefined) {
       var month = this.props.daysOld;
@@ -59,7 +101,20 @@ class HigherLevelTask extends Component{
                   <span className="checkmark"></span>
                 </div>
                 <div className="col-10 my-auto" onTouchStart={this.toggleCollapse}>
-                  <p className="counter">{month} {day}</p>
+                  <p className="counter" onClick={(e) => {
+                    this.toggleCalendar();
+                  }}>
+                    {month} {day}
+                    {
+                      this.state.isOpen && (
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                            withPortal
+                            inline />
+                      )
+                    }
+                  </p>
                   {/* <p className="task-name">{this.props.taskName}</p> */}
                   <RIEInput
                     value={this.props.taskName}
