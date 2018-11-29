@@ -13,6 +13,11 @@
    z-index: 1040;
    font-family: 'Josefin+Sans', sans-serif;
 }
+
+.normal-add-task-button img {
+  margin: 0 5px 5px 5px;
+}
+
 .small-add-task-button {
   color: #586060;
   background-color: white;
