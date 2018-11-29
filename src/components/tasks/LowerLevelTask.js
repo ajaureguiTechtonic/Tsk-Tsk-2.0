@@ -121,7 +121,7 @@ class LowerLevelTask extends Component {
                       isDisabled= {!this.state.editing}/>
                   </div>
                   <div className="col-2 d-flex right-content">
-                    <div className="align-self-center text-center days-old-count" ref="dateDiv" onClick={(e) => {
+                    <div className="col-10 days-old-count" ref="dateDiv" onClick={(e) => {
                       this.toggleCalendar();
                     }}>
                       <p className="date m-0">{month}</p>
