@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import './modals.css';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-const uuidv4 = require('uuid/v4');
+// const uuidv4 = require('uuid/v4');
 
 class AddTaskModal extends Component {
   constructor (props) {
@@ -33,7 +33,7 @@ class AddTaskModal extends Component {
       taskTitle: this.state.taskName,
       taskDescription: this.state.description,
       dateAdded: new Date().toDateString(),
-      dateDue: this.state.dueDate,
+      dueDate: this.state.dueDate,
       // taskID: uuidv4(),
     };
 
