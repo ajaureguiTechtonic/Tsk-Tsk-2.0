@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import '../../main.css';
+import './navbar.css';
 import Logo from '../../assets/first_logo.png';
 import SignUpModal from '../../components/modals/SignUpModal';
-import './navbar.css';
-const authURL = 'http://127.0.0.1:4000/auth';
-const axios = require('axios');
 
 class NavBar extends Component {
   constructor (props) {
@@ -52,7 +50,7 @@ class NavBar extends Component {
             { this.headerButton() }
           </div>
         </nav>
-        <SignUpModal isOpen={this.state.modal} onClick={this.toggle} />
+        <SignUpModal checkLogin={this.props.checkLogin} isOpen={this.state.modal} onClick={this.toggle} />
       </div>
     );
   }

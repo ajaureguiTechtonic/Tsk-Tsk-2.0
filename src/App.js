@@ -34,12 +34,10 @@ class App extends Component {
     });
   }
 
-  _login(jwt) {
-    if (jwt.data.auth === true) {
-      sessionStorage.setItem('jwt-token', jwt.data.token);
-      sessionStorage.setItem('user', jwt.data.name);
+  _login(auth) {
+    if (auth === true) {
       this.setState({ isLoggedIn: true });
-      console.log('Hello ' + jwt.data.name);
+      console.log('Hello ' + sessionStorage.getItem('user'));
     } else {
       sessionStorage.setItem('jwt-token', null);
       sessionStorage.setItem('user', null);
