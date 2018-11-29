@@ -141,6 +141,10 @@
   padding-right: 5px;
 }
 
+.dropdown-image:hover {
+  cursor:ponter;
+}
+
 @media (max-width: 575px) {
   .task-content .row {
     justify-content: space-around;
