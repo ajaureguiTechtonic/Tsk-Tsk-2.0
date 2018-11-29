@@ -131,14 +131,17 @@
 }
 
 .dropdown {
-  position: relative;
+  display: inline-block;
   margin-left: -10%;
+  vertical-align: middle;
 }
 
 .dropdown-image {
   height: auto;
+  max-height: 60px;
   padding-left: -15px;
   padding-right: 5px;
+  vertical-align: middle;
 }
 
 .dropdown-image:hover {
