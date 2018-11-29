@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import editButton from '../../assets/edit.png';
+import editButton from '../../assets/transparent.png';
 import './alltasks.css';
 import './lowerlevel.css';
 import { Collapse } from 'reactstrap';
@@ -120,14 +120,12 @@ class LowerLevelTask extends Component {
                       validate={_.isString}
                       isDisabled= {!this.state.editing}/>
                   </div>
-                  <div className="col-2 d-flex justify-content-center">
+                  <div className="col-2 d-flex right-content">
                     <div className="align-self-center text-center days-old-count" ref="dateDiv" onClick={(e) => {
                       this.toggleCalendar();
                     }}>
-                      <p className="m-0">{month}</p>
-                      <p className="m-0 days-old">{day}</p>
-                      {/* not sure how to implement date... */}
-
+                      <p className="date m-0">{month}</p>
+                      <p className="date m-0">{day}</p>
                     </div>
                     {
                       this.state.isOpen && (
@@ -140,6 +138,9 @@ class LowerLevelTask extends Component {
                             inline />
                       )
                     }
+                    <div className="col-2 d-inline-flex dropdown" onClick={this.toggleCollapse}>
+                      <img src={editButton} alt='v' className='dropdown-image'/>
+                    </div>
                   </div>
                   <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                     <div className="row">
@@ -168,9 +169,6 @@ class LowerLevelTask extends Component {
                     </div>
                   </Collapse>
                 </div>
-              </div>
-              <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-                <img src={editButton} alt='' onClick={this.toggleCollapse} />
               </div>
             </div>
           </div>

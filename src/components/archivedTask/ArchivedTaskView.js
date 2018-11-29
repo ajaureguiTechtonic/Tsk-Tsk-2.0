@@ -22,7 +22,7 @@ class ArchivedTaskView extends Component{
       let headers = {
         'x-access-token': sessionStorage.getItem('jwt-token'),
         'pathname': this.props.location.pathname,
-      }
+      };
       axios.get(taskURL, { headers: headers })
       .then((response) => {
         this.storageTasks = response.data;

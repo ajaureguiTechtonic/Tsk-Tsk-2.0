@@ -1,0 +1,9 @@
+.task-description {
+  padding-bottom: 10px;
+}
+
+@media (max-width: 575px){
+  .task-description {
+    padding-left: 10px;
+  }
+}
