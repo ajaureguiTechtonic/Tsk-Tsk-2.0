@@ -48,3 +48,9 @@ export function _validateAccount(user) {
     return true; // Good to move forward and register the user.
   }
 }
+
+//Verify the users token.
+export function _verify() {
+  let headers = { 'x-access-token': sessionStorage.getItem('jwt-token') };
+  return axios.get(`${authURL}/verify`, { headers: headers });
+}
