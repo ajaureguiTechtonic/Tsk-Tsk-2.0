@@ -21,7 +21,7 @@ class HigherLevelTask extends Component{
     this.tempEditHolder = {};
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
-    this.editTaskLLT = this.editTaskLLT.bind(this);
+    this.editTaskHLT = this.editTaskLLT.bind(this);
     this.handleChange = this.handleChange.bind(this);
 
   };
