@@ -43,7 +43,7 @@ class HigherLevelTask extends Component{
 
   toggleCollapse() {
     if (this.state.isCollapsed) {
-      this.toggleEditLLT();
+      this.toggleEditHLT();
     }
 
     this.setState({
