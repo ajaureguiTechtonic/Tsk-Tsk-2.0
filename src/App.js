@@ -6,6 +6,7 @@ import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/taskContainer/TaskContainer';
 import LandingPage from './components/landingPage/LandingPage';
 import ArchivedTaskView from './components/archivedTask/ArchivedTaskView';
+// import UserSidebar from './components/userSidebar/UserSidebar';
 import NavBar from './components/navBar/NavBar';
 const authURL = 'http://127.0.0.1:4000/auth';
 const axios = require('axios');
@@ -68,6 +69,7 @@ class App extends Component {
                 <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
                 <ArchivedTaskView />
               </div>}/>
+
           </div>
         </Router>
           );
