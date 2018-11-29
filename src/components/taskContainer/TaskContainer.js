@@ -43,7 +43,9 @@ class TaskContainer extends Component{
       console.log('checking storage');
       let headers = {
         'x-access-token': sessionStorage.getItem('jwt-token'),
+        'pathname': this.props.location.pathname,
       };
+
       axios.get(taskURL, { headers: headers })
       .then((response) => {
         console.log(response.data);
