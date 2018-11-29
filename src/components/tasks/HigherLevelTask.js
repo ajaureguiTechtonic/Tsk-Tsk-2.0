@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import editButton from '../../assets/edit.png';
+import editButton from '../../assets/transparent.png';
 import './alltasks.css';
 import './higherlevel.css';
 import { Collapse } from 'reactstrap';
@@ -69,6 +69,11 @@ class HigherLevelTask extends Component{
                     validate={_.isString}
                     isDisabled= {!this.state.editing}/>
                 </div>
+                <div className="col-1 d-flex right-content">
+                  <div className="col-12 d-inline-flex dropdown" onClick={this.toggleCollapse}>
+                    <img src={editButton} alt='v' className='dropdown-image'/>
+                  </div>
+                </div>
                 <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                   <div className="row">
                     <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
@@ -95,9 +100,6 @@ class HigherLevelTask extends Component{
                   </div>
                 </Collapse>
               </div>
-            </div>
-            <div className="col-1 edit-container edit-icon d-none d-sm-none d-md-block">
-              <img src={editButton} alt='' onClick={this.toggleCollapse} />
             </div>
           </div>
         </div>
