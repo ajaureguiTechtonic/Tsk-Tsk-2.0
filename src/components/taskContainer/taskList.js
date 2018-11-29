@@ -105,9 +105,9 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
     if (task.completed == true) {
-      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} dateAdded={task.dateAdded} level={level}/>
+      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level}/>
     } else if (level <= 3) {
-      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
+      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     } else {
       daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
       var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
