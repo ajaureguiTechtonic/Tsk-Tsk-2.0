@@ -65,7 +65,7 @@ class App extends Component {
               <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
             </div>}/>
             <Route exact path='/archived' render={(props) => <div>
-                <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
                 <ArchivedTaskView isLoggedIn = { this.state.isLoggedIn } checkLogout = { this._logout } {...props}/>
               </div>}/>
           </div>
