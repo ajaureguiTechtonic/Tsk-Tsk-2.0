@@ -1,6 +1,7 @@
 import React from 'react';
 import LowerLevelTask from '../../components/tasks/LowerLevelTask';
 import HigherLevelTask from '../../components/tasks/HigherLevelTask';
+import UserSidebar from '../userSidebar/UserSidebar';
 import ArchivedTask from '../../components/tasks/ArchivedTask';
 
 
@@ -115,9 +116,11 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     }
   });
 
+
   return (
     <div>
-      { tasks }
+      <UserSidebar />
+      <div>{ tasks }</div>
     </div>
   );
 };
