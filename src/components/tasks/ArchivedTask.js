@@ -4,7 +4,6 @@ import './alltasks.css';
 import './lowerlevel.css';
 import './archivedtask.css';
 import { Collapse } from 'reactstrap';
-import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
 import _ from 'lodash';
 
 class LowerLevelTask extends Component {
@@ -17,6 +16,10 @@ class LowerLevelTask extends Component {
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
+
+    // this.editTaskLLT = (taskedits) => {
+    //   this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
+    // };
 
   };
 
@@ -46,14 +49,7 @@ class LowerLevelTask extends Component {
               <div className={`col-12 col-md-10 offset-1 task-content level-${this.props.level}`}>
                 <div className="row">
                   <div className="col-9 col-sm-10 d-flex" onTouchStart={this.toggleCollapse}>
-                    {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
-                    <RIEInput
-                      value={this.props.taskName}
-                      className="m-0 align-self-center"
-                      change={this.editTaskLLT}
-                      propName='taskName'
-                      validate={_.isString}
-                      isDisabled= {!this.state.editing}/>
+                    {<p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p>}
                   </div>
                   <div className="col-2 d-flex right-content">
                     <div className="col-10 days-old-count" ref="dateDiv">
@@ -68,14 +64,7 @@ class LowerLevelTask extends Component {
                   <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                     <div className="row">
                       <div className={`col-11 task-description edit-this-task-${this.props.taskID}`}>
-                        {/* <p ref="descP">{this.props.description}</p> */}
-                        <RIEInput
-                          value={this.props.description}
-                          className="m-0 align-self-center"
-                          change={this.editTaskLLT}
-                          propName='description'
-                          validate={_.isString}
-                          isDisabled= {!this.state.editing}/>
+                        { <p ref="descP">{this.props.description}</p> }
                       </div>
                     </div>
                   </Collapse>
