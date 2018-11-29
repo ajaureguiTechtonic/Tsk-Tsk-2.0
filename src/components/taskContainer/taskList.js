@@ -1,6 +1,8 @@
 import React from 'react';
 import LowerLevelTask from '../../components/tasks/LowerLevelTask';
 import HigherLevelTask from '../../components/tasks/HigherLevelTask';
+import ArchivedTask from '../../components/tasks/ArchivedTask';
+
 
 const calcDaysOld = (dateAdded, currentDate) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -26,6 +28,10 @@ const sortTasks = (task) => {
   var dueDate = new Date(task.dueDate);
   var dateAdded = new Date(task.dateAdded);
   var level;
+
+  if (task.completed === true) {
+    level = 1;
+  }
 
   if (dueDate > dateAdded && daysPastDue < 1) {
     level = 1;
@@ -98,8 +104,10 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
-    if (level <= 3) {
-      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
+    if (task.completed == true) {
+      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} dateAdded={task.dateAdded} level={level}/>
+    } else if (level <= 3) {
+      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     } else {
       daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
       var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
