@@ -18,9 +18,6 @@ class LowerLevelTask extends Component {
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
 
-    this.editTaskLLT = (taskedits) => {
-      this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
-    };
   };
 
   toggleCollapse() {

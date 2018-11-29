@@ -20,7 +20,6 @@ const calcDaysOld = (dateAdded) => {
 };
 
 const sortTasks = (task) => {
-  console.log(task);
   var daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
   var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
   var dueDate = new Date(task.dueDate);
