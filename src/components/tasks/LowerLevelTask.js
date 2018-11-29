@@ -3,6 +3,9 @@ import editButton from '../../assets/transparent.png';
 import './alltasks.css';
 import './lowerlevel.css';
 import { Collapse } from 'reactstrap';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import DatePicker from 'react-datepicker'; //for date picker
 import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
 import _ from 'lodash';
 
@@ -15,29 +18,74 @@ class LowerLevelTask extends Component {
       editing: false,
     };
 
-    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.tempEditHolder = {};
 
-    this.editTaskLLT = (taskedits) => {
-      this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
-    };
+    this.toggleCollapse = this.toggleCollapse.bind(this);
+    this.editTaskLLT = this.editTaskLLT.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+
+  };
+
+  editTaskLLT(taskedits) {
+    if (this.state.editing) {
+      if (taskedits.taskTitle) {
+        this.tempEditHolder.taskTitle = taskedits.taskTitle;
+      }
+      if (taskedits.taskDescription) {
+        this.tempEditHolder.taskDescription = taskedits.taskDescription;
+      }
+      if (taskedits.dueDate) {
+        this.tempEditHolder.dueDate = taskedits.dueDate;
+      }
+    }
+    console.log(this.tempEditHolder);
   };
 
   toggleCollapse() {
+    if (this.state.isCollapsed) {
+      this.toggleEditLLT();
+    }
+
     this.setState({
       isCollapsed: !this.state.isCollapsed,
     });
   };
+
+  //edit forwarding here
+  forwardEdits(editsToFWD) {
+    //sent up the line to tasklist then back to task container
+    if (this.state.editing) {// this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
+      this.props.handleEditfn(editsToFWD, this.props.id);
+    }
+  }
 
   toggleEditLLT() {
     if (!this.state.editing) {
       this.refs.editBtn.innerHTML = 'Done';
     } else {
       this.refs.editBtn.innerHTML = 'Edit';
+      this.forwardEdits(this.tempEditHolder);
+      this.tempEditHolder = {};
     }
     this.setState({
       editing: !this.state.editing,
     });
   }
+
+  handleChange (date) {
+    this.editTaskLLT({ dueDate: date._d });
+    console.log('handle called');
+    this.toggleCalendar();
+  }
+
+  toggleCalendar (e) {
+    console.log('toggle called');
+    if (this.state.editing) {
+      e && e.preventDefault();
+      this.setState({isOpen: !this.state.isOpen});
+    }
+  }
+
 
   render() {
     if (this.props.dueDate === undefined) {
@@ -73,11 +121,23 @@ class LowerLevelTask extends Component {
                       isDisabled= {!this.state.editing}/>
                   </div>
                   <div className="col-2 d-flex right-content">
-                    <div className="col-10 days-old-count" ref="dateDiv">
+                    <div className="col-10 days-old-count" ref="dateDiv" onClick={(e) => {
+                      this.toggleCalendar();
+                    }}>
                       <p className="date m-0">{month}</p>
                       <p className="date m-0">{day}</p>
-                      {/* not sure how to implement date... */}
                     </div>
+                    {
+                      this.state.isOpen && (
+                        <DatePicker
+                            selected={this.state.startDate}
+                            onChange={this.handleChange}
+                            minDate={moment().subtract(10, 'days')}
+                            maxDate={moment().add(45, 'days')}
+                            withPortal
+                            inline />
+                      )
+                    }
                     <div className="col-2 d-inline-flex dropdown" onClick={this.toggleCollapse}>
                       <img src={editButton} alt='v' className='dropdown-image'/>
                     </div>
