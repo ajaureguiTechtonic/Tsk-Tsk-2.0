@@ -27,7 +27,7 @@ class HigherLevelTask extends Component{
   };
 //FIXME unselectable fields in empty task.
 // issues with toggle
-//
+//investigate potential issue with touchstart and edit taskname.
   editTaskHLT(taskedits) {
 
     console.log('taskeditsHLT', taskedits);
@@ -101,6 +101,9 @@ class HigherLevelTask extends Component{
       day = 'DAYS OVERDUE';
     };
 
+    let taskTitleHLT = this.props.taskName || 'title';
+    let taskDescriptionHLT = this.props.description || 'description';
+
     return (
       <div>
         <div id= { this.props.id } className="container task">
@@ -130,7 +133,7 @@ class HigherLevelTask extends Component{
                   }
                   {/* <p className="task-name">{this.props.taskName}</p> */}
                   <RIEInput
-                    value={this.props.taskName}
+                    value={taskTitleHLT}
                     className="m-0 align-self-center"
                     change={this.editTaskHLT}
                     propName='taskTitle'
@@ -146,7 +149,7 @@ class HigherLevelTask extends Component{
                   <div className="row">
                     <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
                       <RIEInput
-                        value={this.props.description}
+                        value={taskDescriptionHLT}
                         className="m-0 align-self-center"
                         change={this.editTaskHLT}
                         propName='taskDescription'

@@ -100,6 +100,9 @@ class LowerLevelTask extends Component {
       day = dueDateArray[2];
     };
 
+    let taskTitleLLT = this.props.taskName || 'title';
+    let taskDescriptionLLT = this.props.description || 'description';
+
     return (
         <div>
           <div id={this.props.id} className="container task">
@@ -113,7 +116,7 @@ class LowerLevelTask extends Component {
                   <div className="col-8 col-sm-9 d-flex" onTouchStart={this.toggleCollapse}>
                     {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
                     <RIEInput
-                      value={this.props.taskName}
+                      value={taskTitleLLT}
                       className="m-0 align-self-center"
                       change={this.editTaskLLT}
                       propName='taskTitle'
@@ -147,7 +150,7 @@ class LowerLevelTask extends Component {
                       <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
                         {/* <p ref="descP">{this.props.description}</p> */}
                         <RIEInput
-                          value={this.props.description}
+                          value={taskDescriptionLLT}
                           className="m-0 align-self-center"
                           change={this.editTaskLLT}
                           propName='taskDescription'
