@@ -21,6 +21,13 @@
   font-size: 1.625rem;
 }
 
+.edit-mode-item {
+  cursor: pointer;
+}
+.disable-on-edit {
+  pointer-events: none;
+}
+
 @media (max-width: 575px) {
   .level-1 {
     font-size: 1rem;
