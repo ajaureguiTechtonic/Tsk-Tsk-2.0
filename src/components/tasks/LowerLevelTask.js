@@ -82,17 +82,19 @@ class LowerLevelTask extends Component {
     console.log('toggle called');
     if (this.state.editing) {
       e && e.preventDefault();
-      this.setState({isOpen: !this.state.isOpen});
+      this.setState({
+        isOpen: !this.state.isOpen,
+      });
     }
   }
 
-
   render() {
+    console.log(this.props);
     if (this.props.dueDate === undefined) {
       var month = this.props.daysOld;
       var day = 'Days Old';
     } else {
-      let options = { weekday: 'short', month: 'short', day: '2-digit'}
+      let options = { weekday: 'short', month: 'short', day: '2-digit' };
       let unparsedDate = new Date(this.props.dueDate);
       var dueDate = unparsedDate.toLocaleDateString('en-US', options);
       let dueDateArray = dueDate.split(' ');
@@ -111,7 +113,6 @@ class LowerLevelTask extends Component {
                     <span className="checkmark"></span>
                   </div>
                   <div className="col-8 col-sm-9 d-flex" onTouchStart={this.toggleCollapse}>
-                    {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
                     <RIEInput
                       value={this.props.taskName}
                       className="m-0 align-self-center"
@@ -130,12 +131,12 @@ class LowerLevelTask extends Component {
                     {
                       this.state.isOpen && (
                         <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.handleChange}
-                            minDate={moment().subtract(10, 'days')}
-                            maxDate={moment().add(45, 'days')}
-                            withPortal
-                            inline />
+                          selected={this.state.startDate}
+                          onChange={this.handleChange}
+                          minDate={moment().subtract(10, 'days')}
+                          maxDate={moment().add(45, 'days')}
+                          withPortal
+                        inline />
                       )
                     }
                     <div className="col-2 d-inline-flex dropdown" onClick={this.toggleCollapse}>
@@ -145,7 +146,6 @@ class LowerLevelTask extends Component {
                   <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                     <div className="row">
                       <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
-                        {/* <p ref="descP">{this.props.description}</p> */}
                         <RIEInput
                           value={this.props.description}
                           className="m-0 align-self-center"

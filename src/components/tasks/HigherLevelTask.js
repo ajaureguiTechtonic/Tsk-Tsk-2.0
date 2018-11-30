@@ -23,7 +23,6 @@ class HigherLevelTask extends Component{
     this.toggleCollapse = this.toggleCollapse.bind(this);
     this.editTaskHLT = this.editTaskHLT.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   };
 
   editTaskHLT(taskedits) {
@@ -112,15 +111,14 @@ class HigherLevelTask extends Component{
                   {
                     this.state.isOpen && (
                       <DatePicker
-                          selected={this.state.startDate}
-                          onChange={this.handleChange}
-                          minDate={moment().subtract(10, 'days')}
-                          maxDate={moment().add(45, 'days')}
-                          withPortal
-                          inline />
+                        selected={this.state.startDate}
+                        onChange={this.handleChange}
+                        minDate={moment().subtract(10, 'days')}
+                        maxDate={moment().add(45, 'days')}
+                        withPortal
+                      inline />
                     )
                   }
-                  {/* <p className="task-name">{this.props.taskName}</p> */}
                   <RIEInput
                     value={this.props.taskName}
                     className="m-0 align-self-center"
