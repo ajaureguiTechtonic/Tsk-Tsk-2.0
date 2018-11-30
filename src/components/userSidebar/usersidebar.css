@@ -43,12 +43,14 @@
    font-size: 20px;
    cursor: pointer;
    padding: 5px 15px 10px 15px;
-
    color: #586060;
    background-color: white;
    border: none;
    border-radius: 50px;
    box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+}
+.openbtn:active {
+  outline: none;
 }
 
 /* .openbtn:hover {

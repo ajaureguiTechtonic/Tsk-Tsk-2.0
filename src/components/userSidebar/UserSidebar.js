@@ -7,7 +7,6 @@ class UserSidebar extends Component{
 
   }
 
-
     openNav() {
       document.getElementById("mySidebar").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
@@ -37,7 +36,7 @@ class UserSidebar extends Component{
       </div>
 
       <div id="main">
-        <button id="openbtn" className="openbtn" onClick={(e) => this.openNav()}>&#9776;</button>
+        <button id='openbtn' className="openbtn" onClick={this.openNav}>&#9776;</button>
       </div>
   </div>
     );
