@@ -25,10 +25,16 @@ class HigherLevelTask extends Component{
     this.handleChange = this.handleChange.bind(this);
 
   };
-
+//FIXME unselectable fields in empty task.
+// issues with toggle
+//
   editTaskHLT(taskedits) {
+
+    console.log('taskeditsHLT', taskedits);
     if (this.state.editing) {
+      console.log('editingHLT', this.state.editing);
       if (taskedits.taskTitle) {
+        console.log('hlt tasktitle from edit',taskedits.taskTitle);
         this.tempEditHolder.taskTitle = taskedits.taskTitle;
       }
       if (taskedits.taskDescription) {
@@ -38,7 +44,7 @@ class HigherLevelTask extends Component{
         this.tempEditHolder.dueDate = taskedits.dueDate;
       }
     }
-    console.log(this.tempEditHolder);
+    console.log('hlt temp',this.tempEditHolder);
   };
 
   toggleCollapse() {
@@ -55,6 +61,8 @@ class HigherLevelTask extends Component{
   forwardEdits(editsToFWD) {
     //sent up the line to tasklist then back to task container
     if (this.state.editing) { // this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
+      console.log('editinghLT fwdedits', this.state.editing);
+
       this.props.handleEditfn(editsToFWD, this.props.id);
     }
   }
@@ -125,7 +133,7 @@ class HigherLevelTask extends Component{
                     value={this.props.taskName}
                     className="m-0 align-self-center"
                     change={this.editTaskHLT}
-                    propName='taskName'
+                    propName='taskTitle'
                     validate={_.isString}
                     isDisabled= {!this.state.editing}/>
                 </div>
@@ -141,7 +149,7 @@ class HigherLevelTask extends Component{
                         value={this.props.description}
                         className="m-0 align-self-center"
                         change={this.editTaskHLT}
-                        propName='description'
+                        propName='taskDescription'
                         validate={_.isString}
                         isDisabled= {!this.state.editing}/>
                     </div>
