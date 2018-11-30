@@ -40,7 +40,7 @@ class NavBar extends Component {
             <a href="/archived" onClick={this.taskView} className="nav-link">Archived Tasks </a>
           </li>
           <li>
-            <a href="/" onClick={(e) => this.props.checkLogout()} className="nav-link">Log out</a>
+            <a href="/" onClick={(e) => this.props.checkLogout()} className="nav-link">Log Out</a>
           </li>
         </ul>
       )
