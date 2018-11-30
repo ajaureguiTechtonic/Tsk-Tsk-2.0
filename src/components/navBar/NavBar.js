@@ -24,30 +24,39 @@ class NavBar extends Component {
       return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
       return (
-        <div>
-          <a href="/"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Active Tasks </button></a>
-          <a href="/"><button type="button" onClick={(e) => this.props.checkLogout()} className="btn edit-button ml-auto">Log out</button></a>
-        </div>
+        <ul className='navbar-nav'>
+          <li>
+            <a href="/" onClick={this.taskView} className="nav-link">Active Tasks </a>
+          </li>
+          <li>
+            <a href="/" onClick={(e) => this.props.checkLogout()} className="nav-link">Log out</a>
+          </li>
+        </ul>
       )
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
       return (
-        <div>
-          <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Archived Tasks </button></a>
-          <button type="button" onClick={(e) => this.props.checkLogout()} className="btn edit-button ml-auto">Log out</button>
-        </div>
+        <ul className='navbar-nav'>
+          <li>
+            <a href="/archived" onClick={this.taskView} className="nav-link">Archived Tasks </a>
+          </li>
+          <li>
+            <a href="/" onClick={(e) => this.props.checkLogout()} className="nav-link">Log out</a>
+          </li>
+        </ul>
       )
   }
 
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-light fixed-top">
+        <nav className="navbar navbar-expand-sm navbar-light fixed-top">
           <a className="navbar-brand" href="/"><img className="nav-logo" src={Logo} alt="tsk-tsk logo" /></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            { this.headerButton() }
+
+          <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              { this.headerButton() }
           </div>
         </nav>
         <SignUpModal checkLogin={this.props.checkLogin} isOpen={this.state.modal} onClick={this.toggle} />
