@@ -16,10 +16,11 @@ class SignUpModal extends Component {
     let newAccount = {};
     if (formData[2].value === formData[3].value) { //Make sure passwords match.
       newAccount.username = formData[0].value;
-      newAccount.email = formData[1].value;
+      newAccount.email = formData[1].value.toLowerCase();
       newAccount.password = formData[2].value;
       if (_validateAccount(newAccount)) { // Validate values , then send the register request.
         _handleRegister(this.props, newAccount);
+        this.props.onClick();
       }
     } else {
       console.log('Passwords must match');
