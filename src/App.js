@@ -7,7 +7,7 @@ import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/taskContainer/TaskContainer';
 import LandingPage from './components/landingPage/LandingPage';
 import ArchivedTaskView from './components/archivedTask/ArchivedTaskView';
-// import UserSidebar from './components/userSidebar/UserSidebar';
+import UserSidebar from './components/userSidebar/UserSidebar';
 import NavBar from './components/navBar/NavBar';
 
 class App extends Component {
@@ -49,16 +49,20 @@ class App extends Component {
     if (this.state.isLoggedIn === true) {
       return (
         <Router>
-          <div className='main-container'>
-            <Route exact path='/' render={(props) => <div>
-              <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-              <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-            </div>}/>
-            <Route exact path='/archived' render={(props) => <div>
-                <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+          <div>
+            <div>
+              <UserSidebar />
+            </div>
+            <div id="blurMe" className='main-container'>
+              <Route exact path='/' render={(props) => <div>
+                <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+              </div>}/>
+              <Route exact path='/archived' render={(props) => <div>
+                <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
                 <ArchivedTaskView isLoggedIn = { this.state.isLoggedIn } checkLogout = { this._logout } {...props}/>
               </div>}/>
-
+            </div>
           </div>
         </Router>
           );
