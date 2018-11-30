@@ -4,7 +4,6 @@ import HigherLevelTask from '../../components/tasks/HigherLevelTask';
 import UserSidebar from '../userSidebar/UserSidebar';
 import ArchivedTask from '../../components/tasks/ArchivedTask';
 
-
 const calcDaysOld = (dateAdded, currentDate) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   dateAdded = new Date(dateAdded).getTime();
@@ -105,7 +104,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
-    if (task.completed == true) {
+    if (task.completed === true) {
       return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level}/>
     } else if (level <= 3) {
       return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
