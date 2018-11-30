@@ -38,12 +38,13 @@ class HigherLevelTask extends Component{
         this.tempEditHolder.dueDate = taskedits.dueDate;
       }
     }
-    console.log('hlt temp',this.tempEditHolder);
+    console.log('hlt temp', this.tempEditHolder);
   };
 
   toggleCollapse() { // toggle collapse logic is backwards
     if (this.state.isCollapsed) { // clears edits (by no submission) and resets edit state
       this.refs.editBtn.innerHTML = 'Edit';
+      this.onEditChangeClass(false);
       this.setState({
         editing: false,
       });
@@ -63,11 +64,30 @@ class HigherLevelTask extends Component{
     }
   }
 
+  onEditChangeClass(bool) {
+    if (bool) {
+      this.refs.titleRef.classList.add("edit-mode-item");
+      this.refs.dateRef.classList.add("edit-mode-item");
+      this.refs.descRef.classList.add("edit-mode-item");
+      this.refs.checkRef.classList.add("disable-on-edit");
+    } else {
+      this.refs.titleRef.classList.remove("edit-mode-item");
+      this.refs.dateRef.classList.remove("edit-mode-item");
+      this.refs.descRef.classList.remove("edit-mode-item");
+      this.refs.checkRef.classList.remove("disable-on-edit");
+    }
+  }
+
+
   toggleEditHLT() {
     if (!this.state.editing) {
       this.refs.editBtn.innerHTML = 'Done';
+      //need to ad a class via refs to all editible feilds
+      this.onEditChangeClass(true);
     } else {
       this.refs.editBtn.innerHTML = 'Edit';
+      this.onEditChangeClass(false);
+
       this.forwardEdits(this.tempEditHolder);
       this.tempEditHolder = {};
     }
@@ -88,6 +108,11 @@ class HigherLevelTask extends Component{
     }
   }
 //NOTE check if date picker is workin righ in HigherLevelTasks
+// when in editing state true, need to apply css disable the checkbox and
+// enable curser on editable fields (cursor: 'pointer').
+//ref="dateRef"
+//ref="titleRef" had to make a div
+//ref="descRef"
   render () {
     if (this.props.dueDate === undefined) {
       var month = this.props.daysOld;
@@ -106,12 +131,12 @@ class HigherLevelTask extends Component{
           <div className="row">
             <div className={`col-12 col-md-10 offset-1 task-content level-${this.props.level}`}>
               <div className="row">
-                <div className="col-1 justify-content-center complete-box my-auto">
+                <div ref="checkRef" className="col-1 justify-content-center complete-box my-auto">
                   <input type="checkbox" onClick={() => this.props.archiveCompletedTask(this.props.id)}/>
                   <span className="checkmark"></span>
                 </div>
                 <div className="col-10 my-auto">
-                  <p className="counter" onClick={(e) => {
+                  <p className="counter" ref="dateRef" onClick={(e) => {
                     this.toggleCalendar();
                   }}>
                     {month} {day}
@@ -125,7 +150,7 @@ class HigherLevelTask extends Component{
                         maxDate={moment().add(45, 'days')}
                         withPortal
                         inline >
-                          <div style={{color: 'blue', fontSize: '1.5em', textAlign: 'center' }} onClick={(e) => {
+                          <div style={{color: 'blue', fontSize: '1.5em', textAlign: 'center', cursor: 'pointer' }} onClick={(e) => {
                             this.toggleCalendar();
                           }}>
                           <strong>Close</strong>
@@ -134,13 +159,15 @@ class HigherLevelTask extends Component{
                     )
                   }
                   {/* <p className="task-name">{this.props.taskName}</p> */}
-                  <RIEInput
+                  <div ref="titleRef">
+                    <RIEInput
                     value={taskTitleHLT}
                     className="m-0 align-self-center"
                     change={this.editTaskHLT}
                     propName='taskTitle'
                     validate={_.isString}
                     isDisabled= {!this.state.editing}/>
+                  </div>
                 </div>
                 <div className="col-1 d-flex right-content">
                   <div className="col-12 d-inline-flex dropdown" onClick={this.toggleCollapse}>
@@ -149,7 +176,7 @@ class HigherLevelTask extends Component{
                 </div>
                 <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                   <div className="row">
-                    <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`}>
+                    <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`} ref="descRef">
                       <RIEInput
                         value={taskDescriptionHLT}
                         className="m-0 align-self-center"
