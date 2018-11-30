@@ -140,7 +140,13 @@ class LowerLevelTask extends Component {
                             minDate={moment().subtract(10, 'days')}
                             maxDate={moment().add(45, 'days')}
                             withPortal
-                            inline />
+                            inline >
+                              <div style={{color: 'blue', fontSize: '1.5em', textAlign: 'center' }} onClick={(e) => {
+                                this.toggleCalendar();
+                              }}>
+                              <strong>Close</strong>
+                              </div>
+                          </DatePicker>
                       )
                     }
                     <div className="col-2 d-inline-flex dropdown" onClick={this.toggleCollapse}>

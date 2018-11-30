@@ -125,7 +125,9 @@ class HigherLevelTask extends Component{
                         maxDate={moment().add(45, 'days')}
                         withPortal
                         inline >
-                          <div style={{color: 'blue' }}>
+                          <div style={{color: 'blue', fontSize: '1.5em', textAlign: 'center' }} onClick={(e) => {
+                            this.toggleCalendar();
+                          }}>
                           <strong>Close</strong>
                           </div>
                       </DatePicker>
