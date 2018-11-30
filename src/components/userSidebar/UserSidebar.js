@@ -35,7 +35,7 @@ class UserSidebar extends Component{
       </div>
 
       <div id="main">
-        <button id="openbtn" className="openbtn" onClick={(e) => this.openNav()}>&#9776;</button>
+        <button id='openbtn' className="openbtn" onClick={this.openNav}>&#9776;</button>
       </div>
   </div>
     );

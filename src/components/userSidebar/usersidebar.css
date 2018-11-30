@@ -52,6 +52,9 @@
    box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
    z-index: 800;
 }
+.openbtn:active {
+  outline: none;
+}
 
 /* .openbtn:hover {
    background-color: #444;
