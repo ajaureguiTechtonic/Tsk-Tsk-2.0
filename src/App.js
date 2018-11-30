@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    setInterval(this.verifyUser, 100000);
+    setInterval(this.verifyUser, 1800000);
   }
 
   verifyUser() {
