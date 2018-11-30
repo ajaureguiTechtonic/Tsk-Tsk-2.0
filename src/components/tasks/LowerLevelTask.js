@@ -42,8 +42,11 @@ class LowerLevelTask extends Component {
   };
 
   toggleCollapse() {
-    if (this.state.isCollapsed) {
-      this.toggleEditLLT();
+    if (this.state.isCollapsed) {// clears edits (by no submission) and resets edit state
+      this.refs.editBtn.innerHTML = 'Edit';
+      this.setState({
+        editing: false,
+      });
     }
 
     this.setState({
@@ -54,7 +57,7 @@ class LowerLevelTask extends Component {
   //edit forwarding here
   forwardEdits(editsToFWD) {
     //sent up the line to tasklist then back to task container
-    if (this.state.editing) {// this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
+    if (this.state.editing && !_.isEmpty(editsToFWD)) {// this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
       this.props.handleEditfn(editsToFWD, this.props.id);
     }
   }
@@ -74,7 +77,6 @@ class LowerLevelTask extends Component {
 
   handleChange (date) {
     this.editTaskLLT({ dueDate: date._d });
-    console.log('handle called');
     this.toggleCalendar();
   }
 
@@ -113,7 +115,7 @@ class LowerLevelTask extends Component {
                     <input type="checkbox" onClick={() => this.props.archiveCompletedTask(this.props.id)}/>
                     <span className="checkmark"></span>
                   </div>
-                  <div className="col-8 col-sm-9 d-flex" onTouchStart={this.toggleCollapse}>
+                  <div className="col-8 col-sm-9 d-flex">
                     {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
                     <RIEInput
                       value={taskTitleLLT}

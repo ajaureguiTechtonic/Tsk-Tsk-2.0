@@ -25,16 +25,10 @@ class HigherLevelTask extends Component{
     this.handleChange = this.handleChange.bind(this);
 
   };
-//FIXME unselectable fields in empty task.
-// issues with toggle
-//investigate potential issue with touchstart and edit taskname.
-  editTaskHLT(taskedits) {
 
-    console.log('taskeditsHLT', taskedits);
+  editTaskHLT(taskedits) {
     if (this.state.editing) {
-      console.log('editingHLT', this.state.editing);
       if (taskedits.taskTitle) {
-        console.log('hlt tasktitle from edit',taskedits.taskTitle);
         this.tempEditHolder.taskTitle = taskedits.taskTitle;
       }
       if (taskedits.taskDescription) {
@@ -47,9 +41,12 @@ class HigherLevelTask extends Component{
     console.log('hlt temp',this.tempEditHolder);
   };
 
-  toggleCollapse() {
-    if (this.state.isCollapsed) {
-      this.toggleEditHLT();
+  toggleCollapse() { // toggle collapse logic is backwards
+    if (this.state.isCollapsed) { // clears edits (by no submission) and resets edit state
+      this.refs.editBtn.innerHTML = 'Edit';
+      this.setState({
+        editing: false,
+      });
     }
 
     this.setState({
@@ -60,8 +57,7 @@ class HigherLevelTask extends Component{
   //edit forwarding here
   forwardEdits(editsToFWD) {
     //sent up the line to tasklist then back to task container
-    if (this.state.editing) { // this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
-      console.log('editinghLT fwdedits', this.state.editing);
+    if (this.state.editing && !_.isEmpty(editsToFWD)) { // this cuts down on the erroneous put req's when spaming the dropdown toggle, but not completely.
 
       this.props.handleEditfn(editsToFWD, this.props.id);
     }
@@ -114,7 +110,7 @@ class HigherLevelTask extends Component{
                   <input type="checkbox" onClick={() => this.props.archiveCompletedTask(this.props.id)}/>
                   <span className="checkmark"></span>
                 </div>
-                <div className="col-10 my-auto" onTouchStart={this.toggleCollapse}>
+                <div className="col-10 my-auto">
                   <p className="counter" onClick={(e) => {
                     this.toggleCalendar();
                   }}>
@@ -123,12 +119,16 @@ class HigherLevelTask extends Component{
                   {
                     this.state.isOpen && (
                       <DatePicker
-                          selected={this.state.startDate}
-                          onChange={this.handleChange}
-                          minDate={moment().subtract(10, 'days')}
-                          maxDate={moment().add(45, 'days')}
-                          withPortal
-                          inline />
+                        selected={this.state.startDate}
+                        onChange={this.handleChange}
+                        minDate={moment().subtract(10, 'days')}
+                        maxDate={moment().add(45, 'days')}
+                        withPortal
+                        inline >
+                          <div style={{color: 'blue' }}>
+                          <strong>Close</strong>
+                          </div>
+                      </DatePicker>
                     )
                   }
                   {/* <p className="task-name">{this.props.taskName}</p> */}
