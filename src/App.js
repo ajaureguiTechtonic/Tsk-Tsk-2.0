@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { _verify } from './login.js';
 import './main.css';
 import '../src/BootstrapCSS/bootstrap.min.css';
 import TaskContainer from './components/taskContainer/TaskContainer';
@@ -8,43 +9,31 @@ import LandingPage from './components/landingPage/LandingPage';
 import ArchivedTaskView from './components/archivedTask/ArchivedTaskView';
 import UserSidebar from './components/userSidebar/UserSidebar';
 import NavBar from './components/navBar/NavBar';
-const authURL = 'http://127.0.0.1:4000/auth';
-const axios = require('axios');
 
 class App extends Component {
   constructor (props) {
     super(props);
-    this._verify();
     this.state = { isLoggedIn: false };
     this._logout = this._logout.bind(this);
     this._login = this._login.bind(this);
   }
 
-  _verify() {
-    let headers = {
-      'x-access-token': sessionStorage.getItem('jwt-token'),
-    };
-
-    axios.get(`${authURL}/verify`, { headers: headers })
-    .then((jwt) => {
+  componentWillMount() {
+    _verify().then((jwt) => {
       if (jwt.data.auth === true) {
         this.setState({ isLoggedIn: true });
       } else {
-        this.setState({ isLoggedIn: false });
+        this._logout();
       }
     });
   }
 
-  _login(jwt) {
-    if (jwt.data.auth === true) {
-      sessionStorage.setItem('jwt-token', jwt.data.token);
-      sessionStorage.setItem('user', jwt.data.name);
+  _login(auth) {
+    if (auth === true) {
       this.setState({ isLoggedIn: true });
-      console.log('Hello ' + jwt.data.name);
+      console.log('Hello ' + sessionStorage.getItem('user'));
     } else {
-      sessionStorage.setItem('jwt-token', null);
-      sessionStorage.setItem('user', null);
-      this.setState({ isLoggedIn: false });
+      this._logout();
       console.log('Invalid authorization');
     }
   }
@@ -85,10 +74,7 @@ class App extends Component {
               <NavBar checkLogin = { this._login} checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
               <LandingPage checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props} />
             </div>}/>
-
-
           </div>
-
         </Router>
       );
     }

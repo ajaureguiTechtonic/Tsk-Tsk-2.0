@@ -70,6 +70,13 @@
   padding-right:0px;
 }
 
+.edit-mode-item {
+  cursor: pointer;
+}
+.disable-on-edit {
+  pointer-events: none;
+}
+
 @media (max-width: 575px) {
   .level-5 > .row > .col-10 {
     font-size: 1.7rem;
