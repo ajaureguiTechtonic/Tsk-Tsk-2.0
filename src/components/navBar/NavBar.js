@@ -19,12 +19,6 @@ class NavBar extends Component {
     });
   };
 
-  handleLogout() {
-    axios.get(`${authURL}/logout`).then((response) => {
-      this.props.checkLogout(); // Handle loggin out of a user, dumping token
-    });
-  }
-
   headerButton() {
     if (this.props.isLoggedIn === false) {
       return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
