@@ -1,9 +1,7 @@
 import React from 'react';
 import LowerLevelTask from '../../components/tasks/LowerLevelTask';
 import HigherLevelTask from '../../components/tasks/HigherLevelTask';
-import UserSidebar from '../userSidebar/UserSidebar';
 import ArchivedTask from '../../components/tasks/ArchivedTask';
-
 
 const calcDaysOld = (dateAdded, currentDate) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -21,7 +19,6 @@ const calcDaysOld = (dateAdded, currentDate) => {
 };
 
 const sortTasks = (task) => {
-  console.log(task.dateCompleted);
   let currentDate = new Date().toDateString();
   var daysOld = calcDaysOld(task.dateAdded, currentDate);
   var daysPastDue = calcDaysOld(task.dueDate, currentDate);
@@ -117,10 +114,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
 
 
   return (
-    <div>
-      <UserSidebar />
       <div>{ tasks }</div>
-    </div>
   );
 };
 
