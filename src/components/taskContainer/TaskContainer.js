@@ -58,6 +58,7 @@ class TaskContainer extends Component{
   }
 
   editTask(taskEdits, id) {
+    console.log('TSeditFN', taskEdits, id);
     _editTask(this, taskEdits, id);
   };
 

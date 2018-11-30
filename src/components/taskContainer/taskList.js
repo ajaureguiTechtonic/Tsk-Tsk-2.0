@@ -21,7 +21,6 @@ const calcDaysOld = (dateAdded, currentDate) => {
 };
 
 const sortTasks = (task) => {
-  console.log(task.dateCompleted);
   let currentDate = new Date().toDateString();
   var daysOld = calcDaysOld(task.dateAdded, currentDate);
   var daysPastDue = calcDaysOld(task.dueDate, currentDate);
