@@ -17,10 +17,6 @@ class LowerLevelTask extends Component {
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
 
-    // this.editTaskLLT = (taskedits) => {
-    //   this.props.handleEditfn(taskedits, this.props.id);//sent up the line to tasklist then back to task container
-    // };
-
   };
 
   toggleCollapse() {
@@ -30,17 +26,12 @@ class LowerLevelTask extends Component {
   };
 
   render() {
-    if (this.props.dueDate === undefined) {
-      var month = this.props.daysOld;
-      var day = 'Days Old';
-    } else {
-      let options = { weekday: 'short', month: 'short', day: '2-digit'}
-      let unparsedDate = new Date(this.props.dueDate);
-      var dueDate = unparsedDate.toLocaleDateString('en-US', options);
-      let dueDateArray = dueDate.split(' ');
-      month = dueDateArray[1];
-      day = dueDateArray[2];
-    };
+    let options = { weekday: 'short', month: 'short', day: '2-digit' };
+    let unparsedDate = new Date(this.props.dateCompleted);
+    var dueDate = unparsedDate.toLocaleDateString('en-US', options);
+    let dueDateArray = dueDate.split(' ');
+    let month = dueDateArray[1];
+    let day = dueDateArray[2];
 
     return (
         <div>

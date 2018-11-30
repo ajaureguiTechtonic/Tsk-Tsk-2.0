@@ -21,8 +21,7 @@ const calcDaysOld = (dateAdded, currentDate) => {
 };
 
 const sortTasks = (task) => {
-  console.log(task);
-  console.log(task.dueDate);
+  console.log(task.dateCompleted);
   let currentDate = new Date().toDateString();
   var daysOld = calcDaysOld(task.dateAdded, currentDate);
   var daysPastDue = calcDaysOld(task.dueDate, currentDate);
@@ -106,7 +105,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
     if (task.completed == true) {
-      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level}/>
+      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dateCompleted={task.dateCompleted} level={level}/>
     } else if (level <= 3) {
       return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     } else {

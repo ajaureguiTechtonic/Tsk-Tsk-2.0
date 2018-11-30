@@ -20,6 +20,12 @@
   font-family: 'Quicksand', sans-serif;
 }
 
+.task-description p {
+  font-size: .75em;
+  padding-right: 1vw;
+  font-family: 'Quicksand', sans-serif;
+}
+
 .edit-button {
   position: static;
   right: unset;
