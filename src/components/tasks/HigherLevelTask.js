@@ -148,7 +148,7 @@ class HigherLevelTask extends Component{
                         minDate={moment().subtract(10, 'days')}
                         maxDate={moment().add(45, 'days')}
                         withPortal
-                        inline />
+                        inline >
                           <div style={{color: 'blue', fontSize: '1.5em', textAlign: 'center', cursor: 'pointer' }} onClick={(e) => {
                             this.toggleCalendar();
                           }}>
