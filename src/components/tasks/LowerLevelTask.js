@@ -31,13 +31,16 @@ class LowerLevelTask extends Component {
       if (taskedits.taskTitle) {
         this.tempEditHolder.taskTitle = taskedits.taskTitle;
       }
+
       if (taskedits.taskDescription) {
         this.tempEditHolder.taskDescription = taskedits.taskDescription;
       }
+
       if (taskedits.dueDate) {
         this.tempEditHolder.dueDate = taskedits.dueDate;
       }
     }
+
     console.log(this.tempEditHolder);
   };
 
@@ -67,6 +70,7 @@ class LowerLevelTask extends Component {
       this.forwardEdits(this.tempEditHolder);
       this.tempEditHolder = {};
     }
+
     this.setState({
       editing: !this.state.editing,
     });

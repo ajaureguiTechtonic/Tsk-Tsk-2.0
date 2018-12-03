@@ -46,6 +46,7 @@ class TaskContainer extends Component{
   };
 
   createTask(task) {
+    console.log(task);
     _createTask(this, task);
   };
 
