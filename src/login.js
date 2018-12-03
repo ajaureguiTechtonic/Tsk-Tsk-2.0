@@ -11,7 +11,8 @@ export function _handleLogIn(props, email, password) {
   .then((jwt) => {
     sessionStorage.setItem('jwt-token', jwt.data.token);
     sessionStorage.setItem('user', jwt.data.name);
-    console.log('Logged In');
+    sessionStorage.setItem('email', jwt.data.email);
+    console.log('Logged In', jwt.data.email);
     props.checkLogin(jwt.data.auth);
   })
   .catch((jwt) => {
@@ -26,8 +27,9 @@ export function _handleRegister(props, newUser) {
     console.log(jwt);
     sessionStorage.setItem('jwt-token', jwt.data.token);
     sessionStorage.setItem('user', jwt.data.name);
+    sessionStorage.setItem('email', jwt.data.email);
     props.checkLogin(jwt.data.auth);
-    document.getElementById('modal-signup')
+    document.getElementById('modal-signup');
   }).catch(() => {
     alert('An account with this email address already exists.');
   });
@@ -54,4 +56,30 @@ export function _validateAccount(user) {
 export function _verify() {
   let headers = { 'x-access-token': sessionStorage.getItem('jwt-token') };
   return axios.get(`${authURL}/verify`, { headers: headers });
+}
+
+//edit user info
+export function _editUser(that, userEdits) {//// WARNING: there is no verification that the email being edited belongs to the user. XXX
+
+  // let headers = {
+  //   'x-access-token': sessionStorage.getItem('jwt-token'), //XXX may not need.
+  // };
+
+  //NOTE //may not need headers...
+  // axios.put(`${authURL}/edituser`, userEdits, { headers: headers })
+
+  // other end req.body.oldemail/newemail/username
+  //userEdits format:
+  // {
+  // 	"oldemail": "u12@u12.com",
+  // 	"newemail": "newguy@newguy.com",
+  // 	"username": "u123"
+  // }
+
+  axios.put(`${authURL}/edituser`, userEdits)
+  .then((response) => {
+    console.log(response);
+  }).catch((res) => {
+    console.log('edit user fail res:', res);
+  });
 }
