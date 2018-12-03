@@ -187,7 +187,7 @@ class HigherLevelTask extends Component{
                     </div>
                     <div className={`col-2 col-sm-3 edit-buttons edit-this-task-${this.props.taskID}`}>
                       <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                        <button type="button" className="btn edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
+                        <button type="button" className="btn left-edit-button edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
                           // this.props.handleOnEdit(this.props.id)
                           this.toggleEditHLT();
                         }}>Edit</button>
