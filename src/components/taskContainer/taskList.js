@@ -68,7 +68,7 @@ const sortTasks = (task) => {
   return level;
 };
 
-const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask, handleEditfn }) => {
+const TaskList = ({ taskList, editing, handleEditing, handleOnDelete, archiveCompletedTask, handleEditfn }) => {
   let sortedTaskList = taskList.map((task) => {
     let newTaskList = Object.assign({}, task);
     let level = sortTasks(task);
@@ -104,11 +104,11 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     if (task.completed == true) {
       return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dateCompleted={task.dateCompleted} level={1}/>
     } else if (level <= 3) {
-      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
+      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} editing={editing} handleEditing={handleEditing} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     } else {
       daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
       var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
-      return <HigherLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} daysPastDue={daysPastDue} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
+      return <HigherLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} level={level} editing={editing} handleEditing={handleEditing} handleOnDelete={handleOnDelete} daysOld={daysOld} daysPastDue={daysPastDue} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     }
   });
 

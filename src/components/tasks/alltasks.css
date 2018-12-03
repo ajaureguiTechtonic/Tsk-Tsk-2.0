@@ -25,7 +25,11 @@
   padding-right: 1vw;
   font-family: 'Quicksand', sans-serif;
 }
-.edit-focus {
+/* Edit these to change the outlines of editable information in a task. */
+.edit-focus div {
+  outline: 2px solid blue;
+}
+.edit-focus span {
   outline: 2px solid blue;
 }
 

@@ -15,8 +15,8 @@ class TaskContainer extends Component{
     super(props);
 
     this.state = {
+      editing: false,
       addModal: false,
-      editModal: false,
       deleteModal: false,
       taskList: [],
       taskToDelete: '',
@@ -25,7 +25,7 @@ class TaskContainer extends Component{
       taskToEdit: {},
     };
     this.toggleAdd = this.toggleAdd.bind(this);
-    this.toggleEdit = this.toggleEdit.bind(this);
+    this.toggleEditing = this.toggleEditing.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
     this.createTask = this.createTask.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
@@ -74,25 +74,16 @@ class TaskContainer extends Component{
     this.setState({ deleteModal: !this.state.deleteModal, taskToDelete: id });
   };
 
-  toggleEdit(id) { // is fed id. // NOTE: obsolete, remove.
-    let taskIndex;
-    if (!this.state.editModal) {
-      const taskList = this.state.taskList;
-      taskIndex = taskList.findIndex(task => task.id === id); // not necessary?
-      this.setState({
-        taskIdToEdit: id, // XXX: no longer needed remove from state
-        taskIndex: taskIndex, // XXX: no longer needed remove from state and componets below, chase down the line. // NOTE: leave edit task alone those are block scoped and are unrelated.
-        taskToEdit: this.state.taskList[taskIndex], //XXX: no longer needed remove from state and componets below, chase down the line.
-      });
-    }
-
-    this.setState({ editModal: !this.state.editModal });
-  };
+  toggleEditing() {
+    this.setState({ editing: !this.state.editing }, () => {
+      return this.state.editing;
+    });
+  }
 
   render() {
     return (
       <div>
-        <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask} archiveCompletedTask={this.archiveCompletedTask}/>
+        <TaskList taskList={this.state.taskList} editing={this.state.editing} handleEditing={this.toggleEditing} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask} archiveCompletedTask={this.archiveCompletedTask}/>
         <MediaQuery maxWidth={915}>
           {(matches) => {
             if (matches) {
@@ -105,7 +96,6 @@ class TaskContainer extends Component{
           }}
         </MediaQuery>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
-        <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} handleEditIndex={this.state.taskIndex} forwardTask={this.state.taskToEdit} handleEditfn={this.editTask} />
         <DeleteTaskModal isOpen={this.state.deleteModal} handleOnClick={this.toggleDelete} handleDeleteTask={this.deleteTask}/>
       </div>
     );

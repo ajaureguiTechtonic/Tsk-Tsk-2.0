@@ -15,7 +15,6 @@ class HigherLevelTask extends Component{
 
     this.state = {
       isCollapsed: false,
-      editing: false,
     };
 
     this.tempEditHolder = {};
