@@ -40,7 +40,7 @@ class ArchivedTaskView extends Component{
     store.set('storedTasks', this.state.taskList);
     return (
        <div>
-         <nav></nav>
+        <nav></nav>
         <TaskList taskList={this.state.taskList}/>
       </div>
     );

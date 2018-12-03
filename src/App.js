@@ -16,6 +16,7 @@ class App extends Component {
     this.state = { isLoggedIn: false };
     this._logout = this._logout.bind(this);
     this._login = this._login.bind(this);
+    this.verifyUser = this.verifyUser.bind(this);
   }
 
   componentWillMount() {
@@ -23,6 +24,21 @@ class App extends Component {
       if (jwt.data.auth === true) {
         this.setState({ isLoggedIn: true });
       } else {
+        this._logout();
+      }
+    });
+  }
+
+  componentDidMount() {
+    setInterval(this.verifyUser, 1800000);
+  }
+
+  verifyUser() {
+    _verify().then((jwt) => {
+      console.log(jwt.data.auth);
+      if (jwt.data.auth === true) {
+        this.setState({ isLoggedIn: true });
+      } else if (jwt.data.auth === false) {
         this._logout();
       }
     });
@@ -42,7 +58,7 @@ class App extends Component {
     sessionStorage.removeItem('jwt-token');
     sessionStorage.removeItem('user');
     this.setState({ isLoggedIn: false });
-    console.log('You are logged out');
+    console.log('You are logged out, invalid token');
   }
 
   render () {

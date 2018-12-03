@@ -65,8 +65,6 @@ export function _archiveCompletedTask(that, id) {
   let headers = {
     'x-access-token': sessionStorage.getItem('jwt-token'),
   };
-
-  console.log(id);
   axios({
     method: 'put',
     url: `http://127.0.0.1:4000/tsktsk/${id}`,
