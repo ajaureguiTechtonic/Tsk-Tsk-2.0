@@ -1,17 +1,17 @@
 .normal-add-task-button {
   color: #586060;
   background-color: white;
-   border: none;
-   border-radius: 5px;
-   box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
-
-   position: fixed;
-   right: 30px;
-   top: 100px;
-   height: 70px;
-   width: 150px;
-   z-index: 1040;
-   font-family: 'Josefin+Sans', sans-serif;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+  position: fixed;
+  right: 30px;
+  top: 100px;
+  height: 60px;
+  width: 130px;
+  z-index: 1040;
+  padding-bottom: 5px;
+  font-family: 'Josefin+Sans', sans-serif;
 }
 
 #forgetMe:active {
@@ -20,28 +20,26 @@
 }
 
 .normal-add-task-button img {
-  margin: 0 5px 5px 5px;
+  margin: 0 5px 5px 0px;
 }
 
 .small-add-task-button {
   color: #586060;
   background-color: white;
-   border: none;
-   border-radius: 5px;
-   box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
-
-   position: fixed;
-   right: 30px;
-   top: 10px;
-   height: 50px;
-   width: 125px;
-   z-index: 1040;
-
-   font-family: 'Josefin+Sans', sans-serif;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, .37);
+  position: fixed;
+  left: 115px;
+  top: 10px;
+  height: 50px;
+  width: 100px;
+  z-index: 1040;
+  font-family: 'Josefin+Sans', sans-serif;
 }
-.add-task-button img {
-   position: sticky;
-   padding: 5px;
+
+.small-add-task-button img {
+  display: none;
 }
 
 .add-task-button:hover {

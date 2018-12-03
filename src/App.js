@@ -70,7 +70,7 @@ class App extends Component {
               <div id="blurMe" className='main-container'>
                 <Route exact path='/' render={(props) => <div>
                   <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-                  <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                  <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } verify={ this.verifyUser } {...props}/>
                 </div>}/>
                 <Route exact path='/archived' render={(props) => <div>
                   <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
