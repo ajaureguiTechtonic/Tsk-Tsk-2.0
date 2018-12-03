@@ -135,14 +135,14 @@ class LowerLevelTask extends Component {
                     {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
                     <RIEInput
                       value={taskTitleLLT}
-                      className="m-0 align-self-center"
+                      className="m-0 align-self-center edit-focus"
                       change={this.editTaskLLT}
                       propName='taskTitle'
                       validate={_.isString}
                       isDisabled= {!this.state.editing}/>
                   </div>
                   <div className="col-2 d-flex right-content">
-                    <div className="col-10 days-old-count" ref="dateRef" onClick={(e) => {
+                    <div className="col-10 days-old-count edit-focus" ref="dateRef" onClick={(e) => {
                       this.toggleCalendar();
                     }}>
                       <p className="date m-0">{month}</p>
@@ -175,7 +175,7 @@ class LowerLevelTask extends Component {
                         {/* <p ref="descP">{this.props.description}</p> */}
                         <RIEInput
                           value={taskDescriptionLLT}
-                          className="m-0 align-self-center"
+                          className="m-0 align-self-center edit-focus"
                           change={this.editTaskLLT}
                           propName='taskDescription'
                           validate={_.isString}

@@ -25,6 +25,9 @@
   padding-right: 1vw;
   font-family: 'Quicksand', sans-serif;
 }
+.edit-focus {
+  outline: 2px solid blue;
+}
 
 .edit-button {
   position: static;
