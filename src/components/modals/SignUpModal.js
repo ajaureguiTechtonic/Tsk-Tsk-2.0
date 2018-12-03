@@ -37,7 +37,7 @@ class SignUpModal extends Component {
         <Modal id="modal-signup" tabIndex="-1" isOpen={this.props.isOpen} toggle={this.props.onClick}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
           <ModalHeader>
             <div>
-              <h5 className="modal-title" id="modal-label-signup">Welcome !</h5>
+              <h5 className="modal-title" id="modal-label-signup">Let's Get Started !</h5>
             </div>
           </ModalHeader>
 
@@ -45,7 +45,7 @@ class SignUpModal extends Component {
             {/* <!-- Modal sign up form --> */}
             <form id="register-form" ref="regFormref">
               <div className="form-group">
-                <label htmlFor="InputUserName">Sign in</label>
+                <label htmlFor="InputUserName">Username</label>
                 <input type="UserName" className="form-control" placeholder="Username" required />
               </div>
               <div className="form-group">
