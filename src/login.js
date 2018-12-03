@@ -59,7 +59,7 @@ export function _verify() {
 }
 
 //edit user info
-export function _editUser(that, userEdits, id) {//// WARNING: there is no verification that the email being edited belongs to the user. XXX
+export function _editUser(that, userEdits) {//// WARNING: there is no verification that the email being edited belongs to the user. XXX
 
   // let headers = {
   //   'x-access-token': sessionStorage.getItem('jwt-token'), //XXX may not need.
