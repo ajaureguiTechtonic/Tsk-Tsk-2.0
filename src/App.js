@@ -67,6 +67,7 @@ class App extends Component {
           <Router>
             <div>
               <UserSidebar />
+              <div id='myOverlay'></div>
               <div id="blurMe" className='main-container'>
                 <Route exact path='/' render={(props) => <div>
                   <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
@@ -77,7 +78,6 @@ class App extends Component {
                   <ArchivedTaskView isLoggedIn = { this.state.isLoggedIn } checkLogout = { this._logout } {...props}/>
                 </div>}/>
               </div>
-              <div id='myOverlay'></div>
             </div>
           </Router>
           );
