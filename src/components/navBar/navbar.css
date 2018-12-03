@@ -9,3 +9,12 @@
   background-color: #fff;
   /* margin-bottom: 10px; */
 }
+
+.navbar-toggler {
+  margin-right: 15px;
+}
+
+.nav-link {
+  text-align: right;
+  margin-right: 15px;
+}

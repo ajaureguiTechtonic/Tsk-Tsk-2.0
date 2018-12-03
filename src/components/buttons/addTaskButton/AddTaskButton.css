@@ -23,18 +23,18 @@
   background-color: white;
   border: none;
   border-radius: 5px;
-  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, .37);
   position: fixed;
-  right: 30px;
+  left: 115px;
   top: 10px;
   height: 50px;
-  width: 125px;
+  width: 100px;
   z-index: 1040;
   font-family: 'Josefin+Sans', sans-serif;
 }
 
 .small-add-task-button img {
-  margin: 0 5px 5px 0px;
+  display: none;
 }
 
 .add-task-button:hover {

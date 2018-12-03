@@ -72,12 +72,12 @@ h1, h2, h3, h4, h5 {
   }
 }
 /* MEDIA QUERIES TO SWAP ADD TASK BUTTON ON SCREEN SIZE CHANGE */
-@media (max-width: 915px) {
+@media (max-width: 700px) {
   .add-task-button {
     display: none;
   }
 }
-@media (min-width: 916px) {
+@media (min-width: 701px) {
   #navAddTaskButton {
     display: none;
   }
