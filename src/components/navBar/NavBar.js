@@ -23,7 +23,9 @@ class NavBar extends Component {
       isOpen: false,
       modal: false,
     };
+    console.log(this.state.modal);
     this.toggle = this.toggle.bind(this);
+    this.loginToggle = this.loginToggle.bind(this);
   }
 
   toggle() {
@@ -41,7 +43,11 @@ class NavBar extends Component {
   headerButton() {
     if (this.props.isLoggedIn === false) {
       return (
-        <button type="button" onClick={this.loginToggle} className="btn edit-button ml-auto">Sign Up</button>
+        <Nav className="ml-auto" navbar>
+          <NavItem>
+            <NavLink onClick={this.loginToggle}>Sign Up</NavLink>
+          </NavItem>
+        </Nav>
       )
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
       return (
