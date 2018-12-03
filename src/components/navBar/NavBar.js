@@ -43,48 +43,61 @@ class NavBar extends Component {
   headerButton() {
     if (this.props.isLoggedIn === false) {
       return (
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink onClick={this.loginToggle}>Sign Up</NavLink>
-          </NavItem>
-        </Nav>
-      )
+        <Navbar color="light" light expand="md" className="fixed-top">
+          <NavbarBrand href="/">
+            <img className="nav-logo" src={Logo} alt="tsk-tsk logo" />
+          </NavbarBrand>
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink onClick={this.loginToggle}> Sign Up </NavLink>
+            </NavItem>
+          </Nav>
+        </Navbar>
+      );
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
       return (
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink href="/" onClick={this.taskView}>Active Tasks</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/" onClick={(e) => this.props.checkLogout()}>Logout</NavLink>
-          </NavItem>
-        </Nav>
-      )
-    } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
-      return (
-        <Nav className="ml-auto" navbar>
-          <NavItem>
-            <NavLink href="/archived" onClick={this.taskView}>Archived Tasks</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/" onClick={(e) => this.props.checkLogout()}>Logout</NavLink>
-          </NavItem>
-        </Nav>
-      );
-  }
-
-  render() {
-    return (
-      <div>
         <Navbar color="light" light expand="md" className="fixed-top">
           <NavbarBrand href="/">
             <img className="nav-logo" src={Logo} alt="tsk-tsk logo" />
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
-              {this.headerButton()}
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/" onClick={this.taskView}>Active Tasks</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/" onClick={(e) => this.props.checkLogout()}>Logout</NavLink>
+              </NavItem>
+            </Nav>
           </Collapse>
         </Navbar>
+      )
+    } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
+      return (
+        <Navbar color="light" light expand="md" className="fixed-top">
+          <NavbarBrand href="/">
+            <img className="nav-logo" src={Logo} alt="tsk-tsk logo" />
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/archived" onClick={this.taskView}>Archived Tasks</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/" onClick={(e) => this.props.checkLogout()}>Logout</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      );
+  }
+
+  render() {
+    return (
+      <div>
+        {this.headerButton()}
         <SignUpModal checkLogin={this.props.checkLogin} isOpen={this.state.modal} onClick={this.loginToggle} />
       </div>
     );
