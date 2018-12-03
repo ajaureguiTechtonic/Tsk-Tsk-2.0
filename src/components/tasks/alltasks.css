@@ -27,22 +27,24 @@
 }
 
 .edit-button {
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, .37);
   position: static;
   right: unset;
   top: unset;
   height: unset;
   width: unset;
-}
-
-.edit-button {
-  box-shadow: 4px 4px 4px rgba(0, 0, 0, .37);
   background-color: inherit;
   border: 1px solid rgba(0, 0, 0, .15);
   font-family: 'Quicksand', sans-serif;
 }
+
 .edit-button:hover {
   box-shadow: 4px 4px 4px rgba(0, 0, 0, .5);
   border: 1px solid rgba(0, 0, 0, .3);
+}
+
+.left-edit-button {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, .37);
 }
 
 .vertical-align {

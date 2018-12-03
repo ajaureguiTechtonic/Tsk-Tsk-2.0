@@ -31,13 +31,16 @@ class LowerLevelTask extends Component {
       if (taskedits.taskTitle) {
         this.tempEditHolder.taskTitle = taskedits.taskTitle;
       }
+
       if (taskedits.taskDescription) {
         this.tempEditHolder.taskDescription = taskedits.taskDescription;
       }
+
       if (taskedits.dueDate) {
         this.tempEditHolder.dueDate = taskedits.dueDate;
       }
     }
+
     console.log(this.tempEditHolder);
   };
 
@@ -87,6 +90,7 @@ class LowerLevelTask extends Component {
       this.forwardEdits(this.tempEditHolder);
       this.tempEditHolder = {};
     }
+
     this.setState({
       editing: !this.state.editing,
     });
@@ -100,17 +104,19 @@ class LowerLevelTask extends Component {
   toggleCalendar (e) {
     if (this.state.editing) {
       e && e.preventDefault();
-      this.setState({isOpen: !this.state.isOpen});
+      this.setState({
+        isOpen: !this.state.isOpen,
+      });
     }
   }
 
-
   render() {
+    console.log(this.props);
     if (this.props.dueDate === undefined) {
       var month = this.props.daysOld;
       var day = 'Days Old';
     } else {
-      let options = { weekday: 'short', month: 'short', day: '2-digit'}
+      let options = { weekday: 'short', month: 'short', day: '2-digit' };
       let unparsedDate = new Date(this.props.dueDate);
       var dueDate = unparsedDate.toLocaleDateString('en-US', options);
       let dueDateArray = dueDate.split(' ');
@@ -131,8 +137,7 @@ class LowerLevelTask extends Component {
                     <input type="checkbox" onClick={() => this.props.archiveCompletedTask(this.props.id)}/>
                     <span className="checkmark"></span>
                   </div>
-                  <div className="col-8 col-sm-9 d-flex" ref="titleRef">
-                    {/* <p className="m-0 align-self-center" ref="nameP">{this.props.taskName}</p> */}
+                  <div className="col-8 col-sm-9 d-flex" ref="titleRef" onTouchStart={this.toggleCollapse}>
                     <RIEInput
                       value={taskTitleLLT}
                       className="m-0 align-self-center"
@@ -172,7 +177,6 @@ class LowerLevelTask extends Component {
                   <Collapse className="col-12" isOpen={this.state.isCollapsed} >
                     <div className="row">
                       <div className={`col-10 offset-1 col-sm-8 offset-1 task-description edit-this-task-${this.props.taskID}`} ref="descRef">
-                        {/* <p ref="descP">{this.props.description}</p> */}
                         <RIEInput
                           value={taskDescriptionLLT}
                           className="m-0 align-self-center"
@@ -183,7 +187,7 @@ class LowerLevelTask extends Component {
                       </div>
                       <div className={`col-2 col-sm-3 edit-buttons edit-this-task-${this.props.taskID}`}>
                         <div className="edit-content btn-group" role="group" aria-label="edit buttons">
-                          <button type="button" className="btn edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
+                          <button type="button" className="btn left-edit-button edit-button listen-for-me-edit-task" ref="editBtn" onClick={(e) => {
                             // this.props.handleOnEdit(this.props.id); XXX deleteME
                             this.toggleEditLLT();
                           }}>Edit</button>

@@ -23,12 +23,6 @@ const SignUpModal = (props) => {
     }
   };
 
-  //refs cannot be used in a stateless functional component. We can find another way to target clearing this modal, although the page will always re-render and clear the form when a user is created so I do not think this modal in particular is necessary to clear.
-
-  // const clearModalForm = () => {
-  //   this.refs.regFormref.reset();
-  // };
-
   return (
     <div>
       <Modal id="modal-signup" tabIndex="-1" isOpen={props.isOpen} toggle={props.handleClick}  role="dialog" aria-labelledby="modal-label-signup" aria-hidden="true">
@@ -76,5 +70,6 @@ const SignUpModal = (props) => {
     </div>
   );
 };
+
 
 export default SignUpModal;
