@@ -66,5 +66,10 @@
   height: 75vh;
   min-height:5em;
   width: 100%;
-  overflow: scroll;
+  overflow: visible;
+}
+@media (max-width: 575px) {
+  .log-in {
+    margin-left:2px;
+  }
 }
