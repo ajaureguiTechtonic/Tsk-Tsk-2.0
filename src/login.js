@@ -4,7 +4,7 @@ const axios = require('axios');
 //Handle the loggin in of a user
 export function _handleLogIn(props, email, password) {
   let postData = {
-    email: email,
+    email: email.toLowerCase(),
     password: password,
   };
   axios.post(`${authURL}/login`, postData)
@@ -27,6 +27,7 @@ export function _handleRegister(props, newUser) {
     sessionStorage.setItem('jwt-token', jwt.data.token);
     sessionStorage.setItem('user', jwt.data.name);
     props.checkLogin(jwt.data.auth);
+    document.getElementById('modal-signup')
   }).catch(() => {
     alert('An account with this email address already exists.');
   });

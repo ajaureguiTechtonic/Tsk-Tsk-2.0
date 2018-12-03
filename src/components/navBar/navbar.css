@@ -4,8 +4,22 @@
 }
 
 .navbar{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, .37);
-  border-radius: 0px 0px 5px 5px;
-  background-color: #e9fff7;
+  border-radius: 0px;
+  background-color: #fff;
   /* margin-bottom: 10px; */
+}
+
+.navbar-toggler {
+  margin-right: 15px;
+}
+
+.nav-link {
+  text-align: right;
+  margin-right: 15px;
 }
