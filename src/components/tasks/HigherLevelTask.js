@@ -23,7 +23,6 @@ class HigherLevelTask extends Component{
     this.toggleCollapse = this.toggleCollapse.bind(this);
     this.editTaskHLT = this.editTaskHLT.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   };
 
   editTaskHLT(taskedits) {
