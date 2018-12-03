@@ -48,23 +48,22 @@ class App extends Component {
   render () {
     if (this.state.isLoggedIn === true) {
       return (
-        <Router>
-          <div>
+          <Router>
             <div>
               <UserSidebar />
+              <div id="blurMe" className='main-container'>
+                <Route exact path='/' render={(props) => <div>
+                  <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                  <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                </div>}/>
+                <Route exact path='/archived' render={(props) => <div>
+                  <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
+                  <ArchivedTaskView isLoggedIn = { this.state.isLoggedIn } checkLogout = { this._logout } {...props}/>
+                </div>}/>
+              </div>
+              <div id='myOverlay'></div>
             </div>
-            <div id="blurMe" className='main-container'>
-              <Route exact path='/' render={(props) => <div>
-                <NavBar checkLogin={ this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-                <TaskContainer checkLogin = { this._login } checkLogout = { this._logout } isLoggedIn = { this.state.isLoggedIn } {...props}/>
-              </div>}/>
-              <Route exact path='/archived' render={(props) => <div>
-                <NavBar checkLogin = { this._login} isLoggedIn = { this.state.isLoggedIn } {...props}/>
-                <ArchivedTaskView isLoggedIn = { this.state.isLoggedIn } checkLogout = { this._logout } {...props}/>
-              </div>}/>
-            </div>
-          </div>
-        </Router>
+          </Router>
           );
     } else {
       return (

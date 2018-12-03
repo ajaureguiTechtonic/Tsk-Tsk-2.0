@@ -44,13 +44,13 @@
    cursor: pointer;
    padding: 5px 15px 10px 15px;
    position: fixed;
-   top: 125px;
+   top: 50%;
    color: #586060;
    background-color: white;
    border: none;
    border-radius: 50px;
    box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
-   z-index: 800;
+   z-index: 1000;
 }
 .openbtn:active {
   outline: none;

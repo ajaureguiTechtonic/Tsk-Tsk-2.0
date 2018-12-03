@@ -21,32 +21,32 @@ class NavBar extends Component {
 
   headerButton() {
     if (this.props.isLoggedIn === false) {
-      return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
+      return <button type='button' onClick={this.toggle} className='btn edit-button ml-auto'>Sign Up</button>
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/archived') {
       return (
         <div>
-          <a href="/"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Active Tasks </button></a>
-          <a href="/"><button type="button" onClick={(e) => this.props.checkLogout()} className="btn edit-button ml-auto">Log out</button></a>
+          <a href='/'><button type='Link' onClick={this.taskView} className='btn edit-button ml-auto'>Active Tasks </button></a>
+          <a href='/'><button type='button' onClick={(e) => this.props.checkLogout()} className='btn edit-button ml-auto'>Log out</button></a>
         </div>
-      )
+      );
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
       return (
         <div>
-          <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Archived Tasks </button></a>
-          <button type="button" onClick={(e) => this.props.checkLogout()} className="btn edit-button ml-auto">Log out</button>
+          <a href='/archived'><button type='Link' onClick={this.taskView} className='btn edit-button ml-auto'>Archived Tasks </button></a>
+          <button type='button' onClick={(e) => this.props.checkLogout()} className='btn edit-button ml-auto'>Log out</button>
         </div>
-      )
+      );
   }
 
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-light">
-          <a className="navbar-brand" href="/"><img className="nav-logo" src={Logo} alt="tsk-tsk logo" /></a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
+        <nav className='navbar navbar-expand navbar-light'>
+          <a className='navbar-brand' href='/'><img className='nav-logo' src={Logo} alt='tsk-tsk logo' /></a>
+          <button className='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>
+            <span className='navbar-toggler-icon'></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className='collapse navbar-collapse' id='navbarNav'>
             { this.headerButton() }
           </div>
         </nav>
