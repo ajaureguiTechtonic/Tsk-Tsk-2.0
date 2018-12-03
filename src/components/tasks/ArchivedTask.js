@@ -29,6 +29,7 @@ class LowerLevelTask extends Component {
     let options = { weekday: 'short', month: 'short', day: '2-digit' };
     let unparsedDate = new Date(this.props.dateCompleted);
     var dueDate = unparsedDate.toLocaleDateString('en-US', options);
+    console.log(dueDate);
     let dueDateArray = dueDate.split(' ');
     let month = dueDateArray[1];
     let day = dueDateArray[2];

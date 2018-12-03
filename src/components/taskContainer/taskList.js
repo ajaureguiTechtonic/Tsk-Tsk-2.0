@@ -28,6 +28,7 @@ const sortTasks = (task) => {
 
   if (task.completed === true) {
     level = 1;
+    return level;
   }
 
   if (dueDate > dateAdded && daysPastDue < 1) {
@@ -64,7 +65,7 @@ const sortTasks = (task) => {
   } else if (task.dueDate && daysPastDue >= 4) {
     level = 5;
   }
-
+  
   return level;
 };
 
