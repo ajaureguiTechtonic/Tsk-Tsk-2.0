@@ -6,7 +6,7 @@ import { Collapse } from 'reactstrap';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import DatePicker from 'react-datepicker'; //for date picker
-import { RIEToggle, RIEInput, RIETextArea, RIENumber, RIETags, RIESelect } from 'riek';
+import { RIEInput } from 'riek';
 import _ from 'lodash';
 
 class LowerLevelTask extends Component {

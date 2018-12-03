@@ -4,7 +4,6 @@ import './alltasks.css';
 import './lowerlevel.css';
 import './archivedtask.css';
 import { Collapse } from 'reactstrap';
-import _ from 'lodash';
 
 class LowerLevelTask extends Component {
   constructor (props) {

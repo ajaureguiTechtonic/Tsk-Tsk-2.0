@@ -37,16 +37,16 @@ class UserSidebar extends Component{
   render() {
     return (
   <div >
-      <div id='mySidebar' className='sidebar'>
-        <a href='javascript:void(0)' className='closebtn' onClick={this.closeNav}>&times;</a>
-        <a href='#'></a>
-        <a href='#'></a>
-        <a href='#'></a>
-        <a href='#'>User Profile</a>
-      </div>
-      <div id='main'>
-        <button id='openbtn' className='openbtn' onClick={this.openNav}>&#9776;</button>
-      </div>
+    <div id='mySidebar' className='sidebar'>
+      <a href='javascript:void(0)' className='closebtn' onClick={this.closeNav}>&times;</a>
+      <a href='#'></a>
+      <a href='#'></a>
+      <a href='#'></a>
+      <a href='#'>User Profile</a>
+    </div>
+    <div id='main'>
+      <button id='openbtn' className='openbtn' onClick={this.openNav}>&#9776;</button>
+    </div>
   </div>
     );
   };

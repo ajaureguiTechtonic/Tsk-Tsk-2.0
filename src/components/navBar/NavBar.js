@@ -10,20 +10,17 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  NavLink } from 'reactstrap';
 
 class NavBar extends Component {
   constructor (props) {
     super(props);
+
     this.state = {
       isOpen: false,
       modal: false,
     };
-    console.log(this.state.modal);
+
     this.toggle = this.toggle.bind(this);
     this.loginToggle = this.loginToggle.bind(this);
   }
@@ -37,7 +34,7 @@ class NavBar extends Component {
   loginToggle() {
     this.setState({
       modal: !this.state.modal,
-    })
+    });
   }
 
   headerButton() {
@@ -72,7 +69,7 @@ class NavBar extends Component {
             </Nav>
           </Collapse>
         </Navbar>
-      )
+      );
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
       return (
         <Navbar color="light" light expand="md" className="fixed-top">
@@ -98,7 +95,7 @@ class NavBar extends Component {
     return (
       <div>
         {this.headerButton()}
-        <SignUpModal checkLogin={this.props.checkLogin} isOpen={this.state.modal} onClick={this.loginToggle} />
+        <SignUpModal checkLogin={this.props.checkLogin} isOpen={this.state.modal} handleClick={this.loginToggle} />
       </div>
     );
   }

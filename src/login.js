@@ -38,13 +38,13 @@ export function _handleRegister(props, newUser) {
 //Simple validation check, can expand to make more robust validation.
 //Used before calling _handleRegister.
 export function _validateAccount(user) {
-  if (user.username == '') {
+  if (user.username === '') {
     console.log('Please enter a valid username');
     return false;
-  } else if (user.email == '') {
+  } else if (user.email === '') {
     console.log('Please enter a valid email');
     return false;
-  } else if (user.password == '') {
+  } else if (user.password === '') {
     console.log('Please enter a valid password');
     return false;
   } else {

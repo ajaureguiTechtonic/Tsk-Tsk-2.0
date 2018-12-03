@@ -5,10 +5,7 @@ import AddTaskModal from '../../components/modals/AddTaskModal';
 import EditTaskModal from '../../components/modals/EditTaskModal';
 import DeleteTaskModal from '../../components/modals/DeleteTaskModal';
 import TaskList from './taskList';
-import storedTasks from '../../components/storedTasks';
 import MediaQuery from 'react-responsive';
-import _ from 'lodash';
-const store = require('store');
 
 class TaskContainer extends Component{
   constructor (props) {
