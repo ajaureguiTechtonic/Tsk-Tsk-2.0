@@ -65,7 +65,7 @@ const sortTasks = (task) => {
   } else if (task.dueDate && daysPastDue >= 4) {
     level = 5;
   }
-  
+
   return level;
 };
 
@@ -95,6 +95,8 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     if (aDate.getTime() < bDate.getTime()) return 1;
     if (a.dueDate > b.dueDate) return -1;
     if (a.dueDate < b.dueDate) return 1;
+
+    return true;
   });
 
   let tasks = sortByLevel.map((task, i) => {
@@ -102,7 +104,7 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     let currentDate = new Date().getTime();
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
-    if (task.completed == true) {
+    if (task.completed === true) {
       return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dateCompleted={task.dateCompleted} level={level}/>
     } else if (level <= 3) {
       return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;

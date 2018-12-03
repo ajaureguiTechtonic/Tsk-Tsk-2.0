@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { _verify } from './login.js';
 import './main.css';
@@ -13,7 +12,11 @@ import NavBar from './components/navBar/NavBar';
 class App extends Component {
   constructor (props) {
     super(props);
-    this.state = { isLoggedIn: false };
+
+    this.state = {
+      isLoggedIn: false,
+    };
+
     this._logout = this._logout.bind(this);
     this._login = this._login.bind(this);
     this.verifyUser = this.verifyUser.bind(this);

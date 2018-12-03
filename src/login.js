@@ -26,8 +26,9 @@ export function _handleRegister(props, newUser) {
     console.log(jwt);
     sessionStorage.setItem('jwt-token', jwt.data.token);
     sessionStorage.setItem('user', jwt.data.name);
+    console.log(props);
     props.checkLogin(jwt.data.auth);
-    document.getElementById('modal-signup')
+    document.getElementById('modal-signup');
   }).catch(() => {
     alert('An account with this email address already exists.');
   });
@@ -36,13 +37,13 @@ export function _handleRegister(props, newUser) {
 //Simple validation check, can expand to make more robust validation.
 //Used before calling _handleRegister.
 export function _validateAccount(user) {
-  if (user.username == '') {
+  if (user.username === '') {
     console.log('Please enter a valid username');
     return false;
-  } else if (user.email == '') {
+  } else if (user.email === '') {
     console.log('Please enter a valid email');
     return false;
-  } else if (user.password == '') {
+  } else if (user.password === '') {
     console.log('Please enter a valid password');
     return false;
   } else {

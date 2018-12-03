@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import TaskList from '../../../src/components/taskContainer/taskList';
-import storedTasks from '../../components/storedTasks';
 const store = require('store');
 const taskURL = 'http://127.0.0.1:4000/tsktsk';
 const axios = require('axios');
 
-
 class ArchivedTaskView extends Component{
   constructor (props) {
     super(props);
+
     this.state = {
       taskList: [],
     };
+
     this.checkStorage = this.checkStorage.bind(this);
     this.checkStorage();
   };
@@ -32,8 +32,8 @@ class ArchivedTaskView extends Component{
       });
     } else {
       console.log('not able to bruh');
-      }
-};
+    }
+  };
 
   render() {
 
