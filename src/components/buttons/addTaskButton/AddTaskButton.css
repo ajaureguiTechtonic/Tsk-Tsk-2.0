@@ -14,6 +14,11 @@
   font-family: 'Josefin+Sans', sans-serif;
 }
 
+#forgetMe:active {
+  outline: none;
+  box-shadow: 4px 4px 5px rgba(0, 0, 0, .37);
+}
+
 .normal-add-task-button img {
   margin: 0 5px 5px 0px;
 }

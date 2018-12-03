@@ -33,7 +33,6 @@ export function _createTask(that, task) {
 
 //Delete a task.
 export function _deleteTask(that) {
-  console.log(that);
   let headers = {
     'x-access-token': sessionStorage.getItem('jwt-token'),
   };
@@ -66,13 +65,12 @@ export function _archiveCompletedTask(that, id) {
   let headers = {
     'x-access-token': sessionStorage.getItem('jwt-token'),
   };
-
-  console.log(id);
   axios({
     method: 'put',
     url: `http://127.0.0.1:4000/tsktsk/${id}`,
     data: {
       completed: true,
+      dateCompleted: new Date(),
     },
     headers,
   })

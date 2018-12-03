@@ -43,12 +43,18 @@ button::after {
   background-color: #b2d1d1;
   /* font-size: 1.6rem; */
   /* VV commented out on 10/30/18 for react proj VV */
-  padding-top: 85px;
   height: 100vh;
 }
 
 .main-container {
+  position: relative;
   background-color: #b2d1d1;
+  padding-top: 85px;
+  z-index: 750;
+}
+
+.blur-filter {
+  filter: blur(3px);
 }
 
 #validation-01 {

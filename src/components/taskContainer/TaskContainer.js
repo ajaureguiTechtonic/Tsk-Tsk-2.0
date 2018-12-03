@@ -46,25 +46,32 @@ class TaskContainer extends Component{
   };
 
   createTask(task) {
+    this.props.verify();
     _createTask(this, task);
   };
 
   deleteTask() {
+    this.props.verify();
     _deleteTask(this);
   };
 
   archiveCompletedTask(id) {
+    this.props.verify();
     _archiveCompletedTask(this, id);
   }
 
   editTask(taskEdits, id) {
+    this.props.verify();
     _editTask(this, taskEdits, id);
   };
 
   toggleAdd() {
-    this.setState({
-      addModal: !this.state.addModal,
-    });
+    this.props.verify();
+    this.setState({ addModal: !this.state.addModal });
+  };
+
+  toggleDelete(id) {
+    this.setState({ deleteModal: !this.state.deleteModal, taskToDelete: id });
   };
 
   toggleEdit(id) { // is fed id. // NOTE: obsolete, remove.
@@ -79,16 +86,7 @@ class TaskContainer extends Component{
       });
     }
 
-    this.setState({
-      editModal: !this.state.editModal,
-    });
-  };
-
-  toggleDelete(id) {
-    this.setState({
-      deleteModal: !this.state.deleteModal,
-      taskToDelete: id,
-    });
+    this.setState({ editModal: !this.state.editModal });
   };
 
   render() {
@@ -96,7 +94,6 @@ class TaskContainer extends Component{
       <div>
         <TaskList taskList={this.state.taskList} handleOnEdit={this.toggleEdit} handleOnDelete={this.toggleDelete} handleEditfn={this.editTask} archiveCompletedTask={this.archiveCompletedTask}/>
         <MediaQuery maxWidth={915}>
-
           {(matches) => {
             if (matches) {
               let style = 'small-add-task-button';
@@ -106,7 +103,6 @@ class TaskContainer extends Component{
               return <AddTaskButton handleOnClick={this.toggleAdd} buttonClass={style}/>;
             }
           }}
-
         </MediaQuery>
         <AddTaskModal isOpen={this.state.addModal} handleOnClick={this.toggleAdd} createTask={this.createTask} />
         <EditTaskModal isOpen={this.state.editModal} handleOnClick={this.toggleEdit} handleEditIndex={this.state.taskIndex} forwardTask={this.state.taskToEdit} handleEditfn={this.editTask} />

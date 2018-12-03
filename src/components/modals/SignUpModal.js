@@ -16,15 +16,20 @@ class SignUpModal extends Component {
     let newAccount = {};
     if (formData[2].value === formData[3].value) { //Make sure passwords match.
       newAccount.username = formData[0].value;
-      newAccount.email = formData[1].value;
+      newAccount.email = formData[1].value.toLowerCase();
       newAccount.password = formData[2].value;
       if (_validateAccount(newAccount)) { // Validate values , then send the register request.
         _handleRegister(this.props, newAccount);
+        this.props.onClick();
       }
     } else {
       console.log('Passwords must match');
     }
   };
+
+  clearModalForm() {
+    this.refs.regFormref.reset();
+  }
 
   render() {
     return (
@@ -38,7 +43,7 @@ class SignUpModal extends Component {
 
           <ModalBody>
             {/* <!-- Modal sign up form --> */}
-            <form id="register-form">
+            <form id="register-form" ref="regFormref">
               <div className="form-group">
                 <label htmlFor="InputUserName">Sign in</label>
                 <input type="UserName" className="form-control" placeholder="Username" required />
@@ -60,8 +65,15 @@ class SignUpModal extends Component {
             </form>
           </ModalBody>
           <ModalFooter>
-            <button onClick={this.props.onClick} className="btn modal-buttons">Cancel</button>
-            <button type="submit" onClick={ (e) => this.createAccount(e) } className="btn modal-buttons">Create</button>
+            <button onClick={(e) => {
+              this.props.onClick(e);
+              this.clearModalForm();
+            }} className="btn modal-buttons">Cancel</button>
+            <button type="submit" onClick={ (e) => {
+              this.createAccount(e);
+              this.props.onClick(e);
+              this.clearModalForm();
+            } } className="btn modal-buttons">Create</button>
           </ModalFooter>
         </Modal>
       </div>
