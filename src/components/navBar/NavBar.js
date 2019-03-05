@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import '../../main.css';
+import './navbar.css';
 import Logo from '../../assets/first_logo.png';
 import SignUpModal from '../../components/modals/SignUpModal';
-import './navbar.css';
-const authURL = 'http://127.0.0.1:4000/auth';
-const axios = require('axios');
 
 class NavBar extends Component {
   constructor (props) {
@@ -21,13 +19,6 @@ class NavBar extends Component {
     });
   };
 
-
-  handleLogout() {
-    axios.get(`${authURL}/logout`).then((response) => {
-      this.props.checkLogout(); // Handle loggin out of a user, dumping token
-    });
-  }
-
   headerButton() {
     if (this.props.isLoggedIn === false) {
       return <button type="button" onClick={this.toggle} className="btn edit-button ml-auto">Sign Up</button>
@@ -35,23 +26,22 @@ class NavBar extends Component {
       return (
         <div>
           <a href="/"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Active Tasks </button></a>
-          <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+          <a href="/"><button type="button" onClick={(e) => this.props.checkLogout()} className="btn edit-button ml-auto">Log out</button></a>
         </div>
       )
     } else if (this.props.isLoggedIn === true && this.props.location.pathname === '/')
       return (
         <div>
           <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">Archived Tasks </button></a>
-          <button type="button" onClick={(e) => this.handleLogout()} className="btn edit-button ml-auto">Log out</button>
+          <button type="button" onClick={(e) => this.props.checkLogout()} className="btn edit-button ml-auto">Log out</button>
         </div>
       )
-
   }
 
   render() {
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-light fixed-top">
+        <nav className="navbar navbar-expand navbar-light">
           <a className="navbar-brand" href="/"><img className="nav-logo" src={Logo} alt="tsk-tsk logo" /></a>
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
@@ -59,16 +49,8 @@ class NavBar extends Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             { this.headerButton() }
           </div>
-          <div>
-            {
-              this.props.match.path === '/tasks' &&
-              <a href="/archived"><button type="Link" onClick={this.taskView} className="btn edit-button ml-auto">
-                Archived Task
-              </button></a>
-            }
-          </div>
         </nav>
-        <SignUpModal isOpen={this.state.modal} onClick={this.toggle} />
+        <SignUpModal checkLogin={this.props.checkLogin} isOpen={this.state.modal} onClick={this.toggle} />
       </div>
     );
   }

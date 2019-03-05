@@ -3,11 +3,10 @@ import LowerLevelTask from '../../components/tasks/LowerLevelTask';
 import HigherLevelTask from '../../components/tasks/HigherLevelTask';
 import ArchivedTask from '../../components/tasks/ArchivedTask';
 
-
-const calcDaysOld = (dateAdded) => {
+const calcDaysOld = (dateAdded, currentDate) => {
   var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
   dateAdded = new Date(dateAdded).getTime();
-  let currentDate = new Date().getTime();
+  currentDate = new Date().getTime();
   var daysOld = currentDate - dateAdded;
   var difference = (daysOld / oneDay);
 
@@ -20,8 +19,9 @@ const calcDaysOld = (dateAdded) => {
 };
 
 const sortTasks = (task) => {
-  var daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
-  var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
+  let currentDate = new Date().toDateString();
+  var daysOld = calcDaysOld(task.dateAdded, currentDate);
+  var daysPastDue = calcDaysOld(task.dueDate, currentDate);
   var dueDate = new Date(task.dueDate);
   var dateAdded = new Date(task.dateAdded);
   var level;
@@ -102,20 +102,19 @@ const TaskList = ({ taskList, handleOnEdit, handleOnDelete, archiveCompletedTask
     var daysOld = calcDaysOld(task.dateAdded, currentDate);
 
     if (task.completed == true) {
-      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} dateAdded={task.dateAdded} level={level}/>
+      return <ArchivedTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dateCompleted={task.dateCompleted} level={level}/>
     } else if (level <= 3) {
-      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
+      return <LowerLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} dateAdded={task.dateAdded} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     } else {
       daysOld = calcDaysOld(task.dateAdded, new Date().toDateString());
       var daysPastDue = calcDaysOld(task.dueDate, new Date().toDateString());
-      return <HigherLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dateDue} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} daysPastDue={daysPastDue} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
+      return <HigherLevelTask key={task._id} id={task._id} taskName={task.taskTitle} description={task.taskDescription} dueDate={task.dueDate} level={level} handleOnEdit={handleOnEdit} handleOnDelete={handleOnDelete} daysOld={daysOld} daysPastDue={daysPastDue} archiveCompletedTask={archiveCompletedTask} handleEditfn={handleEditfn}/>;
     }
   });
 
+
   return (
-    <div>
-      { tasks }
-    </div>
+      <div>{ tasks }</div>
   );
 };
 

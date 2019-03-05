@@ -11,10 +11,16 @@
 
 .task-description {
   padding-right: 8.33%
-  
+
 }
 
 .task-description span {
+  font-size: .75em;
+  padding-right: 1vw;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.task-description p {
   font-size: .75em;
   padding-right: 1vw;
   font-family: 'Quicksand', sans-serif;
@@ -131,18 +137,21 @@
 }
 
 .dropdown {
-  position: relative;
+  display: inline-block;
   margin-left: -10%;
+  vertical-align: middle;
 }
 
 .dropdown-image {
   height: auto;
+  max-height: 60px;
   padding-left: -15px;
   padding-right: 5px;
+  vertical-align: middle;
 }
 
 .dropdown-image:hover {
-  cursor:ponter;
+  cursor:pointer;
 }
 
 @media (max-width: 575px) {

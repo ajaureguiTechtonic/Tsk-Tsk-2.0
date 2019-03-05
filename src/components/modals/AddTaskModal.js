@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import './modals.css';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-const uuidv4 = require('uuid/v4');
+// const uuidv4 = require('uuid/v4');
 
 class AddTaskModal extends Component {
   constructor (props) {
@@ -15,6 +15,7 @@ class AddTaskModal extends Component {
       taskName: '',
       description: '',
       dueDate: undefined,
+      dateCompleted: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,8 +34,7 @@ class AddTaskModal extends Component {
       taskTitle: this.state.taskName,
       taskDescription: this.state.description,
       dateAdded: new Date().toDateString(),
-      dateDue: this.state.dueDate,
-      // taskID: uuidv4(),
+      dueDate: this.state.dueDate,
     };
 
     this.props.createTask(newTask);
@@ -53,11 +53,19 @@ class AddTaskModal extends Component {
     }
   };
 
+  clearModalForm() {
+    this.setState({
+      taskName: '',
+      description: '',
+      dueDate: undefined,
+    });
+  }
+
   render() {
     return (
       <div>
         <Modal id="add-task-modal" isOpen={this.props.isOpen} toggle={this.props.handleOnClick}>
-          <form>
+          <form ref="addFormref">
             <div className="row modal-header">
               <div className="col-8">
                 <input name="taskName" onChange={this.handleChange} value={this.state.taskName} type="text" id="newTaskName" placeholder="Task Name" required />
@@ -82,10 +90,14 @@ class AddTaskModal extends Component {
               </div>
             </ModalBody>
             <ModalFooter>
-              <button type="button" className="btn modal-buttons" onClick={this.props.handleOnClick} >Cancel</button>
+              <button type="button" className="btn modal-buttons" onClick={(e) => {
+                this.props.handleOnClick(e);
+                this.clearModalForm();
+              }} >Cancel</button>
               <button type="button" className="btn modal-buttons" onClick={(e) => {
                 this.props.handleOnClick(e);
                 this.submitTaskInfo();
+                this.clearModalForm();
               }}>Add Task</button>
 
             </ModalFooter>
